@@ -1,0 +1,156 @@
+\documentclass[aspectratio = 169, 10pt]{beamer}
+
+% Set beamer theme
+\usetheme{metropolis}
+\setbeamercolor{frametitle}{
+  bg = white,
+  fg = black
+}
+\setbeamerfont{frametitle}{
+  family = \fontfamily{qag}\selectfont\bfseries
+}
+\setbeamercolor{background canvas}{
+  bg = white
+}
+
+\makeatletter
+\setbeamertemplate{footline}{
+  \leavevmode\centering%
+  \hbox{%
+  \begin{beamercolorbox}[
+      wd = 0.245\paperwidth,
+      ht = 2.25ex,
+      dp = 1.00ex,
+      left
+    ]{myauthor in head/foot}%
+    \insertauthor{}~(\insertinstitute{})
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[
+      wd = 0.50\paperwidth,
+      ht = 2.25ex,
+      dp = 1.00ex,
+      center
+    ]{myframe number in head/foot}%
+    \insertframenumber{}/\inserttotalframenumber{}%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[
+      wd = 0.245\paperwidth,
+      ht = 2.25ex,
+      dp = 1.00ex,
+      right
+    ]{date in head/foot}%
+    \usebeamerfont{mydate in head/foot}\insertshortdate{}%
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+
+% Figures
+\usepackage{graphicx}
+
+% Itemization
+\usepackage[shortlabels]{enumitem}
+
+% Math
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+% Font
+\usepackage[default]{gillius} %font design
+\usepackage{sfmath}
+\usepackage{sansmathaccent}
+
+% TikZ/PGFplots
+\usepackage{tikz}
+
+% Color boxes
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins}
+\tcbuselibrary{listings,breakable}
+
+% Boxed text environment
+\newtcolorbox{tbbox}[1][]{
+  enhanced,
+  attach boxed title to top left={
+    xshift    =  4.0mm,
+    yshift    = -3.0mm,
+    yshifttext= -1.0mm
+  },
+  colback      = white,
+  colframe     = black,
+  colbacktitle = black,
+  coltitle     = white,
+  arc          = 4.0mm,
+  boxrule      = 2.0pt,
+  title        = {#1},
+  fonttitle    = {\fontfamily{qag}\selectfont\large\bfseries},
+  halign       = flush left,
+  boxed title style={
+    size     = small,
+    colframe = white,
+    arc      = 2.0mm
+  }
+}
+\newenvironment{bbox}[1][]{\begin{tbbox}[#1]}{\end{tbbox}}
+
+% Boxed text environment
+\newenvironment{quag}[1][]{%
+  \begingroup
+    {\fontfamily{qag}\selectfont\Huge\color{black}\bfseries{#1}} \\[1.0em]
+  \endgroup
+  \begingroup
+}{
+  \endgroup
+}
+
+% Bibliography
+\PassOptionsToPackage{%
+  backend=biber, bibencoding=utf8, % instead of bibtex
+  language=auto,                   % get the language of the main document
+  style=numeric-comp,              % numeric citation style
+  sorting=none,                    % sorted by appearance
+  maxbibnames=10,                  % default: 3, et al.
+  maxcitenames=10,                 % default: 1, et al.
+  natbib=true,                     % natbib compatibility mode (\citep and \citet still work)
+}{biblatex}
+\usepackage{biblatex} % to display bibliography
+\usepackage{bibentry} % to insert bibliography entries inline
+\emergencystretch=1em
+
+\renewcommand*{\mkbibnamefamily}[1]{% mkbibcompletename
+  \ifitemannotation{jointfirst}
+    {#1\textsuperscript{\dag}}
+    {#1}}
+
+\addbibresource{bibliography.bib}
+
+% Miscellanea
+\usepackage{authoraftertitle}
+\usepackage{hyperref}
+
+\graphicspath{{figures}}
+
+% Math commands
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+% Title page
+\title{Symbolic Computation Methods for the Numerical Solution of Dynamic Systems Described by Differential-Algebraic Equations}
+\author{Davide Stocco}
+\institute{University of Trento}
+\date{July 17, 2024}
+
+\begin{document}
+
+\include{content/title}
+\include{content/content}
+\include{content/bibliography}
+
+\end{document}
+
+% That's all Folks!

@@ -1,0 +1,28 @@
+%!TEX root = main.tex
+
+\begin{frame}[noframenumbering, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[black] (current page.south west) rectangle ([xshift = 0.25\paperwidth] current page.north west);
+    \node at ([xshift = 0.125\paperwidth, yshift = -0.4\paperheight] current page.north west){
+      \includegraphics[width = 0.15\paperwidth]{logo}
+    };
+    \node at ([xshift = 0.125\paperwidth, yshift = -0.6\paperheight] current page.north west){
+      \includegraphics[width = 0.15\paperwidth]{unitn}
+    };
+  \end{tikzpicture}
+  \begingroup
+    \flushright
+    \begin{minipage}{0.75\linewidth}%
+      \flushright
+      {\fontfamily{qag}\selectfont\large\bfseries\color{black}\MyTitle{}}
+      \vspace{1.0em} \\
+      \textsc{PhD thesis presentation by} \emph{Davide Stocco} \\
+      \textsc{Supervisors}: \emph{Enrico Bertolazzi} \& \emph{Francesco Biral}
+      \vspace{1.0em} \\
+      \MyDate
+    \end{minipage}
+      \par
+  \endgroup
+\end{frame}
+
+% That's all Folks!
