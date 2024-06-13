@@ -2,7 +2,7 @@
 
 \begin{frame}[noframenumbering, plain]
   \begin{tikzpicture}[remember picture, overlay]
-    \fill[black] (current page.south west) rectangle ([xshift = 0.25\paperwidth] current page.north west);
+    \fill[fg_sl_color] (current page.south west) rectangle ([xshift = 0.25\paperwidth] current page.north west);
     \node at ([xshift = 0.125\paperwidth, yshift = -0.4\paperheight] current page.north west){
       \includegraphics[width = 0.15\paperwidth]{logo}
     };
@@ -13,15 +13,17 @@
   \begingroup
     \flushright
     \begin{minipage}{0.75\linewidth}%
-      \flushright
-      {\fontfamily{qag}\selectfont\large\bfseries\color{black}\MyTitle{}}
-      \vspace{1.0em} \\
-      \textsc{PhD thesis presentation by} \emph{Davide Stocco} \\
-      \textsc{Supervisors}: \emph{Enrico Bertolazzi} \& \emph{Francesco Biral}
-      \vspace{1.0em} \\
-      \MyDate
+      \flushright%
+      \begin{spacing}{1.25}
+        {\fontfamily{qag}\selectfont\large\bfseries\color{fg_sl_color}\MyTitle{}}%
+      \end{spacing}
+      \vspace{1.5em}%
+      \textsc{PhD thesis presentation by} \emph{Davide Stocco} \\%
+      \textsc{Supervisors}: \emph{Enrico Bertolazzi} \& \emph{Francesco Biral}%
+      \vspace{1.5em} \\%
+      \MyDate%
     \end{minipage}
-      \par
+    \par
   \endgroup
 \end{frame}
 

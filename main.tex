@@ -1,19 +1,48 @@
 \documentclass[aspectratio = 169, 10pt]{beamer}
 
+% Slide colors
+\definecolor{bg_sl_color}{RGB}{255, 255, 255}
+\definecolor{fg_sl_color}{HTML}{B10B25}
+
+\colorlet{ft_color}{fg_sl_color!75!black}
+
+\colorlet{fg_bib_color}{black}
+\colorlet{hl_bib_color}{fg_sl_color}
+
+% Color box colors
+\definecolor{bg_cb_color}{RGB}{255, 255, 255}
+\definecolor{fg_cb_color}{HTML}{B10B25}
+
+% Matlab colors
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}
+\definecolor{mycolor3}{rgb}{0.92900,0.69400,0.12500}
+\definecolor{mycolor4}{rgb}{0.49400,0.18400,0.55600}
+\definecolor{mycolor5}{rgb}{0.46600,0.67400,0.18800}
+\definecolor{mycolor6}{rgb}{0.30100,0.74500,0.93300}
+\definecolor{mycolor7}{rgb}{0.63500,0.07800,0.18400}
+
 % Set beamer theme
-\usetheme{metropolis}
+\beamertemplatenavigationsymbolsempty
 \setbeamercolor{frametitle}{
-  bg = white,
-  fg = black
+  bg = bg_sl_color,
+  fg = fg_sl_color
 }
 \setbeamerfont{frametitle}{
   family = \fontfamily{qag}\selectfont\bfseries
 }
 \setbeamercolor{background canvas}{
-  bg = white
+  bg = bg_sl_color
+}
+\setbeamercolor{structure}{
+  bg = bg_sl_color,
+  fg = fg_sl_color
 }
 
 \makeatletter
+\setbeamerfont{footline}{
+  size = \scriptsize
+}
 \setbeamertemplate{footline}{
   \leavevmode\centering%
   \hbox{%
@@ -23,7 +52,7 @@
       dp = 1.00ex,
       left
     ]{myauthor in head/foot}%
-    \insertauthor{}~(\insertinstitute{})
+    \textcolor{ft_color}{\insertauthor{}~(\insertinstitute{})}
   \end{beamercolorbox}%
   \begin{beamercolorbox}[
       wd = 0.50\paperwidth,
@@ -31,25 +60,37 @@
       dp = 1.00ex,
       center
     ]{myframe number in head/foot}%
-    \insertframenumber{}/\inserttotalframenumber{}%
+    \textcolor{ft_color}{\insertshortdate{}}%
   \end{beamercolorbox}%
   \begin{beamercolorbox}[
       wd = 0.245\paperwidth,
       ht = 2.25ex,
       dp = 1.00ex,
       right
-    ]{date in head/foot}%
-    \usebeamerfont{mydate in head/foot}\insertshortdate{}%
+    ]{mydate in head/foot}%
+    \textcolor{ft_color}{\insertframenumber{}/\inserttotalframenumber{}}%
   \end{beamercolorbox}}%
   \vskip0pt%
 }
 \makeatother
 
+% Enumerate and itemize
+\setbeamertemplate{enumerate items}[square]
+\setbeamertemplate{itemize items}[circle]
+
+% Table of contents
+\setbeamertemplate{section in toc}[square]
+\setbeamerfont{section in toc}{
+  family = \fontfamily{qag}\selectfont\bfseries
+}
+\setbeamerfont{subsection in toc}{
+  shape = \itshape
+}
+\setbeamertemplate{section in toc shaded}[default][25]
+\setbeamertemplate{subsection in toc shaded}[default][25]
+
 % Figures
 \usepackage{graphicx}
-
-% Itemization
-\usepackage[shortlabels]{enumitem}
 
 % Math
 \usepackage{amsmath}
@@ -60,36 +101,41 @@
 \usepackage[default]{gillius} %font design
 \usepackage{sfmath}
 \usepackage{sansmathaccent}
+\usepackage{setspace}
 
 % TikZ/PGFplots
 \usepackage{tikz}
 
+% SI units
+\usepackage{siunitx}
+\sisetup{retain-zero-exponent=false, parse-numbers=false, per-mode=symbol}
+
 % Color boxes
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{skins}
-\tcbuselibrary{listings,breakable}
+\tcbuselibrary{listings, breakable}
 
 % Boxed text environment
 \newtcolorbox{tbbox}[1][]{
   enhanced,
-  attach boxed title to top left={
-    xshift    =  4.0mm,
-    yshift    = -3.0mm,
-    yshifttext= -1.0mm
+  attach boxed title to top left = {
+    xshift     =  4.0mm,
+    yshift     = -3.0mm,
+    yshifttext = -1.0mm
   },
-  colback      = white,
-  colframe     = black,
-  colbacktitle = black,
-  coltitle     = white,
-  arc          = 4.0mm,
+  colback      = bg_cb_color,
+  colframe     = fg_cb_color,
+  colbacktitle = fg_cb_color,
+  coltitle     = bg_cb_color,
+  arc          = 5.0pt,
   boxrule      = 2.0pt,
   title        = {#1},
   fonttitle    = {\fontfamily{qag}\selectfont\large\bfseries},
   halign       = flush left,
-  boxed title style={
-    size     = small,
-    colframe = white,
-    arc      = 2.0mm
+  boxed title style = {
+    size       = small,
+    colframe   = bg_cb_color,
+    arc        = 2.0mm
   }
 }
 \newenvironment{bbox}[1][]{\begin{tbbox}[#1]}{\end{tbbox}}
@@ -97,47 +143,175 @@
 % Boxed text environment
 \newenvironment{quag}[1][]{%
   \begingroup
-    {\fontfamily{qag}\selectfont\Huge\color{black}\bfseries{#1}} \\[1.0em]
+    {\fontfamily{qag}\selectfont\Huge\color{fg_cb_color}\bfseries{#1}} \\[1.0em]
   \endgroup
   \begingroup
 }{
   \endgroup
 }
 
+% Highlighted text
+\newcommand{\hl}[1]{\textcolor{fg_sl_color}{\selectfont\color{fg_cb_color}\bfseries{#1}}}
+\newcommand{\hlc}[1]{\begin{center}\hl{\Large{#1}}\end{center}}
+
 % Bibliography
 \PassOptionsToPackage{%
-  backend=biber, bibencoding=utf8, % instead of bibtex
-  language=auto,                   % get the language of the main document
-  style=numeric-comp,              % numeric citation style
-  sorting=none,                    % sorted by appearance
-  maxbibnames=10,                  % default: 3, et al.
-  maxcitenames=10,                 % default: 1, et al.
-  natbib=true,                     % natbib compatibility mode (\citep and \citet still work)
+  backend      = biber,         % instead of bibtex
+  bibencoding  = utf8,          % special characters
+  language     = auto,          % get the language of the main document
+  style        = numeric-comp,  % numeric citation style
+  sorting      = none,          % sorted by appearance
+  maxbibnames  = 10,            % default: 3, et al.
+  maxcitenames = 10,            % default: 1, et al.
+  natbib       = true,          % natbib compatibility mode (\citep and \citet still work)
 }{biblatex}
 \usepackage{biblatex} % to display bibliography
 \usepackage{bibentry} % to insert bibliography entries inline
-\emergencystretch=1em
+\emergencystretch = 1.0em
+
+\setbeamercolor{bibliography entry author}{
+  bg = bg_sl_color,
+  fg = fg_sl_color
+}
+\setbeamercolor{bibliography entry location}{
+  bg = bg_sl_color,
+  fg = fg_bib_color
+}
+\setbeamercolor{bibliography entry note}{
+  bg = bg_sl_color,
+  fg = fg_bib_color
+}
+\setbeamercolor{bibliography entry title}{
+  bg = bg_sl_color,
+  fg = hl_bib_color
+}
+\setbeamertemplate{bibliography item}[triangle]
+\setbeamercolor{bibliography item}{
+  bg = bg_sl_color,
+  fg = fg_sl_color
+}
+
+\DeclareFieldFormat{issn}{%
+  \textsc{ISSN}\addcolon\space#1
+}
+
+\DeclareFieldFormat{doi}{%
+  \textsc{DOI}\addcolon\space%
+  \ifhyperref{%
+  \href{https://doi.org/#1}{%
+    \nolinkurl{#1}%
+  }
+  }{%
+    \nolinkurl{#1}%
+  }
+}
 
 \renewcommand*{\mkbibnamefamily}[1]{% mkbibcompletename
-  \ifitemannotation{jointfirst}
-    {#1\textsuperscript{\dag}}
-    {#1}}
+  \ifitemannotation{jointfirst}%
+    {#1\textsuperscript{\dag}}%
+    {#1}
+}
 
 \addbibresource{bibliography.bib}
 
 % Miscellanea
 \usepackage{authoraftertitle}
 \usepackage{hyperref}
+\usepackage{chemarrow}
 
+% Graphics path
 \graphicspath{{figures}}
 
-% Math commands
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\N}{\mathbb{N}}
+% Acronyms
+\usepackage{acronym}
+\newacro{DSM}{Direct Stiffness Method}
+\newacro{FE}{Finite Element}
+\newacro{FEA}{Finite Element Analysis}
+\newacro{FEM}{Finite Element Method}
+\newacro{LEM}{Large Expression Management}
+\newacro{FFLU}{Fraction-Free Lower-Upper}
+\newacro{LU}{Lower-Upper}
+\newacro{MB}{Multi-Body}
+\newacro{SVD}{Singular Value Decomposition}
+\newacro{ODE}{Ordinary Differential Equation}
+\newacro{DAE}{Differential-Algebraic Equation}
+\newacro{DE}{Discrete Element}
+\newacro{CAS}{Computer Algebra System}
 
+% Software programs
+\newcommand{\MacOS}{\textsc{MacOS}\textsuperscript{\textregistered}}
+\newcommand{\Windows}{\textsc{Windows}\textsuperscript{\textregistered}}
+\newcommand{\Linux}{\textsc{Linux}\textsuperscript{\textregistered}}
+\newcommand{\MapleSoft}{\textsc{MapleSoft}\textsuperscript{\textregistered}}
+\newcommand{\Maple}{\textsc{Maple}\textsuperscript{\textregistered}}
+\newcommand{\Wolfram}{\textsc{Wolfram}}
+\newcommand{\Mathematica}{\textsc{Mathematica}\textsuperscript{\textregistered}}
+\newcommand{\Matlab}{\textsc{Matlab}\textsuperscript{\textregistered}}
+\newcommand{\Modelica}{\textsc{Modelica}}
+\newcommand{\OpenModelica}{\textsc{OpenModelica}}
+\newcommand{\ModelingToolkit}{\textsc{ModelingToolkit}}
+\newcommand{\Simulink}{\textsc{Simulink}\textsuperscript{\textregistered}}
+\newcommand{\Mex}{\textsc{Mex}}
+\newcommand{\SFunction}{\textsc{S-Function}}
+\newcommand{\SymPy}{\textsc{SymPy}}
+\newcommand{\Axiom}{\textsc{Axiom}}
+\newcommand{\Derive}{\textsc{Derive}}
+\newcommand{\Macsyma}{\textsc{Macsyma}}
+\newcommand{\MuPAD}{\textsc{MuPAD}}
+\newcommand{\Reduce}{\textsc{Reduce}}
+\newcommand{\TrussMe}{\textsc{TrussMe-Fem}}
+\newcommand{\Ansys}{\textsc{Ansys}\textsuperscript{\textregistered}}
+
+% General commands
+\newcommand{\eg}{\emph{e.g.}}
+\newcommand{\ie}{\emph{i.e.}}
+\newcommand{\USI}[1]{\unit{#1}}
+\newcommand{\SSI}[2]{\SI{#1}{#2}}
+\newcommand{\RSI}[3]{\lbrack\num{#1}{,}\ \num{#2}\rbrack\,\USI{#3}}
+
+% Matrices and vectors
+\newcommand{\dif}[2]{\ensuremath{{#1}_{#2}}}
+\newcommand{\jac}[2]{\ensuremath{{#1}_{#2}}}
+\newcommand{\hes}[2]{\ensuremath{{#1}_{#2}}}
+\newcommand{\m}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\mx}{\ensuremath{\m{x}}}
+\newcommand{\mxp}{\ensuremath{\mx^\prime}}
+\newcommand{\mE}{\ensuremath{\m{E}(\mx, t)}}
+\newcommand{\mg}{\ensuremath{\m{g}(\mx, t)}}
+\newcommand{\ma}{\ensuremath{\m{a}(\mx, t)}}
+\newcommand{\mA}{\ensuremath{\m{A}(\mx, t)}}
+\newcommand{\mN}{\ensuremath{\m{N}(\mx, t)}}
+\newcommand{\mK}{\ensuremath{\m{K}(\mx, t)}}
+\newcommand{\mI}{\ensuremath{\m{I}}}
+\newcommand{\mP}{\ensuremath{\m{P}}}
+\newcommand{\mQ}{\ensuremath{\m{Q}}}
+\newcommand{\mL}{\ensuremath{\m{L}(\mx, t)}}
+\newcommand{\mU}{\ensuremath{\m{U}(\mx, t)}}
+\newcommand{\mM}{\ensuremath{\m{M}(\mx, t)}}
+\newcommand{\mb}{\ensuremath{\m{b}(\mx, t)}}
+\newcommand{\mAd}{\ensuremath{\m{E}_{\m{a}}(\mx, t)}}
+\newcommand{\mgd}{\ensuremath{\m{g}_{\m{a}}(\mx, t)}}
+\newcommand{\mF}{\ensuremath{\m{F}(\mx, \mxp, t)}}
+\newcommand{\mh}{\ensuremath{\m{h}(\mx, t)}}
+
+\newcommand{\mv}{\ensuremath{\m{v}(\mx, t)}}
+\newcommand{\mEv}{\ensuremath{\m{E}(\mx, \m{v}, t)}}
+\newcommand{\mgv}{\ensuremath{\m{g}(\mx, \m{v}, t)}}
+\newcommand{\mav}{\ensuremath{\m{a}(\mx, \m{v}, t)}}
+\newcommand{\mvv}{\ensuremath{\m{v}(\mx, \m{v}, t)}}
+\newcommand{\mAv}{\ensuremath{\m{A}(\mx, \m{v}, t)}}
+\newcommand{\mNv}{\ensuremath{\m{N}(\mx, \m{v}, t)}}
+\newcommand{\mKv}{\ensuremath{\m{K}(\mx, \m{v}, t)}}
+\newcommand{\mLv}{\ensuremath{\m{L}(\mx, \m{v}, t)}}
+\newcommand{\mUv}{\ensuremath{\m{U}(\mx, \m{v}, t)}}
+\newcommand{\mMv}{\ensuremath{\m{M}(\mx, \m{v}, t)}}
+\newcommand{\mbv}{\ensuremath{\m{b}(\mx, \m{v}, t)}}
+\newcommand{\mAdv}{\ensuremath{\m{E}_{\m{a}}(\mx, \m{v}, t)}}
+\newcommand{\mgdv}{\ensuremath{\m{g}_{\m{a}}(\mx, \m{v}, t)}}
+\newcommand{\mFv}{\ensuremath{\m{F}(\mx, \mxp, \m{v}, t)}}
+\newcommand{\mhv}{\ensuremath{\m{h}(\mx, \m{v}, t)}}
+\newcommand{\mhiv}{\ensuremath{\m{h}_{i}(\mx, \m{v}, t)}}
+\newcommand{\mhuv}{\ensuremath{\m{h}_{u}(\mx, \m{v}, t)}}
 
 % Title page
 \title{Symbolic Computation Methods for the Numerical Solution of Dynamic Systems Described by Differential-Algebraic Equations}
