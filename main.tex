@@ -1,17 +1,19 @@
 \documentclass[aspectratio = 169, 10pt]{beamer}
 
 % Slide colors
+\definecolor{tx_sl_color}{RGB}{0, 0, 0}
 \definecolor{bg_sl_color}{RGB}{255, 255, 255}
 \definecolor{fg_sl_color}{HTML}{B10B25}
 
-\colorlet{ft_color}{fg_sl_color!75!black}
+\colorlet{ft_color}{fg_sl_color!75!tx_sl_color}
 
-\colorlet{fg_bib_color}{black}
+\colorlet{fg_bib_color}{tx_sl_color}
+\colorlet{fg_bib_color}{tx_sl_color}
 \colorlet{hl_bib_color}{fg_sl_color}
 
 % Color box colors
 \definecolor{bg_cb_color}{RGB}{255, 255, 255}
-\definecolor{fg_cb_color}{HTML}{B10B25}
+\colorlet{fg_cb_color}{fg_sl_color}
 
 % Matlab colors
 \definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}
@@ -23,6 +25,9 @@
 \definecolor{mycolor7}{rgb}{0.63500,0.07800,0.18400}
 
 % Set beamer theme
+\setbeamercolor{normal text}{
+  fg = tx_sl_color
+}
 \beamertemplatenavigationsymbolsempty
 \setbeamercolor{frametitle}{
   bg = bg_sl_color,
@@ -151,8 +156,8 @@
 }
 
 % Highlighted text
-\newcommand{\hl}[1]{\textcolor{fg_sl_color}{\selectfont\color{fg_cb_color}\bfseries{#1}}}
-\newcommand{\hlc}[1]{\begin{center}\hl{\Large{#1}}\end{center}}
+\newcommand{\hi}[1]{\textcolor{fg_sl_color}{\selectfont\color{fg_cb_color}\bfseries{#1}}}
+\newcommand{\hic}[1]{\begin{center}\hi{\Large{#1}}\end{center}}
 
 % Bibliography
 \PassOptionsToPackage{%
@@ -218,6 +223,7 @@
 \usepackage{authoraftertitle}
 \usepackage{hyperref}
 \usepackage{chemarrow}
+\usepackage[normalem]{ulem}
 
 % Graphics path
 \graphicspath{{figures}}
@@ -237,6 +243,8 @@
 \newacro{DAE}{Differential-Algebraic Equation}
 \newacro{DE}{Discrete Element}
 \newacro{CAS}{Computer Algebra System}
+\newacro{TPPC}{Trajectory Prescribed Path Control}
+\newacro{MBD}{Multi-Body Dynamics}
 
 % Software programs
 \newcommand{\MacOS}{\textsc{MacOS}\textsuperscript{\textregistered}}
@@ -322,7 +330,12 @@
 \begin{document}
 
 \include{content/title}
-\include{content/content}
+\include{content/chapter_1}
+\include{content/chapter_2}
+\include{content/chapter_3}
+\include{content/chapter_4}
+\include{content/chapter_5}
+\include{content/chapter_6}
 \include{content/bibliography}
 
 \end{document}

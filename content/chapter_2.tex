@@ -1,0 +1,55 @@
+%!TEX root = main.tex
+
+\section{\aclp{DAE}}
+
+\begin{frame}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\subsection{Introduction to \aclp{DAE}}
+
+\begin{frame}
+  \frametitle{Introduction to \aclp{DAE}}
+  \begin{itemize}
+    \item Important \textbf{pre-processing} step prior to numerical integration.
+    \\[1.0em]
+    \item The \textbf{index reduction} consists in transforming a system of \acp{DAE} into an equivalent \ac{ODE} system with invariants.
+    \\[0.5em]
+    \begin{center}\begin{minipage}{7cm}\begin{bbox}{}
+      \centering
+      \acp{DAE} $\quad \autorightarrow{\text{index}}{\text{reduction}} \quad$ \acp{ODE} + Invariants
+    \end{bbox}\end{minipage} \\[1.5em] \end{center}
+    %
+    \item The \textbf{index} of a \acp{DAE} is the minimum number of times the system must be differentiated to obtain an \ac{ODE} system.
+    \item The index reduction is carried out through \textbf{symbolic manipulation}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introduction to \aclp{DAE}}
+  \begin{itemize}
+    \item Index Reduction is a well-studied problem, but hard to carry out in practice due to software limitations for symbolic manipulation.
+    \\[1.0em]
+    \item We propose an algorithm for index reduction based on:
+    \\[0.5em]
+    \begin{enumerate}
+      \item \textbf{none} \emph{a priori} knowledge of the system structure;
+      \\[0.5em]
+      \item \textbf{basic} symbolic linear algebra techniques.
+    \end{enumerate}
+    \begin{center}\begin{minipage}[t]{0.30\textwidth}\begin{block}{}
+      \centering
+      \textbf{Factorization} \\[0.5em]
+      LU \\ Fraction-Free LU \vspace*{0.15cm}
+    \end{block}\end{minipage}
+    \hspace*{2cm}
+    \begin{minipage}[t]{0.30\textwidth}\begin{block}{}
+      \centering
+      \textbf{Differentiation} \\[0.75em]
+      $\dfrac{\text{d}}{\text{d}\textbf{x}}$ \vspace*{0.15cm}
+    \end{block}\end{minipage} \\[1.75em] \end{center}
+    \item \Maple{} for symbolic manipulation, and \Matlab{} for numerical integration of the reduced system.
+  \end{itemize}
+\end{frame}
+
+% That's all Folks!

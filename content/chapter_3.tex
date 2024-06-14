@@ -1,0 +1,224 @@
+%!TEX root = main.tex
+
+\section{Symbolic Computation Essentials}
+
+\begin{frame}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}{Symbolic Computation Essentials}{Introduction}
+  \begin{itemize}
+    \item Symbolic computation (or computer algebra) involves manipulating mathematical expressions in their \textbf{exact} form.
+    \item Such an exact representation implies that, even when the size of the output is small, the intermediate expressions generated during a computation may grow unpredictably due to \textbf{expression swell}.
+  \end{itemize}
+  \begin{center}\begin{minipage}{\textwidth}\begin{bbox}[The Ideal Workflow]
+    \centering%
+    \begin{minipage}[c]{0.15\textwidth} \centering Input expression \end{minipage}%
+    \begin{minipage}[c]{0.19\textwidth} \centering $\autorightarrow{\text{symbolic}}{\text{manipulation}}$ \end{minipage}%
+    \begin{minipage}[c]{0.21\textwidth} \centering Output expression \\ + \\ Expression swell \end{minipage}%
+    \begin{minipage}[c]{0.19\textwidth} \centering $\autorightarrow{\text{symbolic}}{\text{simplification}}$ \end{minipage}%
+    \begin{minipage}[c]{0.21\textwidth} \centering Output expression \\ + \\ \xout{Expression swell} \end{minipage}%
+  \end{bbox}\end{minipage}\end{center}
+  \hic{All \acp{CAS} are sensitive to expression swell, some more than others!}
+\end{frame}
+
+\subsection{Expression Swell}
+
+\begin{frame}{Expression Swell}{A Rough Definition}
+  \begin{bbox}[Not-So-Formal Definition]
+    Exponential growth of expression size during symbolic manipulation, which undermines \ac{CAS} efficiency and leads to high memory usage and slow computation.
+  \end{bbox}
+  \vspace{0.75em}
+  There are two types of expression swell \dots
+  \vspace{0.75em}
+  \begin{columns}
+    \begin{column}[t]{0.5\textwidth}
+      \hi{\large Inherent \textcolor{black}{expression swell}} \\
+      \begin{itemize}\small
+        \item The size of expressions can not be lowered due to no simplification rules being applicable.
+        \item Can not always be avoided and requires changes in the problem formulation.
+      \end{itemize}
+    \end{column}
+    \begin{column}[t]{0.5\textwidth}
+      \hi{\large Intermediate \textcolor{black}{expression swell}} \\
+      \begin{itemize}\small
+        \item During the middle stages of a calculation the size of intermediate expressions can expand substantially \emph{en route} to a comparatively simple final result.
+        \item Strongly related to the \ac{CAS}'s simplification capabilities.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsection{\acl{LEM}}
+
+\begin{frame}{\acl{LEM}}{Hierarchical Representation}
+  The \textbf{hierarchical representation} of expressions is carried out through \textbf{veiling variables}, which are defined as \dots
+  \begin{equation*}
+    \m{f}(\mx) \quad \autorightarrow{\text{veiling}}{\text{variables}} \quad \m{f}(\mx, \m{v}) \qquad \text{where} \qquad \m{v}(\mx) = \begin{bmatrix}
+      v_{1}(\mx) \\
+      v_{2}(v_{1}, \mx) \\
+      \vdots \\
+      v_{n}(v_{1}, \dots, v_{n-1}, \mx)
+    \end{bmatrix}
+  \end{equation*}
+  The process is composed of two actions \dots
+  \begin{enumerate}
+    \item a large expression can be \textbf{veiled} (stored) in a \textbf{veiling variable};
+    \item veiling variables can be \textbf{unveiled} (substitute back) the veiling variables into the expression to recover the original form.
+  \end{enumerate}
+  \vspace{0.5em}
+  \hic{The complexity remains but the \ac{CAS} can not see it!}
+\end{frame}
+
+\begin{frame}{\acl{LEM}}{An Example of \acs{LEM} through Hierarchical Representation}
+  Let us consider an expression of the form
+  \begin{equation*}
+    \textcolor{mycolor1}{\underline{2xy(1+y)}} \cdot \text{f}(x,y) +
+    \textcolor{mycolor2}{\underline{5z(3a+z)}} \cdot \text{g}(y) +
+    \textcolor{mycolor3}{\underline{3c(xy+z)}} \cdot \text{h}(x,z) \text{.}
+  \end{equation*}
+  One of its possible hierarchical representations is
+  \begin{equation*}
+    \textcolor{mycolor1}{v_1} \cdot \text{f}(x,y) +
+    \textcolor{mycolor2}{v_2} \cdot \text{g}(y) +
+    \textcolor{mycolor3}{v_3} \cdot \text{h}(x,z) \text{,}
+  \end{equation*}
+  where the veiling variables are
+  \begin{equation*}
+    \textcolor{mycolor1}{v_1} = 2x(1+y) \text{,}
+    \qquad
+    \textcolor{mycolor2}{v_2} = 5z(3a+z) \text{,}
+    \qquad \text{and} \qquad
+    \textcolor{mycolor3}{v_3} = 3c(xy+z) \text{.}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{\acl{LEM}}{Measuring Expression Complexity}
+  Easy to implement, but \dots
+  \vspace{1.5em}
+  \begin{columns}
+    \begin{column}[t]{0.5\textwidth}
+      \hi{\large How to measure symbolic expression complexity?}
+      \begin{itemize}
+        \normalsize
+        \item \textbf{Length in characters}: already used by other authors, not reliable;
+        \item \textbf{Directed acyclic graph}: measures the number of nodes and edges.
+        \item \textbf{Computational cost}: insensible to expression internal representation. \\[0.25em]
+        \emph{We can roughly predict the swelling related to elementary mathematical operations!}
+      \end{itemize}
+    \end{column}
+    \begin{column}[t]{0.5\textwidth}
+      \hi{\large How to choose the right level of expression complexity?}
+      \begin{itemize}
+        \normalsize
+        \item \textbf{Prediction}: based on the specific operations to be performed;
+        \item \textbf{Trial and error}: no general rule, depends on the software.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{\acl{LEM}}{The \ac{LEM} Package}
+  Easy to implement, but \dots
+  \begin{enumerate}
+    \item How to measure symbolic expression complexity?
+    \begin{itemize}
+      \item \textbf{Length in characters}: already used by other authors, not reliable;
+      \item \textbf{Computational cost}: insensible to expression internal representation;
+      \item \textbf{Directed acyclic graph}: measures the number of nodes and edges, but not the complexity.
+    \end{itemize}
+    \item How to choose the right level of expression complexity?
+    \begin{itemize}
+      \item \textbf{Trial and error}: no general rule (depends on the software).
+    \end{itemize}
+  \end{enumerate}
+  %
+  \begin{bbox}[Large Expression Management \Maple{} package]
+    The \ac{LEM} object-oriented implementation is freely available on GitHub! \\
+    \centering \url{https://github.com/StoccoDavide/LEM}
+  \end{bbox}
+\end{frame}
+
+\subsection{Symbolic Matrix Factorization}
+
+\begin{frame}{Symbolic Matrix Factorization}
+  \textbf{Numeric} factorization is a fundamental operation in numerical linear algebra. It is used to \dots
+  \begin{itemize}
+    \item solve linear systems of equations without inverting the original matrix;
+    \item reduce the number of computations and increase the stability;
+    \item provide insights into the properties of the original matrix (\ie{}, rank and determinant).
+  \end{itemize}
+  \vspace{1.0em}
+  \hic{Does this also apply to the symbolic computation? Yes!}
+  \vspace{1.0em}
+  However\dots
+  \begin{enumerate}
+    \item the output is not guaranteed to be stable once numerically evaluated;
+    \begin{itemize}
+      \item[] \textbf{How to ensure the stability of the symbolic factorization?}
+    \end{itemize}
+    \item symbolic expressions tend to grow during manipulation.
+    \begin{itemize}
+      \item[] \textbf{How to manage large symbolic expressions?}
+    \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Symbolic Matrix Factorization}
+  \begin{itemize}
+    \item Symbolic matrix factorization is used for the computation of the \textbf{kernel}, \ie{}, for separating the system differential and algebraic parts.
+    \item There are a multitude of matrix factorizations, we choose \textbf{\ac{LU}} and \textbf{\ac{FFLU}} because of \dots
+    \begin{enumerate}
+      \item capability of preserving \textbf{sparsity} with \textbf{minimum degree} approach;
+      \item limited expression swell with the \textbf{full-pivoting} strategy;
+      \item improved numerical stability with custom symbolic \textbf{pivoting strategy};
+      \item depending on the formulation, improved numerical stability with \textbf{fraction-free} factorization.
+    \end{enumerate}
+    \item \Maple{} matrix factorizations are \textbf{sensitive to expression swell}.
+    \item We developed a symbolic matrix factorization toolbox capable of dealing with expression swell.
+    \begin{enumerate}
+      \item At specific steps of the algorithm \textbf{veiling variables} are introduced not to increase the size of the expressions.
+      \item \ac{LU}, \ac{FFLU}, \ac{QR}, and Gauss-Jordan factorizations are available.
+    \end{enumerate}
+\end{itemize}
+  %
+  \begin{bbox}[Linear Algebra Symbolic Toolbox \Maple{} package]
+  The LAST object-oriented implementation is freely available on GitHub! \\
+  \centering \url{https://github.com/StoccoDavide/LAST}
+\end{bbox}
+\end{frame}
+
+\begin{frame}{Symbolic Matrix Factorization}{\acf{LU}}
+  The ``standard'' in numerical linear algebra \dots
+  \begin{bbox}[Full-Pivoting \acs{LU} Factorization]
+    Given a matrix $\m{A} \in \mathbb{R}^{m \times n}$, with $m \geq n$, the full-pivoting \ac{LU} decomposition is defined as the process of decomposing $\m{A}$ into the product of
+    %
+    \begin{itemize}
+      \item a $\m{L} \in \mathbb{R}^{m \times m}$ lower-triangular matrix with all diagonal entries equal to $1$;
+      \item a $\m{U} \in \mathbb{R}^{m \times n}$ upper-triangular matrix;
+      \item a $\m{P} \in \mathbb{R}^{m \times m}$ and a $\m{Q} \in \mathbb{R}^{n \times n}$ matrices for rows and columns permutation;
+    \end{itemize}
+    %
+    such that $\m{P}\m{A}\m{Q} = \m{L}\m{U}$.
+  \end{bbox}
+  \dots It carries the minimum number of operations!
+\end{frame}
+
+\begin{frame}{Symbolic Matrix Factorization}{\acf{FFLU}}
+  Trying to guarantee exact divisions on factors \dots
+  \begin{bbox}[Full-Pivoting \acs{FFLU} Factorization]
+    Given a matrix $\m{A} \in \mathbb{R}^{m \times n}$, with $m \geq n$, the full-pivoting \ac{FFLU} decomposition is defined as the process of decomposing $\m{A}$ into the product of
+    %
+    \begin{itemize}
+      \item a lower-triangular matrix $\m{L} \in \mathbb{R}^{m \times m}$ with all diagonal entries equal to $1$;
+      \item \textcolor{fg_sl_color}{a diagonal matrix $\m{D} \in \mathbb{R}^{m \times n}$;}
+      \item an upper-triangular matrix $\m{U} \in \mathbb{R}^{m \times n}$;
+      \item a $\m{P} \in \mathbb{R}^{m \times m}$ and a $\m{Q} \in \mathbb{R}^{n \times n}$ matrices for rows and columns permutation;
+    \end{itemize}
+    %
+    such that $\m{P}\textcolor{fg_sl_color}{\m{D}}\m{A}\m{Q} = \m{L}\m{U}$.
+  \end{bbox}
+  \dots same effectiveness of \ac{LU} decomposition, but with a more complex implementation!
+\end{frame}
+
+% That's all Folks!

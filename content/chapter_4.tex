@@ -1,0 +1,109 @@
+%!TEX root = main.tex
+
+\section{Index Reduction Algorithm}
+
+\begin{frame}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}{Index Reduction Algorithm}{The Basic Concept}
+  The index reduction algorithm is based on the following three steps \dots
+  \begin{columns}
+    \begin{column}[c]{0.2\textwidth}
+      \flushright
+      \vspace{-2.5em}%
+      \begin{tikzpicture}[overlay, remember picture]
+        \draw[fg_sl_color, thick, -stealth] (0.5,-1.95) -- (0.0,-1.95) -- (0.0,1.95) -- (0.5,1.95);
+        \node[text width=0.75\textwidth, align=center] at (-1.0,0.0) {If $\mE$ is singular};
+        %\draw[fg_sl_color, thick, -stealth] (-1.0,-0.5) -- (-1.0,-2.75);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}[c]{0.85\textwidth}
+      \begin{enumerate}
+        \item Let us consider a generic system of \acp{DAE} of the form
+        \begin{equation*}
+          \mF = \mA \, \mxp - \mb = \m{0} \text{.}
+        \end{equation*}
+        \item We want to separate the system into \textbf{differential} and \textbf{algebraic} equations and express the system in \textbf{semi-explicit} form
+        \begin{equation*}
+          \left\{\!\!\!\begin{array}{r@{~}c@{~}l}
+            \mE \, \mxp &=& \mg \\
+            \m{0}\phantom{\prime} &=& \ma
+          \end{array}\!\!\!\right. \text{.}
+        \end{equation*}
+        \item The index of the system is reduced by differentiating the algebraic equations $\ma = \m{0}$.
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+  \vspace{0.75em}
+  \dots and it can be applied until a \acs{ODE} system with invariants is obtained.
+\end{frame}
+
+\begin{frame}{Index Reduction Algorithm}{Separation of Differential and Algebraic Equations}
+  \begin{itemize}
+    \item Let us consider a generic system of \acp{DAE} of the form
+    \begin{equation*}
+      \mF = \mA \, \mxp - \mb = \m{0} \text{.}
+    \end{equation*}
+    %
+    \item The differential equations can be separated from the algebraic ones by exploiting the kernel $\mK$ and its orthogonal complement $\mN$ of $\mE^\top$ such that
+    \begin{equation*}
+      \left\{\!\!\!\begin{array}{r@{~}c@{~}l}
+        \mE \, \mxp &=& \mg \\
+        \m{0}\phantom{\prime} &=& \ma
+      \end{array}\right.
+      \qquad \text{where} \qquad
+      \begin{array}{r@{~}c@{~}l}
+        \mE &=& \mN \, \mA \text{,} \\
+        \mg &=& \mN \, \mb \text{,} \\
+        \ma &=& \mK \, \mb \text{.}
+      \end{array}
+    \end{equation*}
+
+    \begin{bbox}[Kernel Computation]
+      To calculate the kernel $\mK$ and its orthogonal complement $\mN$ of $\mE^\top$ we use \ac{LU} or \ac{FFLU} matrix factorizations.
+    \end{bbox}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Index Reduction Algorithm}{Differentiation of Algebraic Equations}
+  \begin{itemize}
+    \item We can differentiate the algebraic equations $\ma$
+    \begin{equation*}
+      \dfrac{\mathrm{d}}{\mathrm{d}t} \ma = \mAd \, \mxp - \mgd \text{.}
+    \end{equation*}
+    %
+    \item The new system of \acp{DAE} with reduced index is of the form
+    %
+    \begin{align*}
+      \mF = \mA \, \mxp - \mb = \m{0}
+      \hspace{0.75em} \text{with} \hspace{0.75em}
+      \mA = \begin{bmatrix} \mE \\ \mAd \end{bmatrix}
+      \hspace{0.75em} \text{and} \hspace{0.75em}
+      \mb = \begin{bmatrix} \mg \\ \mgd \end{bmatrix} \text{.}
+    \end{align*}
+    %
+    \item The differential index of the system has been reduced by one
+  \end{itemize}
+  %
+  \begin{bbox}[A Sequential Algorithm \dots]
+    This algorithm is applied repeatedly until any algebraic equation $\mA$ is left, or equivalently until the matrix $\mE$ is non-singular.
+  \end{bbox}
+\end{frame}
+
+\begin{frame}{Index Reduction Algorithm (3/3)}
+  There are dark forces at work \dots
+  \begin{enumerate}
+    \item \textbf{Expression swell}: during the separation and differentiation of the algebraic part, the size of the symbolic expressions can grow.
+    \begin{itemize}
+      \item \Maple{} is very sensitive to expression swell.
+    \end{itemize}
+    %
+    \item \textbf{Numerical stability}: symbolic manipulation does not guarantee numerical stability.
+    \begin{itemize}
+      \item Useless simulation results.
+    \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+% That's all Folks!
