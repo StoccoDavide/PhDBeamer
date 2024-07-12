@@ -1,0 +1,593 @@
+<?xml version="1.0"?>
+<!DOCTYPE ipe SYSTEM "ipe.dtd">
+<ipe version="70218" creator="Ipe 7.2.29">
+<info created="D:20230519110145" modified="D:20240710143740"/>
+<preamble>\usepackage[default]{gillius} %font design
+\usepackage{sfmath}
+
+\usepackage{graphicx}
+
+\usepackage{amsmath, amssymb}
+\newcommand{\m}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\mx}{\ensuremath{\m{x}}}
+\newcommand{\mxp}{\ensuremath{\mx^\prime}}
+\newcommand{\mE}{\ensuremath{\m{E}(\mx, t)}}
+\newcommand{\mg}{\ensuremath{\m{g}(\mx, t)}}
+\newcommand{\ma}{\ensuremath{\m{a}(\mx, t)}}
+\newcommand{\mA}{\ensuremath{\m{A}(\mx, t)}}
+\newcommand{\mN}{\ensuremath{\m{N}(\mx, t)}}
+\newcommand{\mK}{\ensuremath{\m{K}(\mx, t)}}
+\newcommand{\mI}{\ensuremath{\m{I}}}
+\newcommand{\mP}{\ensuremath{\m{P}}}
+\newcommand{\mQ}{\ensuremath{\m{Q}}}
+\newcommand{\mL}{\ensuremath{\m{L}(\mx, t)}}
+\newcommand{\mU}{\ensuremath{\m{U}(\mx, t)}}
+\newcommand{\mM}{\ensuremath{\m{M}(\mx, t)}}
+\newcommand{\mb}{\ensuremath{\m{b}(\mx, t)}}
+\newcommand{\mAd}{\ensuremath{\m{E}_{\m{a}}(\mx, t)}}
+\newcommand{\mgd}{\ensuremath{\m{g}_{\m{a}}(\mx, t)}}
+\newcommand{\mF}{\ensuremath{\m{F}(\mx, \mxp, t)}}
+\newcommand{\mh}{\ensuremath{\m{h}(\mx, t)}}
+
+\newcommand{\mv}{\ensuremath{\m{v}(\mx, t)}}
+\newcommand{\mEv}{\ensuremath{\m{E}(\mx, \m{v}, t)}}
+\newcommand{\mgv}{\ensuremath{\m{g}(\mx, \m{v}, t)}}
+\newcommand{\mav}{\ensuremath{\m{a}(\mx, \m{v}, t)}}
+\newcommand{\mvv}{\ensuremath{\m{v}(\mx, \m{v}, t)}}
+\newcommand{\mAv}{\ensuremath{\m{A}(\mx, \m{v}, t)}}
+\newcommand{\mNv}{\ensuremath{\m{N}(\mx, \m{v}, t)}}
+\newcommand{\mKv}{\ensuremath{\m{K}(\mx, \m{v}, t)}}
+\newcommand{\mLv}{\ensuremath{\m{L}(\mx, \m{v}, t)}}
+\newcommand{\mUv}{\ensuremath{\m{U}(\mx, \m{v}, t)}}
+\newcommand{\mMv}{\ensuremath{\m{M}(\mx, \m{v}, t)}}
+\newcommand{\mbv}{\ensuremath{\m{b}(\mx, \m{v}, t)}}
+\newcommand{\mAdv}{\ensuremath{\m{E}_{\m{a}}(\mx, \m{v}, t)}}
+\newcommand{\mgdv}{\ensuremath{\m{g}_{\m{a}}(\mx, \m{v}, t)}}
+\newcommand{\mFv}{\ensuremath{\m{F}(\mx, \mxp, \m{v}, t)}}
+\newcommand{\mhiv}{\ensuremath{\m{h}_{i}(\mx, \m{v}, t)}}
+\newcommand{\mhuv}{\ensuremath{\m{h}_{u}(\mx, \m{v}, t)}}
+\newcommand{\mhv}{\ensuremath{\m{h}(\mx, \m{v}, t)}}
+</preamble>
+<ipestyle name="basic">
+<symbol name="arrow/arc(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/farc(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/ptarc(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/fptarc(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="mark/circle(sx)" transformations="translations">
+<path fill="sym-stroke">
+0.6 0 0 0.6 0 0 e
+0.4 0 0 0.4 0 0 e
+</path>
+</symbol>
+<symbol name="mark/disk(sx)" transformations="translations">
+<path fill="sym-stroke">
+0.6 0 0 0.6 0 0 e
+</path>
+</symbol>
+<symbol name="mark/fdisk(sfx)" transformations="translations">
+<group>
+<path fill="sym-fill">
+0.5 0 0 0.5 0 0 e
+</path>
+<path fill="sym-stroke" fillrule="eofill">
+0.6 0 0 0.6 0 0 e
+0.4 0 0 0.4 0 0 e
+</path>
+</group>
+</symbol>
+<symbol name="mark/box(sx)" transformations="translations">
+<path fill="sym-stroke" fillrule="eofill">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+h
+-0.4 -0.4 m
+0.4 -0.4 l
+0.4 0.4 l
+-0.4 0.4 l
+h
+</path>
+</symbol>
+<symbol name="mark/square(sx)" transformations="translations">
+<path fill="sym-stroke">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+h
+</path>
+</symbol>
+<symbol name="mark/fsquare(sfx)" transformations="translations">
+<group>
+<path fill="sym-fill">
+-0.5 -0.5 m
+0.5 -0.5 l
+0.5 0.5 l
+-0.5 0.5 l
+h
+</path>
+<path fill="sym-stroke" fillrule="eofill">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+h
+-0.4 -0.4 m
+0.4 -0.4 l
+0.4 0.4 l
+-0.4 0.4 l
+h
+</path>
+</group>
+</symbol>
+<symbol name="mark/cross(sx)" transformations="translations">
+<group>
+<path fill="sym-stroke">
+-0.43 -0.57 m
+0.57 0.43 l
+0.43 0.57 l
+-0.57 -0.43 l
+h
+</path>
+<path fill="sym-stroke">
+-0.43 0.57 m
+0.57 -0.43 l
+0.43 -0.57 l
+-0.57 0.43 l
+h
+</path>
+</group>
+</symbol>
+<symbol name="arrow/fnormal(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/pointed(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/fpointed(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/linear(spx)">
+<path stroke="sym-stroke" pen="sym-pen">
+-1 0.333 m
+0 0 l
+-1 -0.333 l
+</path>
+</symbol>
+<symbol name="arrow/fdouble(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+-1 0 m
+-2 0.333 l
+-2 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/double(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+-1 0 m
+-2 0.333 l
+-2 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/mid-normal(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0.5 0 m
+-0.5 0.333 l
+-0.5 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/mid-fnormal(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0.5 0 m
+-0.5 0.333 l
+-0.5 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/mid-pointed(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0.5 0 m
+-0.5 0.333 l
+-0.3 0 l
+-0.5 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/mid-fpointed(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0.5 0 m
+-0.5 0.333 l
+-0.3 0 l
+-0.5 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/mid-double(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+1 0 m
+0 0.333 l
+0 -0.333 l
+h
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/mid-fdouble(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+1 0 m
+0 0.333 l
+0 -0.333 l
+h
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<anglesize name="22.5 deg" value="22.5"/>
+<anglesize name="30 deg" value="30"/>
+<anglesize name="45 deg" value="45"/>
+<anglesize name="60 deg" value="60"/>
+<anglesize name="90 deg" value="90"/>
+<arrowsize name="large" value="10"/>
+<arrowsize name="small" value="5"/>
+<arrowsize name="tiny" value="3"/>
+<color name="blue" value="0 0 1"/>
+<color name="brown" value="0.647 0.165 0.165"/>
+<color name="darkblue" value="0 0 0.545"/>
+<color name="darkcyan" value="0 0.545 0.545"/>
+<color name="darkgray" value="0.663"/>
+<color name="darkgreen" value="0 0.392 0"/>
+<color name="darkmagenta" value="0.545 0 0.545"/>
+<color name="darkorange" value="1 0.549 0"/>
+<color name="darkred" value="0.545 0 0"/>
+<color name="gold" value="1 0.843 0"/>
+<color name="gray" value="0.745"/>
+<color name="green" value="0 1 0"/>
+<color name="lightblue" value="0.678 0.847 0.902"/>
+<color name="lightcyan" value="0.878 1 1"/>
+<color name="lightgray" value="0.827"/>
+<color name="lightgreen" value="0.565 0.933 0.565"/>
+<color name="lightyellow" value="1 1 0.878"/>
+<color name="navy" value="0 0 0.502"/>
+<color name="orange" value="1 0.647 0"/>
+<color name="pink" value="1 0.753 0.796"/>
+<color name="purple" value="0.627 0.125 0.941"/>
+<color name="red" value="1 0 0"/>
+<color name="seagreen" value="0.18 0.545 0.341"/>
+<color name="turquoise" value="0.251 0.878 0.816"/>
+<color name="violet" value="0.933 0.51 0.933"/>
+<color name="yellow" value="1 1 0"/>
+<dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
+<dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
+<dashstyle name="dashed" value="[4] 0"/>
+<dashstyle name="dotted" value="[1 3] 0"/>
+<gridsize name="10 pts (~3.5 mm)" value="10"/>
+<gridsize name="14 pts (~5 mm)" value="14"/>
+<gridsize name="16 pts (~6 mm)" value="16"/>
+<gridsize name="20 pts (~7 mm)" value="20"/>
+<gridsize name="28 pts (~10 mm)" value="28"/>
+<gridsize name="32 pts (~12 mm)" value="32"/>
+<gridsize name="4 pts" value="4"/>
+<gridsize name="56 pts (~20 mm)" value="56"/>
+<gridsize name="8 pts (~3 mm)" value="8"/>
+<opacity name="10%" value="0.1"/>
+<opacity name="30%" value="0.3"/>
+<opacity name="50%" value="0.5"/>
+<opacity name="75%" value="0.75"/>
+<pen name="fat" value="1.2"/>
+<pen name="heavier" value="0.8"/>
+<pen name="ultrafat" value="2"/>
+<symbolsize name="large" value="5"/>
+<symbolsize name="small" value="2"/>
+<symbolsize name="tiny" value="1.1"/>
+<textsize name="Huge" value="\Huge"/>
+<textsize name="LARGE" value="\LARGE"/>
+<textsize name="Large" value="\Large"/>
+<textsize name="footnote" value="\footnotesize"/>
+<textsize name="huge" value="\huge"/>
+<textsize name="large" value="\large"/>
+<textsize name="script" value="\scriptsize"/>
+<textsize name="small" value="\small"/>
+<textsize name="tiny" value="\tiny"/>
+<textstyle name="center" begin="\begin{center}" end="\end{center}"/>
+<textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
+<textstyle name="itemize" begin="\begin{itemize}" end="\end{itemize}"/>
+<tiling name="falling" angle="-60" step="4" width="1"/>
+<tiling name="rising" angle="30" step="4" width="1"/>
+</ipestyle>
+<page>
+<layer name="alpha"/>
+<view layers="alpha" active="alpha"/>
+<path layer="alpha" matrix="-0.00004287 1 -1 -0.00004287 751.639 231.757" stroke="black" dash="dashed" opacity="75%" stroke-opacity="opaque">
+-8 608 m
+-8 304 l
+600 304 l
+600 608 l
+h
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 917.809 -203.565" pos="240 688" stroke="black" type="label" width="147.869" height="8.541" depth="2.87" valign="baseline" size="large">Initialize the veilings list $\mv$</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 936.657 -214.139" pos="240 688" stroke="black" type="label" width="172.917" height="8.22" depth="2.77" valign="baseline" size="large">\resizebox{6.1cm}{!}{and invariants list $\mhv$ as empty}</text>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 1008.42 -175.283" stroke="black" pen="heavier">
+200 792 m
+200 752 l
+376 752 l
+376 792 l
+h
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 920.212 9.80398" pos="240 688" stroke="black" type="label" width="143.33" height="8.354" depth="0.14" valign="baseline" size="large">Matrix factorization and rank</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 935.924 27.0777" pos="240 688" stroke="black" type="label" width="119.711" height="8.543" depth="2.88" valign="baseline" size="large">computation of $\mAv$</text>
+<path matrix="-0.00004287 1 -1 -0.00004287 751.638 247.755" stroke="black" arrow="normal/normal">
+72.1203 495.886 m
+71.9646 419.838 l
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1040.05 32.5391" pos="240 688" stroke="black" type="label" width="97.821" height="8.541" depth="2.87" valign="baseline" size="large">Is $\mAv$ singular?</text>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 980.185 32.4906" stroke="black" pen="heavier">
+288 648 m
+208 632 l
+288 616 l
+368 632 l
+h
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 976.481 -191.581" stroke="black" arrow="normal/normal">
+512 611.995 m
+512 575.99 l
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1101.57 8.87676" pos="240 688" stroke="black" type="label" width="146.606" height="8.346" depth="2.88" valign="baseline" size="large">The DAE system has index-0,</text>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 1008.14 32.7837" stroke="black" pen="heavier">
+200 792 m
+200 752 l
+376 752 l
+376 792 l
+h
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 1192.19 32.7767" stroke="black" pen="heavier">
+200 792 m
+200 752 l
+376 752 l
+376 792 l
+h
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1072.34 84.7215" pos="240 688" stroke="black" type="label" width="12.433" height="5.467" depth="0.14" valign="baseline" size="large">no</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1119.88 3.49655" pos="240 688" stroke="black" type="label" width="152.398" height="8.77" depth="1.79" valign="baseline" size="large">return $\mFv$ and $\mhiv$</text>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 907.937 216.448" stroke="black" rarrow="normal/normal">
+224 560 m
+184 560 l
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1030.33 170.212" pos="240 688" stroke="black" type="label" width="16.654" height="5.459" depth="2.88" valign="baseline" size="large">yes</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1029.21 218.514" pos="240 688" stroke="black" type="label" width="142.075" height="8.346" depth="2.88" valign="baseline" size="large">Separate the differential and</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1047.76 207.396" pos="240 688" stroke="black" type="label" width="163.078" height="8.767" depth="2.88" valign="baseline" size="large">algebraic equations in $\mFv$</text>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 1119.9 240.747" stroke="black" pen="heavier">
+200 792 m
+200 752 l
+376 752 l
+376 792 l
+h
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 835.918 200.607" stroke="black" rarrow="normal/normal">
+416 600 m
+448 600 l
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 917.295 206.58" pos="240 688" stroke="black" type="label" width="165.471" height="8.346" depth="2.88" valign="baseline" size="large">Create the reduced-index system</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 935.877 202.394" pos="240 688" stroke="black" type="label" width="172.921" height="8.895" depth="1.51" valign="baseline" size="large" style="math">\resizebox{6.1cm}{!}{$\mFv = \mAv \, \mxp - \mbv$}</text>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 1007.86 240.851" stroke="black" pen="heavier">
+200 792 m
+200 752 l
+376 752 l
+376 792 l
+h
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 836.198 -7.45962" stroke="black" rarrow="normal/normal">
+416 600 m
+448 600 l
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 947.815 178.809" pos="224 776" stroke="black" type="label" width="110.164" height="17.323" depth="11.37" valign="baseline" size="large" style="math">\mAv = \begin{bmatrix}
+  \mEv \\ \mAdv
+\end{bmatrix}</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 915.897 237.184" pos="288 744" stroke="black" type="label" width="108.43" height="17.323" depth="11.37" valign="baseline" size="large" style="math">\mbv = \begin{bmatrix}
+  \mgv \\ \mgdv
+\end{bmatrix}</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1194.04 198.498" pos="224 776" stroke="black" type="label" width="105.561" height="17.323" depth="11.37" valign="baseline" size="large" style="math">\mAv = \begin{bmatrix}
+  \mEv \\ \m{0}
+\end{bmatrix}</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1162.02 256.965" pos="288 744" stroke="black" type="label" width="104.162" height="17.323" depth="11.37" valign="baseline" size="large" style="math">\mbv = \begin{bmatrix}
+  \mgv \\ \mav
+\end{bmatrix}</text>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 935.864 220.815" stroke="black">
+232 752 m
+232 736
+256 744
+256 720 c
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 935.874 220.812" stroke="black">
+352 752 m
+352 736
+328 744
+328 720 c
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 976.066 240.463" stroke="black">
+352 576 m
+352 592
+328 584
+328 608 c
+</path>
+<path matrix="-0.999998 0.00229039 -0.00229039 -0.999998 588.69 1003.12" stroke="black">
+187.885 531.711 m
+203.885 531.769
+195.972 507.733
+219.972 507.821 c
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 1119.62 448.811" stroke="black" pen="heavier">
+200 792 m
+200 752 l
+376 752 l
+376 792 l
+h
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 935.318 640.876" stroke="black" arrow="normal/normal">
+96 648 m
+96 680 l
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 935.607 421.044" pos="240 688" stroke="black" type="label" width="152.253" height="8.543" depth="2.88" valign="baseline" size="large">tions $\mav$ with respect to $t$</text>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 1007.58 448.915" stroke="black" pen="heavier">
+200 792 m
+200 752 l
+376 752 l
+376 792 l
+h
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 1119.62 448.811" stroke="black" pen="heavier">
+200 792 m
+200 752 l
+376 752 l
+376 792 l
+h
+</path>
+<path matrix="-0.00004287 1 -1 -0.00004287 751.638 247.755" stroke="black" arrow="normal/normal">
+488 424 m
+488.252 496.428 l
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 1007.58 448.915" stroke="black" pen="heavier">
+200 792 m
+200 752 l
+376 752 l
+376 792 l
+h
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 947.959 200.5" stroke="black" arrow="normal/normal">
+416 600 m
+448 600 l
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 938.292 622.433" pos="24 768" stroke="black" type="label" width="176.927" height="16.423" depth="8.21" valign="baseline" size="large" style="math">\dfrac{\mathrm{d}}{\mathrm{d}t} \mav = \mAdv \, \mxp - \mgdv</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1047.51 423.989" pos="240 688" stroke="black" type="label" width="146.239" height="8.543" depth="2.88" valign="baseline" size="large">adding the equations $\mav$</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1029.07 413.549" pos="240 688" stroke="black" type="label" width="166.579" height="8.543" depth="2.88" valign="baseline" size="large">Update the invariants $\mhiv$ by</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 845.705 -179.817" pos="240 688" stroke="black" type="label" width="106.736" height="8.346" depth="2.88" valign="baseline" size="large">Load the DAE system</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 864.539 -211.135" pos="240 688" stroke="black" type="label" width="162.103" height="13.625" depth="1.49" valign="baseline" size="large" style="math">\mF \overset{\mathrm{def}}{=} \mA \, \mxp - \mb = \m{0}</text>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 936.305 -175.354" stroke="black" pen="heavier">
+200 792 m
+200 752 l
+376 752 l
+376 792 l
+h
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 920.326 -191.381" stroke="black" arrow="normal/normal">
+304 736 m
+304 704 l
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 830.393 -137.659" pos="240 688" stroke="black" type="label" width="22.336" height="7.003" depth="0.13" valign="baseline">\textbf{Start}</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 973.434 123.876" pos="240 688" stroke="black" type="label" width="154.09" height="8.344" depth="2.87" valign="baseline" size="large">Store the new veiling variables </text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 991.809 143.981" pos="240 688" stroke="black" type="label" width="111.645" height="8.541" depth="2.87" valign="baseline" size="large">in the veiling list \mv</text>
+<path matrix="-0.00004287 1 -1 -0.00004287 747.758 247.922" stroke="black" arrow="normal/normal">
+72 456 m
+104 456 l
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 1064.02 152.718" stroke="black" pen="heavier">
+200 792 m
+200 752 l
+376 752 l
+376 792 l
+h
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1101.86 -209.565" pos="240 688" stroke="black" type="label" width="164.297" height="8.771" depth="1.49" valign="baseline" size="large">Return the DAEs $\mFv$, with</text>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 1192.47 -175.291" stroke="black" pen="heavier">
+200 792 m
+200 752 l
+376 752 l
+376 792 l
+h
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1120.17 -211.316" pos="240 688" stroke="black" type="label" width="168.161" height="8.546" depth="1.49" valign="baseline" size="large">invariants $\mhv$ and veils $\mv$</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1136.95 -136.605" pos="240 688" stroke="black" type="label" width="16.677" height="6.834" depth="0" valign="baseline">\textbf{End}</text>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 1120.15 -175.358" stroke="black" pen="heavier">
+200 792 m
+200 752 l
+376 752 l
+376 792 l
+h
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1032.12 -197.22" pos="240 688" stroke="black" type="label" width="143.259" height="8.354" depth="0.14" valign="baseline" size="large">Declare custom user-defined</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1047.84 -211.709" pos="240 688" stroke="black" type="label" width="168.859" height="8.543" depth="2.88" valign="baseline" size="large">invariants $\mhuv$ (optional step)</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 917.26 415.538" pos="240 688" stroke="black" type="label" width="160.809" height="8.346" depth="2.88" valign="baseline" size="large">Differentiate the algebraic equa-</text>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 836.478 -215.527" stroke="black" arrow="normal/normal">
+416 600 m
+448 600 l
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 1020.53 -215.534" stroke="black" rarrow="normal/normal">
+416 600 m
+448 600 l
+</path>
+<path matrix="-0.00135 1.0003 -0.999999 -0.0013496 1104.32 -191.321" stroke="black" arrow="normal/normal">
+304 736 m
+304 704 l
+</path>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 830.55 262.843" pos="240 688" stroke="black" type="label" width="70.137" height="6.844" depth="0.11" valign="baseline">\textbf{Index reduction}</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1012.7 -145.802" pos="240 688" stroke="black" type="label" width="37.798" height="6.995" depth="2.4" valign="baseline">\textbf{Optional}</text>
+<text matrix="-0.00135 1.0003 -0.999999 -0.0013496 1012.7 -145.802" pos="240 688" stroke="black" type="label" width="37.798" height="6.995" depth="2.4" valign="baseline">\textbf{Optional}</text>
+<path matrix="-0.00004287 1 -1 -0.00004287 751.639 223.757" stroke="black">
+479.899 572.072 m
+480.097 552.083
+504.094 560.114
+504.125 536.114 c
+</path>
+</page>
+</ipe>

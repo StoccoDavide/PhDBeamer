@@ -2,15 +2,12 @@
 
 \section{Symbolic Computation Essentials}
 
-\begin{frame}
-  \tableofcontents[currentsection]
-\end{frame}
-
 \begin{frame}{Symbolic Computation Essentials}{Introduction}
   \begin{itemize}
-    \item Symbolic computation (or computer algebra) involves manipulating mathematical expressions in their \textbf{exact} form.
-    \item Such an exact representation implies that, even when the size of the output is small, the intermediate expressions generated during a computation may grow unpredictably due to \textbf{expression swell}.
+    \item Symbolic computation involves manipulating mathematical expressions in their \textbf{exact} form.
+    \item Even if the size of the output is small, the intermediate expressions generated during a computation may grow unpredictably \dots
   \end{itemize}
+  \hic{Expression Swell}
   \begin{center}\begin{minipage}{\textwidth}\begin{bbox}[The Ideal Workflow]
     \centering%
     \begin{minipage}[c]{0.15\textwidth} \centering Input expression \end{minipage}%
@@ -35,7 +32,7 @@
     \begin{column}[t]{0.5\textwidth}
       \hi{\large Inherent \textcolor{black}{expression swell}} \\
       \begin{itemize}\small
-        \item The size of expressions can not be lowered due to no simplification rules being applicable.
+        \item Size of expressions can not be lowered due to no simplification rules being applicable.
         \item Can not always be avoided and requires changes in the problem formulation.
       \end{itemize}
     \end{column}
@@ -54,12 +51,14 @@
 \begin{frame}{\acl{LEM}}{Hierarchical Representation}
   The \textbf{hierarchical representation} of expressions is carried out through \textbf{veiling variables}, which are defined as \dots
   \begin{equation*}
-    \m{f}(\mx) \quad \autorightarrow{\text{veiling}}{\text{variables}} \quad \m{f}(\mx, \m{v}) \qquad \text{where} \qquad \m{v}(\mx) = \begin{bmatrix}
+    \m{f}(\mx) \quad \autorightarrow{\text{veiling}}{\text{variables}} \quad \m{f}(\mx, \m{v})
+    \qquad \text{where} \qquad
+    \m{v}(\mx) = \msmall{\begin{bmatrix}
       v_{1}(\mx) \\
       v_{2}(v_{1}, \mx) \\
       \vdots \\
       v_{n}(v_{1}, \dots, v_{n-1}, \mx)
-    \end{bmatrix}
+    \end{bmatrix}}
   \end{equation*}
   The process is composed of two actions \dots
   \begin{enumerate}
@@ -67,21 +66,21 @@
     \item veiling variables can be \textbf{unveiled} (substitute back) the veiling variables into the expression to recover the original form.
   \end{enumerate}
   \vspace{0.5em}
-  \hic{The complexity remains but the \ac{CAS} can not see it!}
+  \hic{The complexity remains but the \ac{CAS} can not see it! \raisebox{-2.5pt}{\Huge\trollface{}}}
 \end{frame}
 
 \begin{frame}{\acl{LEM}}{An Example of \acs{LEM} through Hierarchical Representation}
   Let us consider an expression of the form
   \begin{equation*}
-    \textcolor{mycolor1}{\underline{2xy(1+y)}} \cdot \text{f}(x,y) +
-    \textcolor{mycolor2}{\underline{5z(3a+z)}} \cdot \text{g}(y) +
-    \textcolor{mycolor3}{\underline{3c(xy+z)}} \cdot \text{h}(x,z) \text{.}
+    \textcolor{mycolor1}{\underline{2xy(1+y)}} \cdot f(x,y) +
+    \textcolor{mycolor2}{\underline{5z(3a+z)}} \cdot g(y) +
+    \textcolor{mycolor3}{\underline{3c(xy+z)}} \cdot h(x,z) \text{.}
   \end{equation*}
   One of its possible hierarchical representations is
   \begin{equation*}
-    \textcolor{mycolor1}{v_1} \cdot \text{f}(x,y) +
-    \textcolor{mycolor2}{v_2} \cdot \text{g}(y) +
-    \textcolor{mycolor3}{v_3} \cdot \text{h}(x,z) \text{,}
+    \textcolor{mycolor1}{v_1} \cdot f(x,y) +
+    \textcolor{mycolor2}{v_2} \cdot g(y) +
+    \textcolor{mycolor3}{v_3} \cdot h(x,z) \text{,}
   \end{equation*}
   where the veiling variables are
   \begin{equation*}
@@ -119,22 +118,15 @@
 \end{frame}
 
 \begin{frame}{\acl{LEM}}{The \ac{LEM} Package}
-  Easy to implement, but \dots
-  \begin{enumerate}
-    \item How to measure symbolic expression complexity?
-    \begin{itemize}
-      \item \textbf{Length in characters}: already used by other authors, not reliable;
-      \item \textbf{Computational cost}: insensible to expression internal representation;
-      \item \textbf{Directed acyclic graph}: measures the number of nodes and edges, but not the complexity.
-    \end{itemize}
-    \item How to choose the right level of expression complexity?
-    \begin{itemize}
-      \item \textbf{Trial and error}: no general rule (depends on the software).
-    \end{itemize}
-  \end{enumerate}
+  \Maple{} package for managing large symbolic expressions \dots
+  \begin{itemize}
+    \item \textbf{custom implementation} of the \Maple{}s' \texttt{LargeExpressions} package.
+    \item \textbf{object-oriented} implementation for managing large symbolic expressions;
+    \item \textbf{better control} over the hierarchical representation of expressions.
+  \end{itemize}
   %
   \begin{bbox}[Large Expression Management \Maple{} package]
-    The \ac{LEM} object-oriented implementation is freely available on GitHub! \\
+    The LEM implementation is freely available on GitHub! \\
     \centering \url{https://github.com/StoccoDavide/LEM}
   \end{bbox}
 \end{frame}
@@ -166,7 +158,6 @@
 
 \begin{frame}{Symbolic Matrix Factorization}
   \begin{itemize}
-    \item Symbolic matrix factorization is used for the computation of the \textbf{kernel}, \ie{}, for separating the system differential and algebraic parts.
     \item There are a multitude of matrix factorizations, we choose \textbf{\ac{LU}} and \textbf{\ac{FFLU}} because of \dots
     \begin{enumerate}
       \item capability of preserving \textbf{sparsity} with \textbf{minimum degree} approach;
@@ -178,7 +169,6 @@
     \item We developed a symbolic matrix factorization toolbox capable of dealing with expression swell.
     \begin{enumerate}
       \item At specific steps of the algorithm \textbf{veiling variables} are introduced not to increase the size of the expressions.
-      \item \ac{LU}, \ac{FFLU}, \ac{QR}, and Gauss-Jordan factorizations are available.
     \end{enumerate}
 \end{itemize}
   %
@@ -211,14 +201,59 @@
     %
     \begin{itemize}
       \item a lower-triangular matrix $\m{L} \in \mathbb{R}^{m \times m}$ with all diagonal entries equal to $1$;
-      \item \textcolor{fg_sl_color}{a diagonal matrix $\m{D} \in \mathbb{R}^{m \times n}$;}
+      \item \textcolor{fg_sl_color}{a diagonal matrix $\m{D} \in \mathbb{R}^{m \times m}$;}
       \item an upper-triangular matrix $\m{U} \in \mathbb{R}^{m \times n}$;
       \item a $\m{P} \in \mathbb{R}^{m \times m}$ and a $\m{Q} \in \mathbb{R}^{n \times n}$ matrices for rows and columns permutation;
     \end{itemize}
     %
     such that $\m{P}\textcolor{fg_sl_color}{\m{D}}\m{A}\m{Q} = \m{L}\m{U}$.
   \end{bbox}
-  \dots same effectiveness of \ac{LU} decomposition, but with a more complex implementation!
+  \dots same effectiveness of \ac{LU} decomposition, but with a slightly different implementation!
+\end{frame}
+
+\begin{frame}{Symbolic Matrix Factorization}{Pivoting Strategy}
+  \hic{How to ensure the stability of the symbolic factorization? \\
+  \textcolor{black}{With a good pivoting strategy!}}
+  \begin{columns}
+    \begin{column}[c]{0.5\textwidth}
+      A good pivoting strategy should \dots
+      \begin{itemize}
+        \item select the simplest pivot element;
+        \item[] \textbf{\small Avoid excessive expression swell}
+        \item select the pivot element to ensure numerical stability;
+        \item[] \textbf{\small Avoid numerical instability}
+        \item explore all the possible pivots to make the best choice.
+        \item[] \textbf{\small Avoid numerical errors}
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \includegraphics[width=\textwidth]{pivoting_strategy}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Symbolic Matrix Factorization}{\ac{LEM} During Factorization}
+  \hic{How to manage large symbolic expressions? \\
+  \textcolor{black}{By using \ac{LEM} during the factorization!}}
+  Veiling variables are introduced during \dots \\[1.0em]
+  \begin{columns}
+    \begin{column}[t]{0.5\textwidth}
+      \textbf{Factorization step} \\
+      \begin{itemize}\small
+        \item Gaussian elimination;
+        \item Schur complement computation.
+      \end{itemize}
+      {\centering \includegraphics[width=\textwidth]{factorization_lu}}
+    \end{column}
+    \begin{column}[t]{0.5\textwidth}
+      \textbf{Solution step} \\
+      \begin{itemize}\small
+        \item Forward substitution;
+        \item Backward substitution.
+      \end{itemize}
+      {\centering \includegraphics[width=\textwidth]{solve_lu}}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 % That's all Folks!

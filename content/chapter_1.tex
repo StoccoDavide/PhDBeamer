@@ -1,16 +1,50 @@
 %!TEX root = main.tex
 
-\section{Introduction}
+\toclesssection{Introduction and Motivation}
 
-\begin{frame}[plain]
-  \begin{quag}[Introduction]
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-    Etiam lobortis facilisis sem. Nullam nec mi et neque
-    pharetra sollicitudin. Praesent imperdiet mi nec ante. Donec
-    ullamcorper, felis non sodales commodo, lectus velit ultrices
-    augue, a dignissim nibh lectus placerat pede. Vivamus nunc
-    nunc, molestie ut, ultricies vel, semper in, velit. Ut porttitor.
-  \end{quag}
+\begin{frame}{Introduction and Motivation}{Background}
+  \begin{itemize}
+    \item Simulation of dynamic systems is crucial in various engineering fields.
+    \item Systems are typically described by \dots
+    \vspace{1.0em}
+    \begin{columns}
+      \centering
+      \begin{column}[t]{0.45\textwidth}
+        \centering
+        \hi{\acp{ODE}}
+        \centering\small
+        Simple to solve \\
+        Widely used \\
+        Strong theoretical foundation \\
+        Limited modeling capabilities
+      \end{column}
+      \begin{column}[t]{0.45\textwidth}
+        \centering
+        \hi{\acp{DAE}}
+        \centering\small
+        State-of-the-art in modeling \\
+        Less performant numerical methods \\
+        \textbf{Challenging to solve} \\
+        \textbf{Hard to initialize}
+      \end{column}
+    \end{columns}
+    \vspace{1.0em}
+    \item \textbf{Speed} and \textbf{accuracy} are essential in the simulation!
+  \end{itemize}
+  \vspace{0.5em}
+  \hic{Improve the state-of-the-art in the solution of \ac{DAE} systems}
+\end{frame}
+
+\begin{frame}{Introduction and Motivation}{Solution Technique}
+  How can we improve the solution of \acp{DAE}?
+  \begin{itemize}
+    \item Complicated and abstract index concepts and reduction techniques arose over the years to ease the solution process.
+    \item Most of existing tools are based on \textbf{numerical} or \textbf{structural analysis} techniques.
+    \item In the last decades, \textbf{symbolic computation} has reached a high level of maturity \dots \\
+    \dots but it is not as widely used as one might expect.
+  \end{itemize}
+  \vspace{0.5em}
+  \hic{Let us explore the potential of symbolic computation in the solution of \acp{DAE}!}
 \end{frame}
 
 % That's all Folks!

@@ -1,9 +1,10 @@
-\documentclass[aspectratio = 169, 10pt]{beamer}
+\documentclass[aspectratio=169, 10pt, handout]{beamer}
 
 % Slide colors
 \definecolor{tx_sl_color}{RGB}{0, 0, 0}
 \definecolor{bg_sl_color}{RGB}{255, 255, 255}
-\definecolor{fg_sl_color}{HTML}{B10B25}
+%\definecolor{fg_sl_color}{HTML}{B10B25}
+\definecolor{fg_sl_color}{HTML}{0F6E91}
 
 \colorlet{ft_color}{fg_sl_color!75!tx_sl_color}
 
@@ -82,6 +83,7 @@
 % Enumerate and itemize
 \setbeamertemplate{enumerate items}[square]
 \setbeamertemplate{itemize items}[circle]
+\setbeamercovered{transparent}
 
 % Table of contents
 \setbeamertemplate{section in toc}[square]
@@ -96,6 +98,7 @@
 
 % Figures
 \usepackage{graphicx}
+\usepackage{overpic}
 
 % Math
 \usepackage{amsmath}
@@ -103,17 +106,25 @@
 \usepackage{amssymb}
 
 % Font
-\usepackage[default]{gillius} %font design
-\usepackage{sfmath}
+\usepackage[default]{gillius}
+%\usepackage{sfmath}
 \usepackage{sansmathaccent}
 \usepackage{setspace}
+\usefonttheme[onlymath]{serif}
+\newcommand\msmall[1]{\mbox{\small\ensuremath{#1}}}
 
 % TikZ/PGFplots
 \usepackage{tikz}
+\usetikzlibrary{patterns}
+\input{./figures/troll.tex}
 
 % SI units
 \usepackage{siunitx}
-\sisetup{retain-zero-exponent=false, parse-numbers=false, per-mode=symbol}
+\sisetup{
+  retain-zero-exponent=false,
+  parse-numbers=false,
+  per-mode=symbol
+}
 
 % Color boxes
 \usepackage[most]{tcolorbox}
@@ -132,15 +143,15 @@
   colframe     = fg_cb_color,
   colbacktitle = fg_cb_color,
   coltitle     = bg_cb_color,
-  arc          = 5.0pt,
-  boxrule      = 2.0pt,
+  arc          = 3.0pt,
+  boxrule      = 1.0pt,
   title        = {#1},
   fonttitle    = {\fontfamily{qag}\selectfont\large\bfseries},
   halign       = flush left,
   boxed title style = {
     size       = small,
     colframe   = bg_cb_color,
-    arc        = 2.0mm
+    arc        = 3.0pt
   }
 }
 \newenvironment{bbox}[1][]{\begin{tbbox}[#1]}{\end{tbbox}}
@@ -155,20 +166,59 @@
   \endgroup
 }
 
+% Section without toc entry
+\RequirePackage{ifthen}
+\newboolean{sectiontoc}
+\setboolean{sectiontoc}{true} % default to true
+\newcommand{\toclesssection}[1]{ % section without toc entry
+  \setboolean{sectiontoc}{false}
+  \section{#1}
+  \setboolean{sectiontoc}{true}
+}
+
+% Table of contents at the beginning of each section
+\AtBeginSection[]{
+  \begin{frame}{Outline}
+  \ifthenelse{\boolean{sectiontoc}}{
+    \tableofcontents[
+      current,
+      sectionstyle=show/shaded,
+      subsectionstyle=show/show/hide,
+      subsubsectionstyle=show/show/show/hide
+    ]
+  }{
+    \tableofcontents[
+      current,
+      sectionstyle=show/show,
+      subsectionstyle=show/show/hide,
+      subsubsectionstyle=show/show/show/hide
+    ]
+  }
+  \end{frame}
+}
+
+% Add logo to the title page
+\addtobeamertemplate{frametitle}{}{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=north east, xshift=5pt, yshift=5pt] at (current page.north east) {\colorbox{fg_sl_color}{\includegraphics[height=1.0cm]{logo.png}}};
+    %\draw[thick, fg_sl_color] ([yshift=-1cm-6pt] current page.north west) -- ([yshift=-1cm-6pt, xshift=\paperwidth] current page.north west);
+  \end{tikzpicture}%
+}
+
 % Highlighted text
 \newcommand{\hi}[1]{\textcolor{fg_sl_color}{\selectfont\color{fg_cb_color}\bfseries{#1}}}
 \newcommand{\hic}[1]{\begin{center}\hi{\Large{#1}}\end{center}}
 
 % Bibliography
 \PassOptionsToPackage{%
-  backend      = biber,         % instead of bibtex
-  bibencoding  = utf8,          % special characters
-  language     = auto,          % get the language of the main document
-  style        = numeric-comp,  % numeric citation style
-  sorting      = none,          % sorted by appearance
-  maxbibnames  = 10,            % default: 3, et al.
-  maxcitenames = 10,            % default: 1, et al.
-  natbib       = true,          % natbib compatibility mode (\citep and \citet still work)
+  backend      = biber,        % instead of bibtex
+  bibencoding  = utf8,         % special characters
+  language     = auto,         % get the language of the main document
+  style        = numeric-comp, % numeric citation style
+  sorting      = none,         % sorted by appearance
+  maxbibnames  = 10,           % default: 3, et al.
+  maxcitenames = 10,           % default: 1, et al.
+  natbib       = true,         % natbib compatibility mode (\citep and \citet still work)
 }{biblatex}
 \usepackage{biblatex} % to display bibliography
 \usepackage{bibentry} % to insert bibliography entries inline
@@ -232,6 +282,7 @@
 \usepackage{acronym}
 \newacro{DSM}{Direct Stiffness Method}
 \newacro{FE}{Finite Element}
+\newacro{RT}{Real-Time}
 \newacro{FEA}{Finite Element Analysis}
 \newacro{FEM}{Finite Element Method}
 \newacro{LEM}{Large Expression Management}
@@ -325,7 +376,7 @@
 \title{Symbolic Computation Methods for the Numerical Solution of Dynamic Systems Described by Differential-Algebraic Equations}
 \author{Davide Stocco}
 \institute{University of Trento}
-\date{July 17, 2024}
+\date{August 1, 2024}
 
 \begin{document}
 

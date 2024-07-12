@@ -2,31 +2,155 @@
 
 \section{\aclp{DAE}}
 
-\begin{frame}
-  \tableofcontents[currentsection]
+\begin{frame}{\aclp{DAE}}{A Brief Introduction}
+  \begin{columns}
+    \begin{column}{0.65\textwidth}
+      \acp{DAE} are \dots
+      \begin{itemize}
+        \item a generalization of \acp{ODE} \dots
+        \begin{equation*}
+          \begin{array}{c}
+            \text{\hi{\acp{ODE}}} \\
+            \mxp = \m{f}(\mx, t)
+            \phantom{~}
+          \end{array}
+          \qquad\qquad
+          \begin{array}{c}
+            \text{\hi{\acp{DAE}}} \\
+            \mF = \m{0}
+          \end{array}
+        \end{equation*}
+        \dots with $\m{JF}_{\mxp}$ possibly singular. \\[1.0em]
+        \item state-of-the-art in the modeling of dynamical systems:
+        \begin{itemize}
+          \item differential equations describe the system's \textbf{dynamics};
+          \item algebraic equations constrain the system to a \textbf{manifold}.
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \centering
+      \small
+      \begin{tikzpicture}[scale=0.5]
+        \fill (-1.5,0) rectangle (1.5,0.1);
+        \draw[tx_sl_color!10] (0,0) -- (-90:4) node [fill, circle]{};
+        \draw[tx_sl_color!10] (0,0) -- (-120:4) node [fill, circle]{};
+        \draw[fg_sl_color, thick, dashed] (2.8284, -2.8284) arc (-45:-135:4);
+        \draw (0,0) -- (-60:4) node[fill, circle](m){};
+        \node at (m) [below, yshift=-2mm] {$m$};
+        \node at (1.2142, -1.4142) {$\ell$};
+      \end{tikzpicture}
+      \begin{equation*}
+        \begin{array}{c}
+          \text{\ac{ODE}} \\ \text{model}
+        \end{array}
+        \begin{cases}
+          \theta^\prime = \omega \\
+          \omega^\prime = -\dfrac{g}{\ell} \sin(\theta)
+        \end{cases}
+      \end{equation*}
+      \begin{equation*}
+        \begin{array}{c}
+          \text{\ac{DAE}} \\ \text{model}
+        \end{array}
+        \begin{cases}
+          x^\prime = u \\
+          y^\prime = v \\
+          u^\prime = -2x\lambda \\
+          v^\prime = -2y\lambda - gm \\
+          \, \textcolor{fg_sl_color}{0 = x^2 + y^2 - \ell^2}
+        \end{cases}
+      \end{equation*}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\subsection{Introduction to \aclp{DAE}}
+\subsection{Solution of \aclp{DAE}}
 
-\begin{frame}
-  \frametitle{Introduction to \aclp{DAE}}
+\begin{frame}{Solution of \aclp{DAE}}{\underline{\acp{DAE} are not \acp{ODE} cit. Linda Petzold}}
+  \vspace{-1.5cm}\hspace{4.25cm}\begin{tikzpicture}[scale=0.6]
+    \draw[fg_sl_color, ultra thick, -stealth] (0.0,0.0) -- (-1.0,1.0);
+  \end{tikzpicture} \\[1.0em]
+
+  Is the solution of \acp{DAE} a straightforward extension of \acp{ODE}?
   \begin{itemize}
-    \item Important \textbf{pre-processing} step prior to numerical integration.
-    \\[1.0em]
-    \item The \textbf{index reduction} consists in transforming a system of \acp{DAE} into an equivalent \ac{ODE} system with invariants.
-    \\[0.5em]
-    \begin{center}\begin{minipage}{7cm}\begin{bbox}{}
+    \item \textbf{No}, otherwise we would not have been here.
+    \item Numerical integration of \acp{DAE} is \textbf{challenging} due to the mixed differential and algebraic nature of the equations ($\m{JF}_{\mxp}$ is singular).
+    \item An \textbf{analysis} and \textbf{reformulation} of the \ac{DAE} system is typically required prior to numerical integration.
+  \end{itemize}
+  \vspace{1.5em}
+  \begin{columns}
+    \begin{column}[t]{0.5\textwidth}
       \centering
-      \acp{DAE} $\quad \autorightarrow{\text{index}}{\text{reduction}} \quad$ \acp{ODE} + Invariants
-    \end{bbox}\end{minipage} \\[1.5em] \end{center}
-    %
-    \item The \textbf{index} of a \acp{DAE} is the minimum number of times the system must be differentiated to obtain an \ac{ODE} system.
-    \item The index reduction is carried out through \textbf{symbolic manipulation}.
+      \hi{\large Direct Discretization}
+    \end{column}
+    \begin{column}[t]{0.5\textwidth}
+      \centering
+      \hi{\large Index Reduction}
+    \end{column}
+  \end{columns}
+  \vspace{1.5em}
+  \centering{\hi{\large \dots or a mix between the two!}}
+\end{frame}
+
+\subsubsection{Direct Discretization}
+
+\begin{frame}{Solution of \aclp{DAE}}{Direct Discretization}
+  \begin{bbox}[The Fundamental Idea]
+    Given $\mF = \m{0}$, approximate $\mx$ and $\mxp$ by a \textbf{discretization formula}, \eg{}, a \emph{finite difference scheme} or a \emph{polynomial quadrature}.
+  \end{bbox}
+  \begin{itemize}
+    \item This discretization can be written as an \textbf{implicit Runge-Kutta} method
+    \begin{equation*}
+      \begin{array}{l}
+        \m{F}\left(\m{x}_{k} + h_k\displaystyle\sum_{j=1}^{s}a_{ij} \m{K}_j, \m{K}_i, t_{k} + c_i h_k\right) = \m{0} \, \text{,} \\[1em]
+        \m{x}_{k+1} = \m{x}_{k} + h_k\displaystyle\sum_{i=1}^{s} b_i \m{K}_i \, \text{,}
+      \end{array}
+    \end{equation*}
+    and can be applied to \acp{DAE} directly. If the matrix $\m{A} = (a_{ij})$ is non-singular (along with other conditions/assumption), the $\m{K}_i$ can be solved for at each step.
+    \item A prominent example is the \textbf{Radau collocation method} family.
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Introduction to \aclp{DAE}}
+\subsubsection{Index Reduction}
+
+\begin{frame}{Solution of \aclp{DAE}}{Index Reduction}
+  \begin{bbox}[The Fundamental Idea]
+    The \textbf{index reduction} consists in transforming a system of \acp{DAE} into
+    \begin{itemize}
+      \item an equivalent \ac{ODE} system with invariants;
+      \item a lower-index \ac{DAE} system, typically of index 1.
+    \end{itemize}
+  \end{bbox}
+  %
+  \begin{itemize}
+    \item Important \textbf{pre-processing} step prior to numerical integration.
+    \begin{center}\begin{minipage}{7.5cm}\begin{bbox}{}
+      \centering
+      \acp{DAE} $\quad \autorightarrow{\text{index}}{\text{reduction}} \quad \begin{array}{c}
+        \text{\acp{DAE}} + \text{Invariants} \\
+        \text{or} \\
+        \text{\acp{ODE}} + \text{Invariants}
+      \end{array}$
+    \end{bbox}\end{minipage} \\[1.5em] \end{center}
+    %
+    \item The index reduction is typically (but not always) carried out through \textbf{symbolic manipulation}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Solution of \aclp{DAE}}{The Index \dots Or better Yet, The Indices}
+  The index is a ``measure of difficulty'' in the analytical or numerical treatment of the \acp{DAE} \dots
+  \begin{itemize}
+    \item Index can be reduced through \textbf{different techniques}, \eg{}, Pantelides' algorithm, structural analysis, projector-based methods, etc.
+    \item Different approaches in the classification of such difficulties lead to \textbf{different index concepts}.
+    \item The most common index concept is the \textbf{differentiation index}.
+  \end{itemize}
+  \begin{bbox}[The Differentiation Index]
+    The minimum number of differentiations required to transform a \ac{DAE} into its underlying \ac{ODE}. (by deriving part of the original \ac{DAE} equations),    is termed the differential index of the \ac{DAE}, with the underlying \acp{ODE} possessing an index of 0
+  \end{bbox}
+\end{frame}
+
+\begin{frame}{Solution of \aclp{DAE}}{Index Reduction}
   \begin{itemize}
     \item Index Reduction is a well-studied problem, but hard to carry out in practice due to software limitations for symbolic manipulation.
     \\[1.0em]
@@ -39,13 +163,13 @@
     \end{enumerate}
     \begin{center}\begin{minipage}[t]{0.30\textwidth}\begin{block}{}
       \centering
-      \textbf{Factorization} \\[0.5em]
+      \hi{Factorization} \\[0.5em]
       LU \\ Fraction-Free LU \vspace*{0.15cm}
     \end{block}\end{minipage}
     \hspace*{2cm}
     \begin{minipage}[t]{0.30\textwidth}\begin{block}{}
       \centering
-      \textbf{Differentiation} \\[0.75em]
+      \hi{Differentiation} \\[0.75em]
       $\dfrac{\text{d}}{\text{d}\textbf{x}}$ \vspace*{0.15cm}
     \end{block}\end{minipage} \\[1.75em] \end{center}
     \item \Maple{} for symbolic manipulation, and \Matlab{} for numerical integration of the reduced system.
