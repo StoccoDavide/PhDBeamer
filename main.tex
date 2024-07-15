@@ -1,5 +1,8 @@
 \documentclass[aspectratio=169, 10pt, handout]{beamer}
 
+% Color package
+\usepackage[table]{xcolor}
+
 % Slide colors
 \definecolor{tx_sl_color}{RGB}{0, 0, 0}
 \definecolor{bg_sl_color}{RGB}{255, 255, 255}
@@ -79,6 +82,7 @@
   \vskip0pt%
 }
 \makeatother
+\usepackage{appendixnumberbeamer}
 
 % Enumerate and itemize
 \setbeamertemplate{enumerate items}[square]
@@ -99,6 +103,10 @@
 % Figures
 \usepackage{graphicx}
 \usepackage{overpic}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{nicematrix}
 
 % Math
 \usepackage{amsmath}
@@ -320,6 +328,11 @@
 \newcommand{\Reduce}{\textsc{Reduce}}
 \newcommand{\TrussMe}{\textsc{TrussMe-Fem}}
 \newcommand{\Ansys}{\textsc{Ansys}\textsuperscript{\textregistered}}
+\newcommand{\cf}{\ensuremath{\,\mathrm{f}}}
+\newcommand{\cm}{\ensuremath{\,\mathrm{m}}}
+\newcommand{\cd}{\ensuremath{\,\mathrm{d}}}
+\newcommand{\ca}{\ensuremath{\,\mathrm{a}}}
+\newcommand{\cv}{\ensuremath{\,\mathrm{v}}}
 
 % General commands
 \newcommand{\eg}{\emph{e.g.}}
@@ -372,6 +385,9 @@
 \newcommand{\mhiv}{\ensuremath{\m{h}_{i}(\mx, \m{v}, t)}}
 \newcommand{\mhuv}{\ensuremath{\m{h}_{u}(\mx, \m{v}, t)}}
 
+% Deletable text
+\newcommand{\del}[1]{\textcolor{fg_sl_color!50!bg_sl_color}{\sout{#1}}}
+
 % Title page
 \title{Symbolic Computation Methods for the Numerical Solution of Dynamic Systems Described by Differential-Algebraic Equations}
 \author{Davide Stocco}
@@ -387,7 +403,8 @@
 \include{content/chapter_4}
 \include{content/chapter_5}
 \include{content/chapter_6}
-\include{content/bibliography}
+\appendix
+\include{content/extras}
 
 \end{document}
 

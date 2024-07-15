@@ -4,32 +4,34 @@
 
 \begin{frame}{Introduction and Motivation}{Background}
   \begin{itemize}
-    \item Simulation of dynamic systems is crucial in various engineering fields.
+    \item \textbf{Simulation} of dynamic systems is crucial in various engineering fields.
     \item Systems are typically described by \dots
     \vspace{1.0em}
     \begin{columns}
       \centering
       \begin{column}[t]{0.45\textwidth}
         \centering
-        \hi{\acp{ODE}}
+        \hi{\acp{ODE}} \\
         \centering\small
-        Simple to solve \\
-        Widely used \\
-        Strong theoretical foundation \\
-        Limited modeling capabilities
+        \textcolor{mycolor5!95!black}{Easy to initialize} \\
+        \textcolor{mycolor5!95!black}{Strong theoretical foundation} \\
+        \textcolor{mycolor5!95!black}{Efficient numerical methods} \\
+        \textcolor{mycolor5!95!black}{Order of convergence preserved} \\
+        \textcolor{mycolor2!95!black}{Limited modeling capabilities} \\
       \end{column}
       \begin{column}[t]{0.45\textwidth}
         \centering
-        \hi{\acp{DAE}}
+        \hi{\acp{DAE}} \\
         \centering\small
-        State-of-the-art in modeling \\
-        Less performant numerical methods \\
-        \textbf{Challenging to solve} \\
-        \textbf{Hard to initialize}
+        \textcolor{mycolor2!90!black}{Hard to initialize} \\
+        \textcolor{mycolor3!90!black}{Complex theoretical foundation} \\
+        \textcolor{mycolor3!90!black}{Require \emph{ad hoc} numerical methods} \\
+        \textcolor{mycolor2!95!black}{Possible loss in convergence order} \\
+        \textcolor{mycolor5!90!black}{State-of-the-art in modeling} \\
       \end{column}
     \end{columns}
     \vspace{1.0em}
-    \item \textbf{Speed} and \textbf{accuracy} are essential in the simulation!
+    \item \textbf{Speed} and \textbf{accuracy} are essential.
   \end{itemize}
   \vspace{0.5em}
   \hic{Improve the state-of-the-art in the solution of \ac{DAE} systems}
@@ -38,13 +40,14 @@
 \begin{frame}{Introduction and Motivation}{Solution Technique}
   How can we improve the solution of \acp{DAE}?
   \begin{itemize}
-    \item Complicated and abstract index concepts and reduction techniques arose over the years to ease the solution process.
+    \item Complicated \textbf{index concepts} arose over the years to tackle the solution.
     \item Most of existing tools are based on \textbf{numerical} or \textbf{structural analysis} techniques.
     \item In the last decades, \textbf{symbolic computation} has reached a high level of maturity \dots \\
-    \dots but it is not as widely used as one might expect.
   \end{itemize}
-  \vspace{0.5em}
-  \hic{Let us explore the potential of symbolic computation in the solution of \acp{DAE}!}
+  \vspace{1.0em}
+  \centering\emph{\dots but it is not as widely used as one might expect!}
+  \vspace{1.0em}
+  \hic{Exploit symbolic computation in the solution of \acp{DAE}!}
 \end{frame}
 
 % That's all Folks!

@@ -33,14 +33,14 @@
       \hi{\large Inherent \textcolor{black}{expression swell}} \\
       \begin{itemize}\small
         \item Size of expressions can not be lowered due to no simplification rules being applicable.
-        \item Can not always be avoided and requires changes in the problem formulation.
+        \item Can not be avoided and requires changes in the problem formulation.
       \end{itemize}
     \end{column}
     \begin{column}[t]{0.5\textwidth}
       \hi{\large Intermediate \textcolor{black}{expression swell}} \\
       \begin{itemize}\small
         \item During the middle stages of a calculation the size of intermediate expressions can expand substantially \emph{en route} to a comparatively simple final result.
-        \item Strongly related to the \ac{CAS}'s simplification capabilities.
+        \item Strongly tied to the \ac{CAS}'s simplification capabilities.
       \end{itemize}
     \end{column}
   \end{columns}
@@ -176,39 +176,6 @@
   The LAST object-oriented implementation is freely available on GitHub! \\
   \centering \url{https://github.com/StoccoDavide/LAST}
 \end{bbox}
-\end{frame}
-
-\begin{frame}{Symbolic Matrix Factorization}{\acf{LU}}
-  The ``standard'' in numerical linear algebra \dots
-  \begin{bbox}[Full-Pivoting \acs{LU} Factorization]
-    Given a matrix $\m{A} \in \mathbb{R}^{m \times n}$, with $m \geq n$, the full-pivoting \ac{LU} decomposition is defined as the process of decomposing $\m{A}$ into the product of
-    %
-    \begin{itemize}
-      \item a $\m{L} \in \mathbb{R}^{m \times m}$ lower-triangular matrix with all diagonal entries equal to $1$;
-      \item a $\m{U} \in \mathbb{R}^{m \times n}$ upper-triangular matrix;
-      \item a $\m{P} \in \mathbb{R}^{m \times m}$ and a $\m{Q} \in \mathbb{R}^{n \times n}$ matrices for rows and columns permutation;
-    \end{itemize}
-    %
-    such that $\m{P}\m{A}\m{Q} = \m{L}\m{U}$.
-  \end{bbox}
-  \dots It carries the minimum number of operations!
-\end{frame}
-
-\begin{frame}{Symbolic Matrix Factorization}{\acf{FFLU}}
-  Trying to guarantee exact divisions on factors \dots
-  \begin{bbox}[Full-Pivoting \acs{FFLU} Factorization]
-    Given a matrix $\m{A} \in \mathbb{R}^{m \times n}$, with $m \geq n$, the full-pivoting \ac{FFLU} decomposition is defined as the process of decomposing $\m{A}$ into the product of
-    %
-    \begin{itemize}
-      \item a lower-triangular matrix $\m{L} \in \mathbb{R}^{m \times m}$ with all diagonal entries equal to $1$;
-      \item \textcolor{fg_sl_color}{a diagonal matrix $\m{D} \in \mathbb{R}^{m \times m}$;}
-      \item an upper-triangular matrix $\m{U} \in \mathbb{R}^{m \times n}$;
-      \item a $\m{P} \in \mathbb{R}^{m \times m}$ and a $\m{Q} \in \mathbb{R}^{n \times n}$ matrices for rows and columns permutation;
-    \end{itemize}
-    %
-    such that $\m{P}\textcolor{fg_sl_color}{\m{D}}\m{A}\m{Q} = \m{L}\m{U}$.
-  \end{bbox}
-  \dots same effectiveness of \ac{LU} decomposition, but with a slightly different implementation!
 \end{frame}
 
 \begin{frame}{Symbolic Matrix Factorization}{Pivoting Strategy}

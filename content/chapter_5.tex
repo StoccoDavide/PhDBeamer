@@ -2,14 +2,163 @@
 
 \section{Application Fields and Examples}
 
-\begin{frame}{Application Fields and Examples}{}
+\begin{frame}{Application Fields and Examples}{Bechmarking the Index Reduction Algorithm}
+  \begin{columns}
+    \begin{column}[c]{0.4\textwidth}
+      The \textbf{benchmarks} \dots
+      \begin{itemize}
+        \item Multi-body dynamics:
+        \begin{enumerate}\scriptsize
+          \item Car-axis;
+          \item Flexible slider-crank;
+          \item Double-wishbone suspension.
+        \end{enumerate}
+        \item Trajectory prescribed path control problems:
+        \begin{enumerate}\setcounter{enumi}{3}\scriptsize
+          \item Space shuttle reentry (initial stage);
+          \item Space shuttle reentry (final stage);
+          \item Robotic arm control.
+        \end{enumerate}
+        \item Electric Circuits:
+        \begin{enumerate}\setcounter{enumi}{6}\scriptsize
+          \item Eight-nodes transistor-amplifier;
+          \item Electric ring modulator;
+          \item Cascaded differential amplifiers.
+        \end{enumerate}
+        \item Generic \ac{DAE} systems:
+        \begin{enumerate}\setcounter{enumi}{9}\scriptsize
+          \item Particle motion;
+          \item $N$-pendula ($N = 2, 3, 4, 5$).
+        \end{enumerate}
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.6\textwidth}
+      The \textbf{competitors} \dots
+      \begin{itemize}
+        \item \Maple{}'s \texttt{dsolve} (undisclosed);
+        \item \Matlab{}'s \texttt{reduceDAEIndex} (Pantelides)
+        \item \Matlab{}'s \texttt{reduceDAEToODE} (Gaussian elimination)
+        \item \Mathematica{}'s \texttt{NDSolve} (Pantelides)
+      \end{itemize}
+      \vspace{1.0em}
+      The \textbf{rules} \dots
+      \begin{itemize}
+        \item \SI{100}{\second} time limit for symbolic simplification;
+        \item Unlimited time for numerical integration;
+        \item If you can integrate the problem, you lose.
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\subsection{\acl{MBD}}
+\begin{frame}{Application Fields and Examples}{Factorizations Performance}
+  \vspace{-1.5em}
+  \hic{\ac{LU} performed slightly better than \ac{FFLU}.}
+  \centering{\scriptsize\begin{tabular}{cccc}
+    \multicolumn{4}{c}{\textbf{Car-Axis (Index-3) -- \ac{LU} Factorization}} \\
+    \toprule
+    \textbf{Original \acp{DAE}} & \multicolumn{3}{c}{$\mF = 108\cf + 131\cm + 56\ca$ \quad $\mh = 0$} \\
+    \midrule
+    \textbf{Reduction step} & $\mE$ & $\mg$ & $\ma$ \\
+    \midrule
+    Index-3 \acp{DAE} & $12\cm$ & $94\cf + 145\cm + 54\ca$ & $14\cf + 16\cm + 10\ca$ \\
+    Index-2 \acp{DAE} & $12\cm$ & $94\cf + 145\cm + 54\ca$ & $26\cf + 45\cm + 15\ca$ \\
+    Index-1 \acp{DAE} & $12\cm$ & $94\cf + 145\cm + 54\ca$ & $136\cf + 4\cd + 261\cm + 95\ca$ \\
+    Index-0 \acp{DAE} & $1060\cf + 38\cd + 1901\cm + 717\ca$ & $431\cf + 8\cd + 842\cm + 268\ca$ & $0$ \\
+    \midrule
+    \textbf{Reduced \acp{DAE}} & \multicolumn{3}{c}{$\mF = 896\cf + 4\cd + 1202\cm + 546\ca$ \quad $\mh = 176\cf + 4\cd + 322\cm + 120\ca$} \\
+    \bottomrule \\[0.05em]
+    %
+    \multicolumn{4}{c}{\textbf{Car-Axis (Index-3) -- \ac{FFLU} Factorization}} \\
+    \toprule
+    \textbf{Original \acp{DAE}} & \multicolumn{3}{c}{$\mF = 108\cf + 131\cm + 56\ca$ \quad $\mh = 0$} \\
+    \midrule
+    \textbf{Reduction step} & $\mE$ & $\mg$ & $\ma$ \\
+    \midrule
+    Index-3 \acp{DAE} & $0$ & $94\cf + 8\cd + 150\cm + 54\ca$ & $14\cf + 21\cm + 10\ca$ \\
+    Index-2 \acp{DAE} & $0$ & $94\cf + 8\cd + 154\cm + 54\ca$ & $26\cf + 1\cd + 44\cm + 15\ca$ \\
+    Index-1 \acp{DAE} & $0$ & $94\cf + 8\cd + 155\cm + 54\ca$ & $136\cf + 6\cd + 4\cd + 261\cm + 95\ca$ \\
+    Index-0 \acp{DAE} & $1066\cf + 55\cd + 1888\cm + 717\ca$ & $431\cf + 18\cd + 851\cm + 268\ca$ & $0$ \\
+    \midrule
+    \textbf{Reduced \acp{DAE}} & \multicolumn{3}{c}{$\mF = 1549\cf + 73\cd + 2765\cm + 1011\ca$ \quad $\mh = 176\cf + 7\cd + 326\cm + 120\ca$} \\
+    \bottomrule
+  \end{tabular}}
+\end{frame}
 
-\subsection{\acl{TPPC} Problems}
+\begin{frame}{Application Fields and Examples}{Expression Swell}
+  \hic{Strong expression swell may still arise \dots}
+  \hspace{-2.0em}
+  \centering{\scriptsize\begin{tabular}{cccc}
+    \multicolumn{4}{c}{\textbf{Robotic Arm (Index-5)}} \\
+    \toprule
+    \textbf{Original \acp{DAE}} & \multicolumn{3}{c}{$\mF = 125\cf + 19\cd + 56\cm + 64\ca$ \quad $\mh = 0$} \\
+    \midrule
+    \textbf{Reduction step} & $\mE$ & $\mg$ & $\ma$ \\
+    \midrule
+    Index-5 \acp{DAE} & $0$ & $66\cf + 3\cd + 50\cm + 35\ca$ & $16\cf + 12\ca$ \\
+    Index-4 \acp{DAE} & $0$ & $66\cf + 3\cd + 50\cm + 35\ca$ & $24\cf + 6\cm + 14\ca$ \\
+    Index-3 \acp{DAE} & $0$ & $66\cf + 3\cd + 50\cm + 35\ca$ & $162\cf + 2\cd + 138\cm + 114\ca$ \\
+    Index-2 \acp{DAE} & $14\cf + 2\cd + 6\cm + 6\ca$ & $372\cf + 4\cd + 375\cm + 253\ca$ & $972\cf + 1\cd + 1062\cm + 770\ca$ \\
+    \rowcolor{mycolor2!25}
+    Index-1 \acp{DAE} & $14\cf + 2\cd + 6\cm + 6\ca$ & $372\cf + 4\cd + 375\cm + 253\ca$ & $\star (6.5\cf + 5.6\cm + 1.8\ca)\!\cdot\!10^{6} + 4\cd$ \\
+    \rowcolor{mycolor2!25}
+    Index-0 \acp{DAE} & $\star (8.3\cf + 7.1\cm + 2.3\ca)\!\cdot\!10^{7} + 58\cd$ & $(2.4\cf + 2.0\cm + 0.9\ca)\!\cdot\!10^{6} + 8\cd$ & $0$ \\
+    \midrule
+    \rowcolor{mycolor2!25}
+    \textbf{Reduced \acp{DAE}} & \multicolumn{3}{c}{$\star \mF = (8.6\cf + 7.3\cm + 2.4\ca)\!\cdot\!10^{7} + 66\cd$ \quad $\star \mh = (6.5\cf + 5.6\cm + 1.8\ca)\!\cdot\!10^{6} + 7\cd$} \\
+    \bottomrule
+    \end{tabular}}
+\end{frame}
 
-\subsection{Electric Circuits}
+\begin{frame}{Application Fields and Examples}{Expression Swell}
+  \vspace{-2.0em}
+  \hic{\dots Even using hierarchical representation.}
+  \vspace{-0.5em}
+  \centering{\scriptsize\begin{tabular}{cccc}
+    \multicolumn{4}{c}{\textbf{Robotic Arm (Index-5)}} \\
+    \toprule
+    \textbf{Original \acp{DAE}} & \multicolumn{3}{c}{$\mFv = 125\cf + 19\cd + 56\cm + 64\ca$ \quad $\mhv = 0$ \quad $\mv = 0$} \\
+    \midrule
+    \textbf{Reduction step} & $\mEv$ & $\mgv$ & $\mav$ \\
+    \midrule
+    Index-5 \acp{DAE} & $0$ & $66\cf + 3\cd + 50\cm + 35\ca$ & $16\cf + 12\ca$ \\
+    Index-4 \acp{DAE} & $0$ & $66\cf + 3\cd + 50\cm + 35\ca$ & $24\cf + 6\cm + 14\ca$ \\
+    Index-3 \acp{DAE} & $0$ & $66\cf + 3\cd + 50\cm + 35\ca$ & $162\cf + 2\cd + 138\cm + 114\ca$ \\
+    Index-2 \acp{DAE} & $14\cf + 2\cd + 6\cm + 6\ca$ & $66\cf + 1\cv + 3\cd + 51\cm + 35\ca$ & $1\cm + 1\cv$ \\
+    \rowcolor{mycolor5!25}
+    Index-1 \acp{DAE} & $2\cv + 1\ca$ & $66\cf + 1\cv + 3\cd + 51\cm + 35\ca$ & \cellcolor{mycolor5!25}$9\cf + 4\cv + 2\cd + 8\cm + 5\ca$ \\
+    \rowcolor{mycolor5!25}
+    Index-0 \acp{DAE} & $7\cv + 1\cd + 2\cm + 2\ca$ & \cellcolor{mycolor5!25}$66\cf + 2\cv + 3\cd + 52\cm + 35\ca$ & $0$ \\
+    \midrule
+    \rowcolor{mycolor5!25}
+    \textbf{Reduced \acp{DAE}} & \multicolumn{3}{c}{$\mFv = 90\cf + 9\cv + 4\cd + 63\cm + 48\ca$ \quad $\mhv = 202\cf + 5\cv + 4\cd + 141\cm + 130\ca$} \\
+    \bottomrule \\[-0.65em]
+  \end{tabular}}
+  \centering{\scriptsize\begin{tabular}{cc}
+    \multicolumn{2}{c}{Hierarchical representation details (29 veils)} \\
+    \toprule
+    \textbf{Reduction step} & $\mv$ \\
+    \midrule
+    Index-5 \acp{DAE} & $0$ \\
+    Index-4 \acp{DAE} & $0$ \\
+    Index-3 \acp{DAE} & $0$ \\
+    Index-2 \acp{DAE} & $1278\cf + 3\cv + 6\cd + 1319\cm + 918\ca$ \\
+    \rowcolor{mycolor3!25}
+    Index-1 \acp{DAE} & $8401\cf + 20\cv + 24\cd + 9451\cm + 6095\ca$ \\
+    \rowcolor{mycolor3!25}
+    Index-0 \acp{DAE} & $37010\cf + 558\cv + 56\cd + 45087\cm + 28665\ca$ \\
+    \midrule
+    \rowcolor{mycolor3!25}
+    \textbf{Reduced \acp{DAE}} & $\mv = 37010\cf + 558\cv + 56\cd + 45087\cm + 28665\ca$ \\
+    \bottomrule
+  \end{tabular}}
+\end{frame}
 
+\begin{frame}{Application Fields and Examples}{Numerical Stability}
+
+\end{frame}
+
+\begin{frame}{Application Fields and Examples}{Expression Swell}
+\end{frame}
 
 % That's all Folks!
