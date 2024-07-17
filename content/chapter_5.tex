@@ -3,57 +3,54 @@
 \section{Application Fields and Examples}
 
 \begin{frame}{Application Fields and Examples}{Bechmarking the Index Reduction Algorithm}
+  \hic{The benchmark problems \dots}
   \begin{columns}
-    \begin{column}[c]{0.4\textwidth}
-      The \textbf{benchmarks} \dots
-      \begin{itemize}
-        \item Multi-body dynamics:
-        \begin{enumerate}\scriptsize
-          \item Car-axis;
-          \item Flexible slider-crank;
-          \item Double-wishbone suspension.
-        \end{enumerate}
-        \item Trajectory prescribed path control problems:
-        \begin{enumerate}\setcounter{enumi}{3}\scriptsize
-          \item Space shuttle reentry (initial stage);
-          \item Space shuttle reentry (final stage);
-          \item Robotic arm control.
-        \end{enumerate}
-        \item Electric Circuits:
-        \begin{enumerate}\setcounter{enumi}{6}\scriptsize
-          \item Eight-nodes transistor-amplifier;
-          \item Electric ring modulator;
-          \item Cascaded differential amplifiers.
-        \end{enumerate}
-        \item Generic \ac{DAE} systems:
-        \begin{enumerate}\setcounter{enumi}{9}\scriptsize
-          \item Particle motion;
-          \item $N$-pendula ($N = 2, 3, 4, 5$).
-        \end{enumerate}
-      \end{itemize}
+    \hspace{0.035\textwidth}
+    \begin{column}[t]{0.575\textwidth}
+      \textbf{Multi-body dynamics}:
+      \begin{enumerate}\small
+        \item Car-axis (index-3);
+        \item Flexible slider-crank (index-3);
+        \item Double-wishbone suspension (index-3).
+      \end{enumerate}
+      \textbf{Trajectory prescribed path control problems}:
+      \begin{enumerate}\setcounter{enumi}{3}\small
+        \item Space shuttle initial stage reentry (index-3);
+        \item Space shuttle final stage reentry (index-2);
+        \item Robotic arm control  (index-5).
+      \end{enumerate}
     \end{column}
-    \begin{column}[c]{0.6\textwidth}
-      The \textbf{competitors} \dots
-      \begin{itemize}
-        \item \Maple{}'s \texttt{dsolve} (undisclosed);
-        \item \Matlab{}'s \texttt{reduceDAEIndex} (Pantelides)
-        \item \Matlab{}'s \texttt{reduceDAEToODE} (Gaussian elimination)
-        \item \Mathematica{}'s \texttt{NDSolve} (Pantelides)
-      \end{itemize}
-      \vspace{1.0em}
-      The \textbf{rules} \dots
-      \begin{itemize}
-        \item \SI{100}{\second} time limit for symbolic simplification;
-        \item Unlimited time for numerical integration;
-        \item If you can integrate the problem, you lose.
-      \end{itemize}
+    \hspace{-0.055\textwidth}
+    \begin{column}[t]{0.55\textwidth}
+      \textbf{Electric circuits}:
+      \begin{enumerate}\setcounter{enumi}{6}\small
+        \item Eight-nodes transistor-amplifier (index-3);
+        \item Electric ring modulator (index-1);
+        \item Cascaded differential amplifiers (up to index-100).
+      \end{enumerate}
+      \textbf{Generic \ac{DAE} systems}:
+      \begin{enumerate}\setcounter{enumi}{9}\small
+        \item Particle motion (index-3);
+        \item $2$-pendula (index-3);
+        \item $3$-pendula (index-5);
+        \item $4$-pendula (index-9);
+        \item $5$-pendula (index-11).
+      \end{enumerate}
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Application Fields and Examples}{Factorizations Performance}
-  \vspace{-1.5em}
-  \hic{\ac{LU} performed slightly better than \ac{FFLU}.}
+  \vspace{-4.0em}
+  \begin{columns}
+    \centering
+    \begin{column}[b]{0.525\textwidth}
+      \hic{\ac{LU} performed better than \ac{FFLU}}
+    \end{column}
+    \begin{column}[b]{0.215\textwidth}
+      \vspace{-1.0em}\includegraphics[width=\textwidth]{figures/car_axis.eps}
+    \end{column}
+  \end{columns}
   \centering{\scriptsize\begin{tabular}{cccc}
     \multicolumn{4}{c}{\textbf{Car-Axis (Index-3) -- \ac{LU} Factorization}} \\
     \toprule
@@ -66,6 +63,7 @@
     Index-1 \acp{DAE} & $12\cm$ & $94\cf + 145\cm + 54\ca$ & $136\cf + 4\cd + 261\cm + 95\ca$ \\
     Index-0 \acp{DAE} & $1060\cf + 38\cd + 1901\cm + 717\ca$ & $431\cf + 8\cd + 842\cm + 268\ca$ & $0$ \\
     \midrule
+    \rowcolor{mycolor5!25}
     \textbf{Reduced \acp{DAE}} & \multicolumn{3}{c}{$\mF = 896\cf + 4\cd + 1202\cm + 546\ca$ \quad $\mh = 176\cf + 4\cd + 322\cm + 120\ca$} \\
     \bottomrule \\[0.05em]
     %
@@ -80,14 +78,23 @@
     Index-1 \acp{DAE} & $0$ & $94\cf + 8\cd + 155\cm + 54\ca$ & $136\cf + 6\cd + 4\cd + 261\cm + 95\ca$ \\
     Index-0 \acp{DAE} & $1066\cf + 55\cd + 1888\cm + 717\ca$ & $431\cf + 18\cd + 851\cm + 268\ca$ & $0$ \\
     \midrule
+    \rowcolor{mycolor2!25}
     \textbf{Reduced \acp{DAE}} & \multicolumn{3}{c}{$\mF = 1549\cf + 73\cd + 2765\cm + 1011\ca$ \quad $\mh = 176\cf + 7\cd + 326\cm + 120\ca$} \\
     \bottomrule
   \end{tabular}}
 \end{frame}
 
 \begin{frame}{Application Fields and Examples}{Expression Swell}
-  \hic{Strong expression swell may still arise \dots}
-  \hspace{-2.0em}
+  \begin{columns}
+    \centering
+    \begin{column}[c]{0.675\textwidth}
+      \hic{Strong expression swell may still arise \dots}
+    \end{column}
+    \begin{column}[c]{0.225\textwidth}
+      \includegraphics[width=\textwidth]{figures/robotic_arm.eps}
+    \end{column}
+  \end{columns}
+  \hspace{-0.5em}
   \centering{\scriptsize\begin{tabular}{cccc}
     \multicolumn{4}{c}{\textbf{Robotic Arm (Index-5)}} \\
     \toprule
@@ -134,31 +141,94 @@
     \textbf{Reduced \acp{DAE}} & \multicolumn{3}{c}{$\mFv = 90\cf + 9\cv + 4\cd + 63\cm + 48\ca$ \quad $\mhv = 202\cf + 5\cv + 4\cd + 141\cm + 130\ca$} \\
     \bottomrule \\[-0.65em]
   \end{tabular}}
-  \centering{\scriptsize\begin{tabular}{cc}
-    \multicolumn{2}{c}{Hierarchical representation details (29 veils)} \\
-    \toprule
-    \textbf{Reduction step} & $\mv$ \\
-    \midrule
-    Index-5 \acp{DAE} & $0$ \\
-    Index-4 \acp{DAE} & $0$ \\
-    Index-3 \acp{DAE} & $0$ \\
-    Index-2 \acp{DAE} & $1278\cf + 3\cv + 6\cd + 1319\cm + 918\ca$ \\
-    \rowcolor{mycolor3!25}
-    Index-1 \acp{DAE} & $8401\cf + 20\cv + 24\cd + 9451\cm + 6095\ca$ \\
-    \rowcolor{mycolor3!25}
-    Index-0 \acp{DAE} & $37010\cf + 558\cv + 56\cd + 45087\cm + 28665\ca$ \\
-    \midrule
-    \rowcolor{mycolor3!25}
-    \textbf{Reduced \acp{DAE}} & $\mv = 37010\cf + 558\cv + 56\cd + 45087\cm + 28665\ca$ \\
-    \bottomrule
-  \end{tabular}}
+  \begin{columns}
+    \centering
+    \begin{column}[c]{0.5\textwidth}
+      \centering{\scriptsize\begin{tabular}{cc}
+        \multicolumn{2}{c}{Hierarchical representation details (29 veils)} \\
+        \toprule
+        \textbf{Reduction step} & $\mv$ \\
+        \midrule
+        Index-5 \acp{DAE} & $0$ \\
+        Index-4 \acp{DAE} & $0$ \\
+        Index-3 \acp{DAE} & $0$ \\
+        Index-2 \acp{DAE} & $1278\cf + 3\cv + 6\cd + 1319\cm + 918\ca$ \\
+        \rowcolor{mycolor3!25}
+        Index-1 \acp{DAE} & $8401\cf + 20\cv + 24\cd + 9451\cm + 6095\ca$ \\
+        \rowcolor{mycolor3!25}
+        Index-0 \acp{DAE} & $37010\cf + 558\cv + 56\cd + 45087\cm + 28665\ca$ \\
+        \midrule
+        \rowcolor{mycolor3!25}
+        \textbf{Reduced \acp{DAE}} & $\mv = 37010\cf + 558\cv + 56\cd + 45087\cm + 28665\ca$ \\
+        \bottomrule
+      \end{tabular}}
+    \end{column}
+    \hspace{1.0em}
+    \begin{column}[c]{0.215\textwidth}
+      \includegraphics[width=\textwidth]{figures/robotic_arm.eps}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Application Fields and Examples}{Numerical Stability}
-
+  \vspace{-2.0em}\begin{columns}
+    \centering
+    \begin{column}[c]{0.625\textwidth}
+      \hic{Numerical stability is preserved}
+    \end{column}
+    \begin{column}[c]{0.3\textwidth}
+      \vspace{1.5em}\includegraphics[width=\textwidth]{figures/flexible_slider_crank.eps}
+    \end{column}
+  \end{columns}
+  \vspace{-1.5em}
+  \input{figures/flexible_slider_crank.tex}
+  \input{figures/flexible_slider_crank_pivots.tex}
 \end{frame}
 
-\begin{frame}{Application Fields and Examples}{Expression Swell}
+\begin{frame}{Application Fields and Examples}{Benchmarking the Index Reduction Algorithm}
+  \vspace{-1.0em}
+  \begin{columns}
+    \begin{column}[t]{0.5\textwidth}
+      The \textbf{rules} \dots
+      \begin{itemize}
+        \item \SI{100}{\second} time limit for symbolic simplification;
+        \item Unlimited time for numerical integration;
+        \item If you can integrate the problem, you win.
+      \end{itemize}
+    \end{column}
+    \begin{column}[t]{0.5\textwidth}
+      The \textbf{competitors} \dots \\
+      \begin{itemize}
+        \item \Maple{} \texttt{dsolve} (undisclosed);
+        \item \Matlab{} \texttt{reduceDAEIndex} (Pantelides);
+        \item \Matlab{} \texttt{reduceDAEToODE} (Gauss. elim.);
+        \item \Mathematica{} \texttt{NDSolve} (Pantelides);
+        \item \Maple{} + \Matlab{} Indigo (proposed).
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{-0.5em}
+  \hspace{-1.0em}The \textbf{results} \dots \\[0.5em]
+  %\setlength{\tabcolsep}{0.25em}
+  \centering{\small\begin{tabular}{lccccccccccccccc}
+    \toprule
+    \multirow{2.25}{*}{\textbf{Solver}} & \multicolumn{14}{c}{\textbf{Problems}} & \textbf{Success} \\
+    \cmidrule(l{4pt}r{4pt}){2-15}
+    & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & \textbf{\%}\\
+    \midrule
+    \rowcolor{mycolor2!25}
+    \texttt{dsolve} & \mycheckmark & \mycheckmark & \mycrossmark & \mycheckmark & \mycrossmark & \mycrossmark & \mycrossmark & \mycheckmark & \mycrossmark & \mycrossmark & \mycrossmark & \mycheckmark\mywarnmark & \mycrossmark & \mycrossmark & 28.6 \\
+    \rowcolor{mycolor3!25}
+    \texttt{NDSolve} & \mycheckmark & \mycheckmark & -- & -- & -- & -- & -- & -- & -- & -- & \mycrossmark & \mycheckmark & -- & -- & 75.0* \\
+    \rowcolor{mycolor3!25}
+    \texttt{reduceDAEIndex} & \mycheckmark & \mycheckmark & -- & -- & -- & -- & -- & -- & -- & -- & \mycrossmark & \mycheckmark & -- & -- & 75.0* \\
+    \rowcolor{mycolor3!25}
+    \texttt{reduceDAEToODE} & \mycheckmark & \mycheckmark & -- & -- & -- & -- & -- & -- & -- & -- & \mycrossmark & \mycheckmark & -- & -- & 75.0* \\
+    \rowcolor{mycolor5!25}
+    Indigo & \mycheckmark & \mycheckmark & \mycheckmark & \mycheckmark & \mycheckmark\mywarnmark & \mycheckmark\mywarnmark & \mycheckmark\mywarnmark & \mycheckmark & \mycheckmark & \mycheckmark & \mycrossmark & \mycheckmark & \mycheckmark & \mycheckmark & 92.9 \\
+    \bottomrule
+    \multicolumn{14}{l}{* Incomplete testing results.}
+  \end{tabular}}
 \end{frame}
 
 % That's all Folks!

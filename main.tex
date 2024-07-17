@@ -106,6 +106,8 @@
 
 % Tables
 \usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{multicol}
 \usepackage{nicematrix}
 
 % Math
@@ -115,20 +117,25 @@
 
 % Font
 \usepackage[default]{gillius}
-%\usepackage{sfmath}
+\usepackage{sfmath}
 \usepackage{sansmathaccent}
 \usepackage{setspace}
-\usefonttheme[onlymath]{serif}
+%\usefonttheme[onlymath]{serif}
 \newcommand\msmall[1]{\mbox{\small\ensuremath{#1}}}
 
 % TikZ/PGFplots
-\usepackage{tikz}
+\usepackage{tikz}                % to draw figures
+\usepackage{pgfplots}            % external TikZ/PGF plots support
+\pgfplotsset{compat=1.18}        % compatibility mode
+\pgfkeys{/pgf/number format/.cd, 1000 sep={}} % no thousand separator in the plots
+
 \usetikzlibrary{patterns}
 \input{./figures/troll.tex}
 
 % SI units
 \usepackage{siunitx}
 \sisetup{
+  detect-all,
   retain-zero-exponent=false,
   parse-numbers=false,
   per-mode=symbol
@@ -294,6 +301,7 @@
 \newacro{FEA}{Finite Element Analysis}
 \newacro{FEM}{Finite Element Method}
 \newacro{LEM}{Large Expression Management}
+\newacro{LAST}{Linear Algebra Symbolic Toolbox}
 \newacro{FFLU}{Fraction-Free Lower-Upper}
 \newacro{LU}{Lower-Upper}
 \newacro{MB}{Multi-Body}
@@ -304,6 +312,12 @@
 \newacro{CAS}{Computer Algebra System}
 \newacro{TPPC}{Trajectory Prescribed Path Control}
 \newacro{MBD}{Multi-Body Dynamics}
+
+% Goodlooking check, cross and warning marks
+\usepackage{fontawesome5}        % to use icons in the document
+\newcommand{\mycheckmark}{\textcolor{mycolor5}{{\footnotesize\faCheck}}}
+\newcommand{\mycrossmark}{\textcolor{mycolor2}{{\small\faTimes}}}
+\newcommand{\mywarnmark}{}%\textcolor{mycolor3}{{\scriptsize\faExclamationTriangle}}}
 
 % Software programs
 \newcommand{\MacOS}{\textsc{MacOS}\textsuperscript{\textregistered}}
@@ -328,11 +342,11 @@
 \newcommand{\Reduce}{\textsc{Reduce}}
 \newcommand{\TrussMe}{\textsc{TrussMe-Fem}}
 \newcommand{\Ansys}{\textsc{Ansys}\textsuperscript{\textregistered}}
-\newcommand{\cf}{\ensuremath{\,\mathrm{f}}}
-\newcommand{\cm}{\ensuremath{\,\mathrm{m}}}
-\newcommand{\cd}{\ensuremath{\,\mathrm{d}}}
-\newcommand{\ca}{\ensuremath{\,\mathrm{a}}}
-\newcommand{\cv}{\ensuremath{\,\mathrm{v}}}
+\newcommand{\cf}{\ensuremath{\,\text{f}}}
+\newcommand{\cm}{\ensuremath{\,\text{m}}}
+\newcommand{\cd}{\ensuremath{\,\text{d}}}
+\newcommand{\ca}{\ensuremath{\,\text{a}}}
+\newcommand{\cv}{\ensuremath{\,\text{v}}}
 
 % General commands
 \newcommand{\eg}{\emph{e.g.}}
