@@ -3,6 +3,10 @@
 \toclesssection{Introduction and Motivation}
 
 \begin{frame}{Introduction and Motivation}{Background}
+  Pippozzo
+\end{frame}
+
+\begin{frame}{Introduction and Motivation}{Background}
   \begin{itemize}
     \item \textbf{Simulation} of dynamic systems is crucial in various engineering fields.
     \item Systems are typically described by \dots
@@ -16,8 +20,7 @@
         \textcolor{mycolor5!95!black}{Easy to initialize} \\
         \textcolor{mycolor5!95!black}{Strong theoretical foundation} \\
         \textcolor{mycolor5!95!black}{Efficient numerical methods} \\
-        \textcolor{mycolor5!95!black}{Order of convergence preserved} \\
-        \textcolor{mycolor2!95!black}{Limited modeling capabilities} \\
+        \textcolor{mycolor2!95!black}{Limited modeling capabilities} \\ % FIXME: some models do not fit in ODEs
       \end{column}
       \begin{column}[t]{0.45\textwidth}
         \centering
@@ -26,7 +29,6 @@
         \textcolor{mycolor2!90!black}{Hard to initialize} \\
         \textcolor{mycolor3!90!black}{Complex theoretical foundation} \\
         \textcolor{mycolor3!90!black}{Require \emph{ad hoc} numerical methods} \\
-        \textcolor{mycolor2!95!black}{Possible loss in convergence order} \\
         \textcolor{mycolor5!90!black}{State-of-the-art in modeling} \\
       \end{column}
     \end{columns}
@@ -38,11 +40,11 @@
 \end{frame}
 
 \begin{frame}{Introduction and Motivation}{Solution Technique}
-  How can we improve the solution of \acp{DAE}?
+  How can we improve the state-of-the-art in the solution of \acp{DAE}?
   \begin{itemize}
     \item Complicated \textbf{index concepts} arose over the years to tackle the solution.
     \item Most of existing tools are based on \textbf{numerical} or \textbf{structural analysis} techniques.
-    \item In the last decades, \textbf{symbolic computation} has reached a high level of maturity \dots \\
+    \item In the last decades, \textbf{symbolic computation} has improved to a high level applicability \dots \\
   \end{itemize}
   \vspace{1.0em}
   \centering\emph{\dots but it is not as widely used as one might expect!}

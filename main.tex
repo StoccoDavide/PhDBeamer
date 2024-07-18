@@ -100,6 +100,21 @@
 \setbeamertemplate{section in toc shaded}[default][25]
 \setbeamertemplate{subsection in toc shaded}[default][25]
 
+% Recreate the numbered boxes
+\newcommand\boxednumber[1]
+{%
+  \hbox{%
+    \usebeamerfont*{item projected}%
+    \usebeamercolor[bg]{item projected}%
+    \vrule width2.25ex height1.85ex depth.4ex%
+    \hskip-2.25ex%
+    \hbox to2.25ex{%
+      \hfil%
+      \color{fg}#1%
+      \hfil}%
+  }%
+}
+
 % Figures
 \usepackage{graphicx}
 \usepackage{overpic}
@@ -165,7 +180,7 @@
   halign       = flush left,
   boxed title style = {
     size       = small,
-    colframe   = bg_cb_color,
+    colframe   = fg_cb_color,
     arc        = 3.0pt
   }
 }
@@ -193,22 +208,26 @@
 
 % Table of contents at the beginning of each section
 \AtBeginSection[]{
-  \begin{frame}{Outline}
-  \ifthenelse{\boolean{sectiontoc}}{
-    \tableofcontents[
-      current,
-      sectionstyle=show/shaded,
-      subsectionstyle=show/show/hide,
-      subsubsectionstyle=show/show/show/hide
-    ]
-  }{
-    \tableofcontents[
-      current,
-      sectionstyle=show/show,
-      subsectionstyle=show/show/hide,
-      subsubsectionstyle=show/show/show/hide
-    ]
-  }
+  \begin{frame}[noframenumbering, plain]
+    \ifthenelse{\boolean{sectiontoc}}{
+      \begin{quag}[Outline]
+        \tableofcontents[
+          current,
+          sectionstyle=show/shaded,
+          subsectionstyle=show/show/hide,
+          subsubsectionstyle=show/show/show/hide
+        ]
+      \end{quag}
+    }{
+      \begin{quag}[Outline]
+        \tableofcontents[
+          current,
+          sectionstyle=show/show,
+          subsectionstyle=show/show/hide,
+          subsubsectionstyle=show/show/show/hide
+        ]
+      \end{quag}
+    }
   \end{frame}
 }
 
@@ -289,6 +308,7 @@
 \usepackage{hyperref}
 \usepackage{chemarrow}
 \usepackage[normalem]{ulem}
+\usepackage{soul}
 
 % Graphics path
 \graphicspath{{figures}}
@@ -309,7 +329,7 @@
 \newacro{ODE}{Ordinary Differential Equation}
 \newacro{DAE}{Differential-Algebraic Equation}
 \newacro{DE}{Discrete Element}
-\newacro{CAS}{Computer Algebra System}
+\newacro{CAS}{Computer Algebra Systems}
 \newacro{TPPC}{Trajectory Prescribed Path Control}
 \newacro{MBD}{Multi-Body Dynamics}
 
@@ -318,6 +338,23 @@
 \newcommand{\mycheckmark}{\textcolor{mycolor5}{{\footnotesize\faCheck}}}
 \newcommand{\mycrossmark}{\textcolor{mycolor2}{{\small\faTimes}}}
 \newcommand{\mywarnmark}{}%\textcolor{mycolor3}{{\scriptsize\faExclamationTriangle}}}
+
+% Code listings
+\usepackage{algpseudocode}       % to write algorithms
+\usepackage{algorithm}           % to write algorithms
+\usepackage{algorithmicx}        % to write algorithms
+
+\algrenewcommand\algorithmicindent{0.75em} % indentation of the algorithm
+
+\algnewcommand{\IfThen}[2]{% \IfThenElse{<if>}{<then>}
+  \State \algorithmicif\ #1\ \algorithmicthen\ #2}
+\algnewcommand{\IfThenElse}[3]{% \IfThenElse{<if>}{<then>}{<else>}
+  \State \algorithmicif\ #1\ \algorithmicthen\ #2\ \algorithmicelse\ #3}
+
+\newcommand{\hlc}[2][fg_sl_color!25]{{%
+  \colorlet{foo}{#1}%
+  \sethlcolor{foo}\hl{#2}}%
+}
 
 % Software programs
 \newcommand{\MacOS}{\textsc{MacOS}\textsuperscript{\textregistered}}

@@ -45,7 +45,7 @@
   \begin{columns}
     \centering
     \begin{column}[b]{0.525\textwidth}
-      \hic{\ac{LU} performed better than \ac{FFLU}}
+      \hic{\ac{LU} performs better than \ac{FFLU}}
     \end{column}
     \begin{column}[b]{0.215\textwidth}
       \vspace{-1.0em}\includegraphics[width=\textwidth]{figures/car_axis.eps}
@@ -203,7 +203,7 @@
         \item \Matlab{} \texttt{reduceDAEIndex} (Pantelides);
         \item \Matlab{} \texttt{reduceDAEToODE} (Gauss. elim.);
         \item \Mathematica{} \texttt{NDSolve} (Pantelides);
-        \item \Maple{} + \Matlab{} Indigo (proposed).
+        \item \Maple{} + \Matlab{} \texttt{Indigo} (proposed).
       \end{itemize}
     \end{column}
   \end{columns}
@@ -217,7 +217,7 @@
     & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & \textbf{\%}\\
     \midrule
     \rowcolor{mycolor2!25}
-    \texttt{dsolve} & \mycheckmark & \mycheckmark & \mycrossmark & \mycheckmark & \mycrossmark & \mycrossmark & \mycrossmark & \mycheckmark & \mycrossmark & \mycrossmark & \mycrossmark & \mycheckmark\mywarnmark & \mycrossmark & \mycrossmark & 28.6 \\
+    \texttt{dsolve} & \mycheckmark & \mycheckmark & \mycrossmark & \mycheckmark & \mycrossmark & \mycrossmark & \mycrossmark & \mycheckmark & \mycrossmark & \mycrossmark & \mycrossmark & \mycheckmark\mywarnmark & \mycrossmark & \mycrossmark & 28.6\phantom{*} \\
     \rowcolor{mycolor3!25}
     \texttt{NDSolve} & \mycheckmark & \mycheckmark & -- & -- & -- & -- & -- & -- & -- & -- & \mycrossmark & \mycheckmark & -- & -- & 75.0* \\
     \rowcolor{mycolor3!25}
@@ -225,7 +225,7 @@
     \rowcolor{mycolor3!25}
     \texttt{reduceDAEToODE} & \mycheckmark & \mycheckmark & -- & -- & -- & -- & -- & -- & -- & -- & \mycrossmark & \mycheckmark & -- & -- & 75.0* \\
     \rowcolor{mycolor5!25}
-    Indigo & \mycheckmark & \mycheckmark & \mycheckmark & \mycheckmark & \mycheckmark\mywarnmark & \mycheckmark\mywarnmark & \mycheckmark\mywarnmark & \mycheckmark & \mycheckmark & \mycheckmark & \mycrossmark & \mycheckmark & \mycheckmark & \mycheckmark & 92.9 \\
+    \texttt{Indigo} & \mycheckmark & \mycheckmark & \mycheckmark & \mycheckmark & \mycheckmark\mywarnmark & \mycheckmark\mywarnmark & \mycheckmark\mywarnmark & \mycheckmark & \mycheckmark & \mycheckmark & \mycrossmark & \mycheckmark & \mycheckmark & \mycheckmark & 92.9\phantom{*} \\
     \bottomrule
     \multicolumn{14}{l}{* Incomplete testing results.}
   \end{tabular}}

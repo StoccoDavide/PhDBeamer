@@ -7,22 +7,33 @@
     \begin{column}{0.65\textwidth}
       \acp{DAE} are \dots
       \begin{enumerate}
-        \item a generalization of \acp{ODE} \dots
-        \begin{equation*}
-          \begin{array}{c}
-            \text{\hi{\acp{ODE}}} \\
-            \mxp = \m{f}(\mx, t)
-            \phantom{~}
-          \end{array}
-          \qquad\qquad
-          \begin{array}{c}
-            \text{\hi{\acp{DAE}}} \\
-            \mF = \m{0}
-          \end{array}
-        \end{equation*}
-        \dots with $\m{JF}_{\mxp}$ possibly singular. \\[1.0em]
-        \item equivalent to an \ac{ODE} system with \textbf{constraints}. \\[1.0em]
-        \item state-of-the-art in the modeling of dynamical systems:
+        \item a \textbf{generalization} of algebraic equations and \acp{ODE} \\
+      \end{enumerate}
+      \centering{\begin{tikzpicture}[scale=0.5]
+          \node at (0,0) {%
+            $\begin{array}{c}%
+            \text{\hi{\acp{DAE}}} \\%
+            \mF = \m{0}~\text{with $\m{JF}_{\mxp}$ singular}%
+            \end{array}$%
+          };
+          \draw[fg_sl_color, thick, -stealth] (+1,-1) -- (+2,-2);
+          \node at (+3,-3) {%
+            $\begin{array}{c}%
+              \text{\hi{\acp{ODE}}} \\
+              \mxp = \m{f}(\mx, t)
+            \end{array}$%
+          };
+          \draw[fg_sl_color, thick, -stealth] (-1,-1) -- (-2,-2);
+          \node at (-3,-3) {%
+            $\begin{array}{c}%
+              \text{\hi{Algebraic}} \\
+                \m{F}(\mx, t) = \m{0}
+            \end{array}$%
+          };
+        \end{tikzpicture}}
+        \begin{enumerate}\setcounter{enumi}{1}
+        \item equivalent to an \ac{ODE} system with \textbf{constraints}.
+        \item \textbf{state-of-the-art} in the modeling of dynamical systems:
         \begin{itemize}
           \item differential equations describe the system's \textbf{dynamics};
           \item algebraic equations constrain the system to a \textbf{manifold}.
@@ -70,27 +81,27 @@
 
 \begin{frame}{Solution of \aclp{DAE}}{\underline{\acp{DAE} are not \acp{ODE} cit. Linda Petzold}}
   \vspace{-1.5cm}\hspace{4.25cm}\begin{tikzpicture}[scale=0.6]
-    \draw[fg_sl_color, ultra thick, -stealth] (0.0,0.0) -- (-1.0,1.0);
+    \draw[fg_sl_color, thick, -stealth] (0.0,0.0) -- (-1.0,1.0);
     \node at (2.75,0.0) [below]{\small \hi{Someone said that \dots}};
   \end{tikzpicture} \\[1.0em]
 
   Is the solution of \acp{DAE} a straightforward extension of \acp{ODE}?
   \begin{itemize}
-    \item \textbf{No}, otherwise we would not have been here (scientifically speaking).
+    \item \textbf{No}, otherwise we would not have been here.
     \item Numerical integration of \acp{DAE} is \textbf{challenging}.
     \item A \textbf{reformulation} of the \ac{DAE} system is typically required.
   \end{itemize}
   \vspace{1.0em}
-  We end up with two main approaches \dots
+  We end up with \textbf{two} main solution approaches \dots
   \vspace{1.5em}
   \begin{columns}
     \begin{column}[t]{0.5\textwidth}
       \centering
-      \hi{\large Direct Discretization}
+      \hi{\large \fbox{Direct Discretization}}
     \end{column}
     \begin{column}[t]{0.5\textwidth}
       \centering
-      \hi{\large Index Reduction}
+      \hi{\large \fbox{Index Reduction}}
     \end{column}
   \end{columns}
   \vspace{1.5em}
@@ -100,23 +111,23 @@
 \subsubsection{Direct Discretization}
 
 \begin{frame}{Solution of \aclp{DAE}}{Direct Discretization}
-  \begin{bbox}[The Fundamental Idea]
-    Approximate $\mxp$ through a \textbf{discretization formula} like a \emph{finite difference scheme} or a \emph{polynomial quadrature}, \eg{}, the Radau collocation.
-  \end{bbox}
-  \vspace{0.5em}
-  This discretization can be written as an \textbf{implicit Runge-Kutta} method as
-  \begin{equation*}
-    \begin{array}{l}
-      \m{F}\left(\m{x}_{k} + h_k\displaystyle\sum_{j=1}^{s}a_{ij} \m{K}_j, \m{K}_i, t_{k} + c_i h_k\right) = \m{0} \\[0.5em]
-      \m{x}_{k+1} = \m{x}_{k} + h_k\displaystyle\sum_{i=1}^{s} b_i \m{K}_i
-    \end{array}
-    \quad \text{for} \quad
-    \begin{array}{c}
-      i = 1, \dots, s \\
-      k = 0, 1, \dots
-    \end{array}
-  \end{equation*}
-  If $(a_{ij})$ is non-singular (along with other conditions), we can solve for $\mxp_k = \m{K}_i$ at each step.
+  \begin{itemize}
+    \item Approximate $\mxp$ through a \textbf{discretization formula} like a \emph{finite difference scheme} or a \emph{polynomial quadrature}, \eg{}, the Radau collocation.
+    \item This discretization can be written as an \textbf{implicit Runge-Kutta} method as
+    \begin{equation*}
+      \begin{array}{l}
+        \m{F}\left(\m{x}_{k} + h_k\displaystyle\sum\nolimits_{j=1}^{s}a_{ij} \m{K}_j, \m{K}_i, t_{k} + c_i h_k\right) = \m{0} \\[0.5em]
+        \m{x}_{k+1} = \m{x}_{k} + h_k\displaystyle\sum\nolimits_{i=1}^{s} b_i \m{K}_i
+      \end{array}
+      \quad \text{for} \quad
+      \begin{array}{c}
+        i = 1, \dots, s \\
+        k = 0, 1, \dots
+      \end{array}
+    \end{equation*}
+    If $(a_{ij})$ is non-singular and $h_k$ small enough, we can solve for $\mxp_k = \m{K}_i$ at each step.
+    \item ATTENTION: some order of convergence can be lost depending on the index (defined later)
+  \end{itemize}
 \end{frame}
 
 \subsubsection{Index Reduction}
@@ -128,28 +139,29 @@
     \begin{columns}
       \begin{column}[t]{0.45\textwidth}
         \centering\small
-        differentiation index \\
+        differential index \\
         structural index \\
         tractability index
       \end{column}
       \begin{column}[t]{0.45\textwidth}
         \centering\small
-        differentiation index \\
+        differential index \\
         structural index \\
         tractability index
       \end{column}
     \end{columns}
-    \item Some indices coincides under certain conditions.
-    \item The old-but-gold and is the \textbf{differentiation index}, or ``the'' index.
+    \item Some indices coincide under certain conditions.
+    \item The old-but-gold is the \textbf{differential index}, or ``the'' index.
   \end{itemize}
   \vspace{0.5em}
-  \begin{bbox}[The Differentiation Index]
+  \begin{bbox}[The Differential Index]
     It is the minimum number of differentiations required to transform a \ac{DAE} system into its underlying \ac{ODE} system.
   \end{bbox}
 \end{frame}
 
 \begin{frame}{Solution of \aclp{DAE}}{Index Reduction}
-  \begin{bbox}[The Fundamental Idea]
+  Index can be reduced by one doing one differentiation and algebraic manipulating the \ac{DAE} system \dots
+  \begin{bbox}[The Index Reduction Process]
   \vspace{-1.0em}
   \begin{equation*}
       \begin{array}{c}
@@ -158,11 +170,11 @@
       \end{array}
       \quad \autorightarrow{\text{index}}{\text{reduction}} \quad
       \begin{array}{c}
-        \text{Index-1 \ac{DAE}}  \\
-        \text{or} \\
         \text{\ac{ODE}}
+        \text{or} \\
+        \text{Index-1 \ac{DAE}}  \\
       \end{array} {\hspace{-0.75em}+\,\text{Invariants}}
-      \quad \autorightarrow{\text{numerical}}{\text{intergration}} \quad
+      \quad \autorightarrow{\text{numerical}}{\text{integration}} \quad
       \begin{array}{c}
         \text{Solution of} \\
         \text{original \ac{DAE}}
@@ -170,11 +182,11 @@
     \end{equation*}
   \end{bbox}
   \vspace{1.0em}
-  Some remarks \dots
+  Some remarks on index reduction \dots
   \begin{itemize}
-    \item \textbf{Pre-processing} step prior to numerical integration.
-    \item Index reduction is typically carried out through \textbf{symbolic computation}.
-    \item No \textbf{one-size-fits-all} algorithm, a variety of techniques are available.
+    \item it is \textbf{Pre-processing} step prior to numerical integration.
+    \item it is carried out through \textbf{symbolic computation} or \textbf{automatic differentiation}.
+    \item there is no simple recipe for index reduction exists.
   \end{itemize}
 \end{frame}
 
@@ -212,18 +224,18 @@
 \begin{frame}{Solution of \aclp{DAE}}{A New Algorithm for Index Reduction}
   We propose an algorithm for index reduction based on \dots
   \begin{enumerate}
-    \item \textbf{none} \emph{a priori} knowledge of the system structure;
-    \item \textbf{basic} symbolic linear algebra techniques.
+    \item \textbf{none} a priori knowledge of the system structure;
+    \item \textbf{basic} use of symbolic computation and linear algebra techniques.
   \end{enumerate}
   \vspace{0.5em}
   \begin{columns}
     \centering
-    \begin{column}[t]{0.45\textwidth}
+    \begin{column}[t]{0.25\textwidth}
       \centering
       \hi{Factorization} \\
       LU \\ Fraction-Free LU
     \end{column}
-    \begin{column}[t]{0.45\textwidth}
+    \begin{column}[t]{0.25\textwidth}
       \centering
       \hi{Differentiation} \\[0.25em]
       $\dfrac{\text{d}}{\text{d}\textbf{x}}$ \vspace*{0.15cm}
@@ -232,10 +244,9 @@
   \vspace{0.5em}
   The tools we are going to use are \dots
   \begin{enumerate}
-    \item \Maple{} for symbolic manipulation;
-    \item \Matlab{} for numerical integration of the reduced system.
+    \item \textbf{\Maple{}} for symbolic manipulation;
+    \item \textbf{\Matlab{}} for numerical evaluation.
   \end{enumerate}
-  \hic{Let us build up some knowledge to make the algorithm work!}
 \end{frame}
 
 % That's all Folks!

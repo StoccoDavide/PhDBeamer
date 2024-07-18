@@ -3,44 +3,48 @@
 \section{Symbolic Computation Essentials}
 
 \begin{frame}{Symbolic Computation Essentials}{Introduction}
+  In symbolic computation \dots
   \begin{itemize}
-    \item Symbolic computation involves manipulating mathematical expressions in their \textbf{exact} form.
-    \item Even if the size of the output is small, the intermediate expressions generated during a computation may grow unpredictably \dots
+    \item mathematical expressions are manipulated in their \textbf{exact} form.
+    \item the \ac{CAS} is the tool that performs the symbolic computation.
+    \item during computation expressions may \textbf{grow} unpredictably! % even if the size of the output is small,
   \end{itemize}
-  \hic{Expression Swell}
-  \begin{center}\begin{minipage}{\textwidth}\begin{bbox}[The Ideal Workflow]
+  \begin{center}\begin{minipage}{\textwidth}\begin{bbox}[Inside a \acs{CAS}]
     \centering%
     \begin{minipage}[c]{0.15\textwidth} \centering Input expression \end{minipage}%
     \begin{minipage}[c]{0.19\textwidth} \centering $\autorightarrow{\text{symbolic}}{\text{manipulation}}$ \end{minipage}%
     \begin{minipage}[c]{0.21\textwidth} \centering Output expression \\ + \\ Expression swell \end{minipage}%
     \begin{minipage}[c]{0.19\textwidth} \centering $\autorightarrow{\text{symbolic}}{\text{simplification}}$ \end{minipage}%
-    \begin{minipage}[c]{0.21\textwidth} \centering Output expression \\ + \\ \xout{Expression swell} \end{minipage}%
+    \begin{minipage}[c]{0.21\textwidth} \centering Output expression \\ + \\ \textcolor{fg_sl_color!25}{\sout{Expression swell} }\end{minipage}%
   \end{bbox}\end{minipage}\end{center}
-  \hic{All \acp{CAS} are sensitive to expression swell, some more than others!}
+  \hic{All \acs{CAS} are sensitive to expression swell!}
 \end{frame}
 
 \subsection{Expression Swell}
 
 \begin{frame}{Expression Swell}{A Rough Definition}
-  \begin{bbox}[Not-So-Formal Definition]
+  \begin{bbox}[Expression Swell]
     Exponential growth of expression size during symbolic manipulation, which undermines \ac{CAS} efficiency and leads to high memory usage and slow computation.
   \end{bbox}
-  \vspace{0.75em}
-  There are two types of expression swell \dots
-  \vspace{0.75em}
+  \vspace{0.5em}
+  \centering{\begin{tikzpicture}[scale=0.5]
+    \node at (0,0) {There are two types of expression swell \dots};
+    \draw[fg_sl_color, thick, -stealth] (+2,-0.75) -- (+3,-1.75);
+    \draw[fg_sl_color, thick, -stealth] (-2,-0.75) -- (-3,-1.75);
+  \end{tikzpicture}} \\
   \begin{columns}
     \begin{column}[t]{0.5\textwidth}
-      \hi{\large Inherent \textcolor{black}{expression swell}} \\
+      \raggedleft{\hi{\large Inherent}~~~~~} \\
       \begin{itemize}\small
-        \item Size of expressions can not be lowered due to no simplification rules being applicable.
-        \item Can not be avoided and requires changes in the problem formulation.
+        \item No applicable simplification \textbf{rule}.
+        \item Require changes in the problem \textbf{formulation}.
       \end{itemize}
     \end{column}
     \begin{column}[t]{0.5\textwidth}
-      \hi{\large Intermediate \textcolor{black}{expression swell}} \\
+      \hi{\large Intermediate} \\
       \begin{itemize}\small
+        \item Depends on \ac{CAS}'s simplification \textbf{capabilities}.
         \item During the middle stages of a calculation the size of intermediate expressions can expand substantially \emph{en route} to a comparatively simple final result.
-        \item Strongly tied to the \ac{CAS}'s simplification capabilities.
       \end{itemize}
     \end{column}
   \end{columns}
@@ -49,27 +53,6 @@
 \subsection{\acl{LEM}}
 
 \begin{frame}{\acl{LEM}}{Hierarchical Representation}
-  The \textbf{hierarchical representation} of expressions is carried out through \textbf{veiling variables}, which are defined as \dots
-  \begin{equation*}
-    \m{f}(\mx) \quad \autorightarrow{\text{veiling}}{\text{variables}} \quad \m{f}(\mx, \m{v})
-    \qquad \text{where} \qquad
-    \m{v}(\mx) = \msmall{\begin{bmatrix}
-      v_{1}(\mx) \\
-      v_{2}(v_{1}, \mx) \\
-      \vdots \\
-      v_{n}(v_{1}, \dots, v_{n-1}, \mx)
-    \end{bmatrix}}
-  \end{equation*}
-  The process is composed of two actions \dots
-  \begin{enumerate}
-    \item a large expression can be \textbf{veiled} (stored) in a \textbf{veiling variable};
-    \item veiling variables can be \textbf{unveiled} (substitute back) the veiling variables into the expression to recover the original form.
-  \end{enumerate}
-  \vspace{0.5em}
-  \hic{The complexity remains but the \ac{CAS} can not see it! \raisebox{-2.5pt}{\Huge\trollface{}}}
-\end{frame}
-
-\begin{frame}{\acl{LEM}}{An Example of \acs{LEM} through Hierarchical Representation}
   Let us consider an expression of the form
   \begin{equation*}
     \textcolor{mycolor1}{\underline{2xy(1+y)}} \cdot f(x,y) +
@@ -92,6 +75,27 @@
   \end{equation*}
 \end{frame}
 
+\begin{frame}{\acl{LEM}}{Hierarchical Representation}
+  The \textbf{hierarchical representation} of expressions is carried out through \textbf{veiling variables}, which are defined as \dots
+  \begin{equation*}
+    \m{f}(\mx) \quad \autorightarrow{\text{veiling}}{\text{variables}} \quad \m{f}(\mx, \m{v})
+    \qquad \text{where} \qquad
+    \m{v}(\mx) = \begin{bmatrix}
+      v_{1}(\mx) \\
+      v_{2}(v_{1}, \mx) \\
+      \vdots \\
+      v_{n}(v_{1}, \dots, v_{n-1}, \mx)
+    \end{bmatrix}
+  \end{equation*}
+  The process is composed of two actions \dots
+  \begin{enumerate}
+    \item a large expression can be \textbf{veiled} (stored) in a \textbf{veiling variable};
+    \item veiling variables can be \textbf{unveiled} (substitute back) the veiling variables into the expression to recover the original form.
+  \end{enumerate}
+  \vspace{0.5em}
+  \hic{The complexity remains but the \ac{CAS} can not see it!}
+\end{frame}
+
 \begin{frame}{\acl{LEM}}{Measuring Expression Complexity}
   Easy to implement, but \dots
   \vspace{1.5em}
@@ -100,10 +104,12 @@
       \hi{\large How to measure symbolic expression complexity?}
       \begin{itemize}
         \normalsize
-        \item \textbf{Length in characters}: already used by other authors, not reliable;
+        \item \textbf{Length in characters}: same expression can have different lengths.
+        \emph{Not reliable!}
         \item \textbf{Directed acyclic graph}: measures the number of nodes and edges.
+        \emph{Not easily accessible!}
         \item \textbf{Computational cost}: insensible to expression internal representation. \\[0.25em]
-        \emph{We can roughly predict the swelling related to elementary mathematical operations!}
+        \emph{Alredy implemented in \Maple{}!}
       \end{itemize}
     \end{column}
     \begin{column}[t]{0.5\textwidth}
@@ -117,31 +123,16 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{\acl{LEM}}{The \ac{LEM} Package}
-  \Maple{} package for managing large symbolic expressions \dots
-  \begin{itemize}
-    \item \textbf{custom implementation} of the \Maple{}s' \texttt{LargeExpressions} package.
-    \item \textbf{object-oriented} implementation for managing large symbolic expressions;
-    \item \textbf{better control} over the hierarchical representation of expressions.
-  \end{itemize}
-  %
-  \begin{bbox}[Large Expression Management \Maple{} package]
-    The LEM implementation is freely available on GitHub! \\
-    \centering \url{https://github.com/StoccoDavide/LEM}
-  \end{bbox}
-\end{frame}
-
 \subsection{Symbolic Matrix Factorization}
 
 \begin{frame}{Symbolic Matrix Factorization}
   \textbf{Numeric} factorization is a fundamental operation in numerical linear algebra. It is used to \dots
   \begin{itemize}
-    \item solve linear systems of equations without inverting the original matrix;
-    \item reduce the number of computations and increase the stability;
+    \item solve linear systems of equations (inverting the original matrix is not recommended);
     \item provide insights into the properties of the original matrix (\ie{}, rank and determinant).
   \end{itemize}
   \vspace{1.0em}
-  \hic{Does this also apply to the symbolic computation? Yes!}
+  \hic{Does this also apply to the symbolic computation? \textcolor{black}{Yes!}}
   \vspace{1.0em}
   However\dots
   \begin{enumerate}
@@ -158,7 +149,12 @@
 
 \begin{frame}{Symbolic Matrix Factorization}
   \begin{itemize}
-    \item There are a multitude of matrix factorizations, we choose \textbf{\ac{LU}} and \textbf{\ac{FFLU}} because of \dots
+    \item There are many factorizations, we choose \dots
+    \begin{itemize}
+      \item \textbf{\ac{LU}};
+      \item \textbf{\ac{FFLU}};
+    \end{itemize}
+    because of \dots
     \begin{enumerate}
       \item capability of preserving \textbf{sparsity} with \textbf{minimum degree} approach;
       \item limited expression swell with the \textbf{full-pivoting} strategy;
@@ -173,47 +169,132 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Symbolic Matrix Factorization}{Pivoting Strategy}
-  \hic{How to ensure the stability of the symbolic factorization? \\
-  \textcolor{black}{With a good pivoting strategy!}}
+\begin{frame}{Symbolic Matrix Factorization}{Symbolic Pivoting Strategy}
+  \vspace{-1.75em}
+  \hic{How to ensure numerical stability? \textcolor{black}{With a pivoting strategy!}}
+  \vspace{-0.75em}
   \begin{columns}
     \begin{column}[c]{0.5\textwidth}
-      A good pivoting strategy should \dots
+      A good symbolic pivoting strategy should \dots
       \begin{itemize}
-        \item select the simplest pivot element;
-        \item[] \textbf{\small Avoid excessive expression swell}
-        \item select the pivot element to ensure numerical stability;
-        \item[] \textbf{\small Avoid numerical instability}
-        \item explore all the possible pivots to make the best choice.
-        \item[] \textbf{\small Avoid numerical errors}
+        \item if numeric select the \textbf{biggest} numerical pivot:
+        \begin{itemize}
+          \item[] Improve numerical stability;
+        \end{itemize}
+        \item if not, select the \textbf{simplest} pivot element:
+        \begin{itemize}
+          \item[] Limit expression swell;
+        \end{itemize}
+        \item explore \textbf{all entries} for the best choice:
+        \begin{itemize}
+          \item[] Full-pivoting strategy.
+        \end{itemize}
       \end{itemize}
     \end{column}
-    \begin{column}[c]{0.5\textwidth}
-      \includegraphics[width=\textwidth]{pivoting_strategy}
+    \begin{column}[c]{0.6\textwidth}
+      \begin{algorithmic}\scriptsize
+        %\State \textbf{Require:} A $m \times n$ matrix $\m{A}$.
+        %\State \phantom{\textbf{Require:}} The $k$-th pivoting stage.
+        \Procedure{SymbolicPivoting}{$\m{A}$, $k$} %\Comment{Symbolic pivoting procedure for the $k$-th pivot}
+          \State $\m{d}^r, \, \m{d}^c \gets \text{ComputeDegrees}(\m{A})$ %\Comment{Calculate the row and column degrees of $\m{A}$}
+          \For{$i$ \textbf{from} $k$ \textbf{to} $m$} %\Comment{Iterate over the rows}
+            \For{$j$ \textbf{from} $k$ \textbf{to} $n$} %\Comment{Iterate over the columns}
+              \State $D_{ij} \gets \infty$ %\Comment{Set the combined degree matrix to infinity}
+              \IfThen{$A_{ij} \neq 0$}
+              {\hlc{$D_{ij} \gets d^r_{i} \, \max(0, \, d^c_j-1) + d^c_j \, \max(0, \, d^r_i-1)$}} %\Comment{The degree}
+            \EndFor
+          \EndFor
+          \State \hlc{$\mathcal{P} \gets \text{Sort}(\m{D})$} %\Comment{Find the permutation that sorts the pivots list by degree cost}
+          \State $q, \, l \gets \, 0, \, 0$  ~ and ~ %\Comment{Initialize the temporary pivot row and column indices}
+          $p, \, p_c, \, p_n \gets \infty, \, \infty, \, \infty$ %\Comment{Initialize the pivot value, complexity and numerical value}
+          \For{\textbf{all} $(i, j)$ \textbf{in} $\mathcal{P}$} %\Comment{Iterate on the permutation set}
+            \IfThen{$p_c \neq \infty$ \textbf{and} $D_{ij} > D_{ql}$}{\textbf{break}} %\Comment{No more good pivots to check}
+            \State $t \gets A_{ij}$ %\Comment{Get the pivot value}
+            \IfThen{$\text{Signature}(t) = 0$}{\textbf{continue}} %\Comment{Skip the next pivot}
+            \State $t \gets \text{Simplify}(t)$ ~ and ~ %\Comment{Try to simplify the pivot expression}
+            \hlc{$t_c \gets \text{ExpressionComplexity}(t)$} ~ and ~ %\Comment{Calculate the computational cost of the pivot}
+            $t_n \gets \infty$ %\Comment{Set the default numerical value of the pivot to infinity}
+            \IfThen{$t$ is numeric}{\hlc{$t_n \gets \max(1, \, \text{abs}(t))$}} %\Comment{Set the numerical value of the pivot}
+            \If{\hlc{$t_c < p_c$} \textbf{or} (\hlc{$t_c = p_c$} \textbf{and} \hlc{$t_n > p_n$})} %\Comment{If the pivot is better than the current one}
+              \State $q, \, l \gets i, \, j$ ~ and ~ %\Comment{Update the best pivot row and column indices}
+              $p, \, p_c, \, p_n \gets t, \, t_c, \, t_n$ %\Comment{Save the best pivot value, complexity and numerical value}
+            \EndIf
+          \EndFor
+          \State \textbf{return} $p, \, q, \, l$ %\Comment{The $k$-th pivot and its position}
+        \EndProcedure
+      \end{algorithmic}
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Symbolic Matrix Factorization}{\ac{LEM} During Factorization}
-  \hic{How to manage large symbolic expressions? \\
-  \textcolor{black}{By using \ac{LEM} during the factorization!}}
-  Veiling variables are introduced during \dots \\[1.0em]
+  \vspace{-2.5em}
+  \hic{How to manage large symbolic expressions? \textcolor{black}{By using \acs{LEM}!}}
   \begin{columns}
-    \begin{column}[t]{0.5\textwidth}
-      \textbf{Factorization step} \\
-      \begin{itemize}\small
-        \item Gaussian elimination;
-        \item Schur complement computation.
+    \hspace{1.0em}
+    \begin{column}[c]{0.425\textwidth}
+      Veils are introduced during \dots
+      \begin{itemize}
+        \item \textbf{Factorization step}: \\
+        \begin{itemize}\small
+          \item[] Gaussian elimination;
+          \item[] Schur complement computation.
+        \end{itemize}
+        \item \textbf{Solution step}: \\
+        \begin{itemize}\small
+          \item[] Forward substitution;
+          \item[] Backward substitution.
+        \end{itemize}
       \end{itemize}
-      {\centering \includegraphics[width=\textwidth]{factorization_lu}}
     \end{column}
-    \begin{column}[t]{0.5\textwidth}
-      \textbf{Solution step} \\
-      \begin{itemize}\small
-        \item Forward substitution;
-        \item Backward substitution.
-      \end{itemize}
-      {\centering \includegraphics[width=\textwidth]{solve_lu}}
+    \begin{column}[c]{0.4\textwidth}
+      \vspace{-1.0em}
+      \hspace{-1.0em}
+      \begin{algorithmic}\scriptsize
+        %\State \textbf{Require:} A $m \times n$ matrix $\m{A}$.
+        \Procedure{LU}{$\m{A}, \, k$} %\Comment{Symbolic full-pivoting \ac{LU} procedure}
+          \State $\m{M} \gets \m{A}$ %\Comment{Initialize the matrix $\m{M}$}
+          \State $rnk \gets \min(m, \, n)$ %\Comment{Initialize the rank of $\m{M}$}
+          \For{$k$ \textbf{from} $1$ \textbf{to} $rnk$} %\Comment{Perform Gaussian elimination}
+            \State $p, \, q, \, l \gets \text{SymbolicPivoting}(\m{M}, \, k)$ %\Comment{Find the best pivot for the $k$-th step}
+            \If{$p = 0$} %\Comment{Check for null pivot}
+              \State $rnk \gets k-1$ ~ and ~ %\Comment{The rank of $\m{M}$ is $k-1$}
+              \textbf{break} %\Comment{The matrix is singular}
+            \EndIf
+            \State $\m{r}_k, \, \m{c}_k \gets \, q, \, l$ %\Comment{Store the pivot row and column indices}
+            \State $\m{M} \gets \text{SwapRowsCols}(\m{M}, \, k, \, q,  \, l)$ %\Comment{Swap the $k$-th and $q$-th rows}
+            \For{$i$ \textbf{from} $k+1$ \textbf{to} $m$} %\Comment{Compute the $k$-th column of $\m{L}$}
+              \State \hlc{$M_{kk} \gets \text{Veil}(M_{kk})$} %\Comment{Veil the $k$-th pivot}
+              \State \hlc{$M_{ik} \gets \text{Veil}(\text{Normalizer}(M_{ik}/M_{kk}))$} %\Comment{Normalize the $k$-th pivot}
+              \For{$j$ \textbf{from} $k+1$ \textbf{to} $n$} %\Comment{Compute the $k$-th row of $\m{U}$}
+                \State \hlc{$M_{ij} \gets \text{Veil}(\text{Normalizer}(M_{ij} - M_{ik}M_{kj}))$} %\Comment{Finalize the Schur complement}
+              \EndFor
+            \EndFor
+          \EndFor
+          \State $\m{P}, \, \m{Q} \gets \text{PermutationMatrices}(\m{r}, \, \m{c})$ %\Comment{Compute the permutation matrices}
+          \State $\m{L}, \, \m{U} \gets \text{LowerUpperMatrices}(\m{M})$ %\Comment{Extract the lower-triangular part of $\m{M}$}
+          \State \textbf{return} $\m{L}, \, \m{U}, \, \m{P}, \, \m{Q}, \, \m{r}, \, \m{c}, \, rnk$ %\Comment{Return the factors and the rank of $\m{A}$}
+        \EndProcedure
+      \end{algorithmic}
+    \end{column}
+    \begin{column}[c]{0.3\textwidth}
+      \vspace{-1.0em}
+      \begin{algorithmic}\scriptsize
+        %\State \textbf{Require:} The \ac{LU} factors $\m{L}$, $\m{U}$, $\m{P}$, $\m{Q}$, and a vector $\m{b}$.
+        \Procedure{SolveLU}{$\m{L}, \, \m{U}, \, \m{P}, \, \m{Q}, \, \m{b}$} %\Comment{Solve the linear system $\m{A}\m{x} = \m{b}$}
+          \State $\m{y} \gets \m{P}\m{b}$ %\Comment{Apply the permutation matrix $\m{P}$ to the vector $\m{b}$}
+          \State $m, \, n \gets \text{Size}(\m{L})$ %\Comment{Get the size of $\m{L}$}
+          \For{$i$ \textbf{from} $2$ \textbf{to} $m$} %\Comment{Solve $\m{L}\m{y} = \m{P}\m{b}$}
+            \State \hlc{$y_i \gets \text{Veil}(y_i - \sum\nolimits_{j=1}^{i-1} L_{ij}y_j)$} %\Comment{Perform forward substitution}
+          \EndFor
+          \State $x_n \gets \text{Veil}(y_n/U_{nn})$ %\Comment{Perform the first backward substitution}
+          \For{$i$ \textbf{from} $n-1$ \textbf{to} $1$} %\Comment{Solve $\m{U}\m{x} = \m{y}$}
+            \State \hlc{$x_i \gets \text{Veil}(y_i - {\sum\nolimits_{j=i+1}^{n}} U_{ij}x_j)$} %\Comment{Perform backward substitution}
+            \State \hlc{$x_i \gets \text{Veil}(x_i/U_{ii})$}
+          \EndFor
+          \State $\m{x} \gets \m{Q}^\top\m{x}$ %\Comment{Apply the permutation matrix $\m{Q}^\top$ to the solution $\m{x}$}
+        \EndProcedure
+      \end{algorithmic}
     \end{column}
   \end{columns}
 \end{frame}
