@@ -1,7 +1,12 @@
-\documentclass[aspectratio=169, 10pt, handout]{beamer}
+\documentclass[aspectratio=169, 10pt]{beamer}
 
 % Color package
 \usepackage[table]{xcolor}
+\usepackage{animate}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\Ginclude@eps}{"#1"}{#1}{}{}
+\makeatother
 
 % Slide colors
 \definecolor{tx_sl_color}{RGB}{0, 0, 0}
@@ -61,7 +66,7 @@
       dp = 1.00ex,
       left
     ]{myauthor in head/foot}%
-    \textcolor{ft_color}{\insertauthor{}~(\insertinstitute{})}
+    \textcolor{ft_color}{\insertauthor{}} %~(\insertinstitute{})
   \end{beamercolorbox}%
   \begin{beamercolorbox}[
       wd = 0.50\paperwidth,
@@ -452,10 +457,10 @@
 \include{content/chapter_2}
 \include{content/chapter_3}
 \include{content/chapter_4}
-\include{content/chapter_5}
-\include{content/chapter_6}
-\appendix
-\include{content/extras}
+%\include{content/chapter_5}
+%\include{content/chapter_6}
+%\appendix
+%\include{content/extras}
 
 \end{document}
 

@@ -177,11 +177,11 @@
     \begin{column}[c]{0.5\textwidth}
       A good symbolic pivoting strategy should \dots
       \begin{itemize}
-        \item if numeric select the \textbf{biggest} numerical pivot:
+        \item if numeric, select the \textbf{biggest} element:
         \begin{itemize}
           \item[] Improve numerical stability;
         \end{itemize}
-        \item if not, select the \textbf{simplest} pivot element:
+        \item otherwise, select the \textbf{simplest} element:
         \begin{itemize}
           \item[] Limit expression swell;
         \end{itemize}
@@ -228,7 +228,7 @@
 \end{frame}
 
 \begin{frame}{Symbolic Matrix Factorization}{\ac{LEM} During Factorization}
-  \vspace{-2.5em}
+  \vspace{-2.0em}
   \hic{How to manage large symbolic expressions? \textcolor{black}{By using \acs{LEM}!}}
   \begin{columns}
     \hspace{1.0em}

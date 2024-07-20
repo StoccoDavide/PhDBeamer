@@ -2,54 +2,184 @@
 
 \toclesssection{Introduction and Motivation}
 
-\begin{frame}{Introduction and Motivation}{Background}
-  \begin{itemize}
-    \item \textbf{Simulation} of dynamic systems is crucial in various engineering fields.
-    \item \textbf{Speed} and \textbf{accuracy} are essential.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Introduction and Motivation}{Background}
-  \begin{itemize}
-    \item Systems are typically described by \dots
-  \end{itemize}
-  \vspace{1.0em}
-    \begin{columns}
+\begin{frame}{Introduction and Motivation}{The Simulation of Dynamic Systems}
+  \begin{columns}
+    \begin{column}[c]{0.6\textwidth}
+      \uncover<1->{\hi{\large Why do we need simulation?}}
+      \uncover<2->{\begin{itemize}
+        \item \textbf{Simulation} of dynamic systems allows to \dots \\
+        \begin{itemize}
+          \item[\raisebox{-1pt}{\scalebox{0.8}{\faCogs}}] \emph{predict} the behavior
+          \item[\raisebox{-1pt}{\scalebox{0.8}{\faConnectdevelop}}] \emph{design} and \emph{optimize}
+          \item[\raisebox{-1pt}{\scalebox{0.8}{\faHourglassStart}}] accelerate development and testing
+          \item[\raisebox{-1pt}{\scalebox{0.8}{\faCarCrash}}] risk-free testing environment
+          \item[\raisebox{-1pt}{\scalebox{0.8}{\faDollarSign}}] \emph{reduce} development costs
+        \end{itemize}
+      \end{itemize}}
+      \vspace{0.5em}
+      \uncover<3->{\hi{\large Simulations' \textbf{complexity} is increasing!}}
+      \uncover<4->{\begin{itemize}
+        \item Higher \textbf{fidelity}, more \textbf{complexity}, more \\
+        \begin{itemize}
+          \item[\raisebox{-1pt}{\scalebox{0.8}{\faCog}}] components \\
+          \item[\raisebox{-1pt}{\scalebox{0.8}{\faCompress}}] interactions \\
+          \item[\raisebox{-1pt}{\scalebox{0.8}{\faDesktop}}] computational resources \\
+          \item[\raisebox{-1pt}{\scalebox{0.8}{\faHourglassEnd}}] computation time
+        \end{itemize}
+      \end{itemize}}
+      \end{column}
+    \begin{column}[c]{0.4\textwidth}
       \centering
-      \begin{column}[t]{0.45\textwidth}
-        \centering
-        \hi{\acp{ODE}} \\
-        \centering\small
-        \textcolor{mycolor5!95!black}{Easy to initialize} \\
-        \textcolor{mycolor5!95!black}{Strong theoretical foundation} \\
-        \textcolor{mycolor5!95!black}{Efficient numerical methods} \\
-        \textcolor{mycolor2!95!black}{Limited modeling capabilities} \\ % FIXME: some models do not fit in ODEs
-      \end{column}
-      \begin{column}[t]{0.45\textwidth}
-        \centering
-        \hi{\acp{DAE}} \\
-        \centering\small
-        \textcolor{mycolor2!90!black}{Hard to initialize} \\
-        \textcolor{mycolor3!90!black}{Complex theoretical foundation} \\
-        \textcolor{mycolor3!90!black}{Require \emph{ad hoc} numerical methods} \\
-        \textcolor{mycolor5!90!black}{State-of-the-art in modeling} \\
-      \end{column}
-    \end{columns}
-  \vspace{0.5em}
-  \hic{Improve the state-of-the-art in the solution of \ac{DAE} systems}
+      \uncover<3->{\hic{\large A ``random'' example}}
+      \only<-2>{
+        \uncover<3->{
+          \hic{\Huge{\textbf{?}} \\[0.5em]
+          \normalsize{\dots something we've never seen before!}}
+      }}
+      \only<3->{\includegraphics[
+          width=0.52\textwidth, trim={0cm 0cm 4.65cm 0cm}, clip
+        ]{figures/vehicle_modules.eps}
+      }
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Introduction and Motivation}{Solution Technique}
-  How can we improve the state-of-the-art in the solution of \acp{DAE}?
+\subsection{Dynamic Systems as a Collection of Subsystems}
+
+\begin{frame}{Introduction and Motivation}{Dynamic Systems as a Collection of Subsystems}
+  \begin{columns}
+    \begin{column}[c]{0.6\textwidth}
+      \begin{itemize}
+        \item<1-> Complex systems are divided into \textbf{subsystems} \dots \\
+        \begin{small}
+          \quad\, \begin{tabular}{ccc}
+            mechanical & electrical & thermal \\
+            hydraulic & control & \dots
+          \end{tabular}
+        \end{small}
+        \item<3-> Subsystems are described by \textbf{equations} \dots \\
+        \begin{small}
+          \qquad \emph{algebraic} \\
+          \qquad ordinary \emph{differential} \\
+          \qquad \emph{differential-algebraic} \\
+          \qquad other types
+        \end{small}
+        \item<4-> The \textbf{challenges} are \dots \hic{\normalsize Speed \quad Accuracy \quad Efficiency}
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.4\textwidth}
+      \centering
+      \hic{\large A ``random'' example}
+      \only<1>{\includegraphics[
+          width=0.52\textwidth, trim={0cm 0cm 4.65cm 0cm}, clip
+        ]{figures/vehicle_modules.eps}}
+      \only<2->{
+        \includegraphics[width=\textwidth]{figures/vehicle_modules.eps}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsection{Solution Approaches}
+
+\begin{frame}{Introduction and Motivation}{Solution Approaches}
+  \begin{columns}
+    \begin{column}[c]{0.45\textwidth}
+      The \textbf{solution} of these equations can be \dots \\
+      \begin{itemize}
+        \item<1-> \textbf{Analytical} \\
+        \begin{small}
+          \qquad \textcolor{mycolor2!95!black}{deep understanding of the problem} \\
+          \qquad \textcolor{mycolor2!95!black}{rare and difficult to achieve} \\
+          \qquad \textcolor{mycolor5!95!black}{low computational resources}
+        \end{small}
+        \item<3-> \textbf{Numerical} \\
+        \begin{small}
+          \qquad \textcolor{mycolor5!95!black}{well-established and widely used} \\
+          \qquad \textcolor{mycolor3!95!black}{not always the applicable} \\
+          \qquad \textcolor{mycolor2!95!black}{high computational resources}
+        \end{small}
+        \item<5-> \textbf{Mixed analytical/numerical} \\
+        \begin{small}
+          \qquad \textcolor{mycolor3!95!black}{\emph{ad hoc}, for specific cases} \\
+          \qquad \textcolor{mycolor3!95!black}{limited applicability} \\
+          \qquad \textcolor{mycolor3!95!black}{reduced computational resources}
+        \end{small}
+      \end{itemize}
+      \uncover<7->{\hic{\normalsize
+        These examples are special cases! \\
+        \emph{What about more general cases?}\vphantom{\acp{ODE} and \acp{DAE}}
+      }}
+    \end{column}
+    \begin{column}[c]{0.6\textwidth}
+      \centering
+      \small
+      \vspace{-2.0em}
+      \begin{tabular}{>{\centering\arraybackslash} m{3.75cm} >{\centering\arraybackslash} m{3.75cm}}
+        \visible<2->{\includegraphics[width=0.4\textwidth]{figures/fade_overview.png} &
+        \vspace{-2.0em}$\begin{array}{c}
+          \text{Direct stiffness method} \\[0.25em]
+          \begin{bmatrix}
+            \mathbf{K}_{ff} & \mathbf{K}_{fs} \\
+            \mathbf{K}_{sf} & \mathbf{K}_{ss}
+          \end{bmatrix} \begin{bmatrix}
+            \mathbf{d}_{f} \\
+            \mathbf{d}_{s}
+          \end{bmatrix} = \begin{bmatrix}
+            \mathbf{f}_{f} \\
+            \mathbf{f}_{s}
+          \end{bmatrix}
+        \end{array}$} \\
+        \visible<4->{\vspace{-3.0em}$\msmall{\begin{array}{c}
+          \text{Tire-road interaction} \\[0.25em]
+          \mathbf{P} = \frac{1}{V} \int\nolimits_\mathcal{V} \text{proj}(\mathbf{x}, \partial\mathcal{G}) \, \text{d}\mathcal{\mathbf{x}} \\[0.1em]
+          \mathbf{\hat{n}} = \int\nolimits_\mathcal{V} \mathbf{d}(\mathbf{x},\mathbf{h}_y) \, \text{d}\mathcal{\mathbf{x}}
+        \end{array}}$ &
+        \includegraphics[width=0.4\textwidth]{figures/enve_intersection.png}} \\
+        \visible<6->{\includegraphics[
+          width=0.35\textwidth, trim={4.5cm 3.5cm 4.5cm 0cm}, clip
+          ]{figures/brush_model_simplified.eps} &
+        \vspace{-3.0em}$\msmall{\begin{array}{c}
+          \text{Tire model} \\[0.25em]
+            \mathbf{F}(F_z, \sigma_x, \sigma_y, \varphi, \gamma, p, T, t) \\[0.1em]
+            \mathbf{M}(F_z, \sigma_x, \sigma_y, \varphi, \gamma, p, T, t)
+        \end{array}}$}
+      \end{tabular}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsection{Dynamic Systems Described by \aclp{ODE} and \aclp{DAE}}
+
+\begin{frame}{Introduction and Motivation}{Dynamic Systems Described by \acsp{ODE} and \acsp{DAE}}
   \begin{itemize}
-    \item Complicated \textbf{index concepts} arose over the years to tackle the solution.
-    \item Most of existing tools are based on \textbf{numerical} or \textbf{structural analysis} techniques.
-    \item In the last decades, \textbf{symbolic computation} has improved to a high level applicability \dots \\
+    \item<1-> Typically, \textbf{dynamic systems} are described by \dots \\
+      \vspace{0.5em}
+      \uncover<2->{
+        \setlength{\tabcolsep}{3.5em}
+        \small\centering\begin{tabular}{cc}
+        \hi{\acp{ODE}}                                               & \hi{\acp{DAE}} \\
+        \textcolor{mycolor5!95!black}{Easy to initialize}            & \textcolor{mycolor2!95!black}{Hard to initialize} \\
+        \textcolor{mycolor5!95!black}{Strong theoretical foundation} & \textcolor{mycolor3!95!black}{Complex theoretical foundation} \\
+        \textcolor{mycolor5!95!black}{Efficient numerical methods}   & \textcolor{mycolor3!95!black}{Require \emph{ad hoc} numerical methods} \\
+        \textcolor{mycolor2!95!black}{Some models do not fit}        & \textcolor{mycolor5!95!black}{State-of-the-art in modeling} \\
+      \end{tabular}}
+    \vspace{0.25em}
+    \item<3-> \acp{ODE} have a \textbf{complete} theoretical foundation, \acp{DAE} do not
+    \item<4-> Existing tools for \acp{DAE} are not as \textbf{mature} and \textbf{efficient} as \acp{ODE} tools
+    \item<5-> From an engineering perspective, this is a \textbf{problem} (\textcolor{fg_sl_color}{\faHourglassHalf\,\faDollarSign\,\faCarCrash\,\faSadTear})
+    %\begin{small}
+    %\qquad high level of applicability, \emph{but not very widely used!} \\
+    %\qquad effective in the solution of \acp{ODE}, \emph{but what about \acp{DAE}?}
+    %\end{small}
+    %\item<4-> Existing tools are mainly based on \textbf{numerical} or \textbf{structural analysis} techniques
   \end{itemize}
-  \vspace{1.0em}
-  \centering\emph{\dots but it is not as widely used as one might expect!}
-  \vspace{1.0em}
-  \hic{Exploit symbolic computation in the solution of \acp{DAE}!}
+  \uncover<6->{
+    \centering
+    \vspace{0.5em}
+    Therefore, the question is \dots \\[-1.0em]
+    \hic{\large How can we improve the state-of-the-art in the solution of \acp{DAE}?}
+  }
+  %\hic{Exploit symbolic computation in the solution of \acp{DAE}!}
 \end{frame}
 
 % That's all Folks!
