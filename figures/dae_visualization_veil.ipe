@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.29">
-<info created="D:20240318195336" modified="D:20240719112505"/>
+<info created="D:20240318195336" modified="D:20240722191931"/>
 <preamble>\usepackage[default]{gillius} %font design
 \usepackage{sfmath}
 
@@ -1359,18 +1359,18 @@ h
 720 72 l
 719.989 88 l
 </path>
-<path matrix="1 0 0 1 -64 14.1327" stroke="black">
+<path matrix="1 0 0 1 108 23.9392" stroke="black">
 640 288 m
 656 288 l
 </path>
-<path matrix="1 0 0 1 -64 8" fill="darkorange" opacity="30%" stroke-opacity="opaque">
-656 324.08 m
-656 264 l
-781.525 264 l
-781.521 324.116 l
+<path matrix="1 0 0 1 172 9.80652" fill="darkorange" opacity="30%" stroke-opacity="opaque">
+592 336 m
+592 272 l
+736 272 l
+736 336 l
 h
 </path>
-<text matrix="1 0 0 1 -68.9048 3.71067" transformations="translations" pos="664 296" stroke="black" type="label" width="119.09" height="29.676" depth="24.74" valign="baseline" style="math">\m{v}(\mx,t) = \begin{bmatrix}
+<text matrix="1 0 0 1 103.095 14.7089" transformations="translations" pos="664 296" stroke="black" type="label" width="141.096" height="33.555" depth="27.64" valign="baseline" size="large" style="math">\m{v}(\mx,t) = \begin{bmatrix}
       v_{1}(\mx,t) \\
       v_{2}(v_{1}, \mx,t) \\
       \vdots \\
@@ -1383,7 +1383,7 @@ h
 456 328 l
 h
 </path>
-<path matrix="0.500401 0 0 0.500796 343.814 133.866" stroke="0" fill="darkorange" opacity="30%" stroke-opacity="opaque">
+<path matrix="0.500401 0 0 0.500796 515.814 143.673" stroke="0" fill="darkorange" opacity="30%" stroke-opacity="opaque">
 448 336 m
 456 344 l
 464 336 l

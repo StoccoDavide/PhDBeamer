@@ -5,33 +5,33 @@
 \subsection{Working Principle}
 
 \begin{frame}{Index Reduction Algorithm}{Working Principle}
-  The index reduction algorithm is based on the following three steps \dots
+  The index reduction algorithm is based on \textbf{three} steps \dots
   \begin{columns}
     \begin{column}[c]{0.2\textwidth}
       \flushright
-      \vspace{-2.5em}%
+      \vspace{-1.3em}%
       \uncover<4->{\begin{tikzpicture}[overlay, remember picture]
-        \draw[fg_sl_color, thick, -stealth] (0.5,-1.95) -- (0.0,-1.95) -- (0.0,1.95) -- (0.5,1.95);
+        \draw[fg_sl_color, thick, -stealth] (0.5,-1.75) -- (0.0,-1.75) -- (0.0,1.75) -- (0.5,1.75);
         \node[text width=0.75\textwidth, align=center] at (-1.0,0.0) {If $\mE$ is singular};
         %\draw[fg_sl_color, thick, -stealth] (-1.0,-0.5) -- (-1.0,-2.75);
       \end{tikzpicture}}
     \end{column}
     \begin{column}[c]{0.85\textwidth}
       \begin{enumerate}[<+->]
-        \item Consider the generic \acp{DAE} system
+        \item Consider the generic \acsp{DAE} system
         \begin{equation*}
-          \mF = \mA \mxp - \mb = \m{0} \text{.}
+          \mF = \mA \mxp - \mb = \m{0}
         \end{equation*}
-        \item Separate the system into \textbf{differential} and \textbf{algebraic} equations and express the system in \textbf{semi-explicit} form
+        \item \textbf{Separate} the differential and algebraic equations of the system
         \begin{equation*}
           \begin{bmatrix} \mE \\ \m{0} \end{bmatrix} \mxp = \begin{bmatrix} \mg \\ \ma \end{bmatrix}
         \end{equation*}
-        \item The index of the system is reduced by differentiating the algebraic equations $\ma = \m{0}$.
+        \item \textbf{Reduce} the index by differentiating the algebraic equations $\ma = \m{0}$
       \end{enumerate}
     \end{column}
   \end{columns}
   \vspace{0.75em}
-  \uncover<5->{This can be applied until a \acs{ODE} system with invariants is obtained.}
+  \uncover<5->{This \textbf{repeats} until a \acs{ODE} system with invariants is obtained.}
 \end{frame}
 
 \subsubsection{Separation of Differential and Algebraic Equations}
@@ -41,27 +41,27 @@
   \begin{columns}
     \begin{column}[c]{0.6\textwidth}
       \begin{enumerate}
-        \item Consider the \textbf{generic} \acp{DAE} system
+        \item Consider the \textbf{generic} \acsp{DAE} system
         \begin{equation*}
-          \mF = \mA \mxp - \mb = \m{0} \text{.}
+          \mF = \mA \mxp - \mb = \m{0}
         \end{equation*}
-        \item Separate the equations with the cokernel $\mK$ and its orthogonal complement $\mN$ of $\mE$% such that
+        \item \textbf{Separate} the equations with the cokernel $\mK$ and its orthogonal complement $\mN$ of $\mE$
         \begin{equation*}
           \begin{bmatrix} \mE \\ \m{0} \end{bmatrix} \mxp = \begin{bmatrix} \mg \\ \ma \end{bmatrix}
           ~~ \text{with} ~~
           \begin{array}{r@{~}c@{~}l}
-            \mE &=& \mN \mA \text{,} \\
-            \mg &=& \mN \mb \text{,} \\
-            \ma &=& \mK \mb \text{.}
+            \mE &=& \mN \mA \\
+            \mg &=& \mN \mb \\
+            \ma &=& \mK \mb
           \end{array}
         \end{equation*}
       \end{enumerate}
-      \begin{bbox}[Cokernel Computation]
-        The cokernel $\mK$ and its orthogonal complement $\mN$ of $\mE$ are calculated using \ac{LU} or \ac{FFLU} factorizations.
-      \end{bbox}
+      \uncover<3->{\begin{bbox}[Cokernel Computation]
+        The cokernel $\mK$ and its orthogonal complement $\mN$ of $\mE$ are calculated using \acs{LU} or \acs{FFLU} factorizations.
+      \end{bbox}}
     \end{column}
     \begin{column}[c]{0.4\textwidth}
-      \includegraphics[width=1.0\textwidth, trim={0cm 7.35cm 0cm 0cm}, clip]{dae_visualization.eps}
+      \visible<3->{\includegraphics[width=1.0\textwidth, trim={0cm 7.35cm 0cm 0cm}, clip]{dae_visualization.eps}}
     \end{column}
   \end{columns}
 \end{frame}
@@ -73,38 +73,38 @@
   \begin{columns}
     \begin{column}[c]{0.6\textwidth}
       \begin{enumerate}[<+->]\setcounter{enumi}{2}
-        \item Differentiate the algebraic equations $\ma$
+        \item \textbf{Differentiate} the algebraic equations $\ma$
         \begin{equation*}
-          \dfrac{\text{d}}{\text{d}t} \ma = \mAd \mxp - \mgd \text{.}
+          \dfrac{\text{d}}{\text{d}t} \ma = \mAd \mxp - \mgd
         \end{equation*}
-        \item The new system of \acp{DAE} takes the form
+        \item The new system of \acsp{DAE} takes the form
         \begin{align*}
           \mF = \mA &\mxp - \mb = \m{0} ~~ \text{with} \\
           \mA = \begin{bmatrix} \mE \\ \mAd \end{bmatrix}
           ~~ &\text{and} ~~
-          \mb = \begin{bmatrix} \mg \\ \mgd \end{bmatrix} \text{.}
+          \mb = \begin{bmatrix} \mg \\ \mgd \end{bmatrix}
         \end{align*}
         \item The differential index has been reduced by one!
       \end{enumerate}
-      \begin{bbox}[A Sequential Algorithm]
+      \uncover<4->{\begin{bbox}[A Sequential Algorithm]
         Apply \boxednumber{1}--\boxednumber{5} repeatedly until $\mA$ is non-singular.
-      \end{bbox}
+      \end{bbox}}
     \end{column}
     \begin{column}[c]{0.4\textwidth}
-      \includegraphics[width=1.0\textwidth, trim={0cm 0cm 0cm 7.35cm}, clip]{dae_visualization.eps}
+      \visible<3->{\includegraphics[width=1.0\textwidth, trim={0cm 0cm 0cm 7.35cm}, clip]{dae_visualization.eps}}
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Index Reduction Algorithm}{Including Veiling Variables}
   \vspace{-1.0em}
-  The algorithm can be extended to include \ac{LEM} \dots
+  The algorithm can be extended to include \acs{LEM} \dots
   \begin{itemize}
     \item the veiling variables are stored in the list of $\mv$;
     \item the equations be also function of $\mv$;
     \item the veiling variables do just add an evaluation layer to the algorithm.
   \end{itemize}
-  \hspace{-0.025\textwidth}\includegraphics[width=1.05\textwidth]{dae_visualization_veil.eps}
+  \visible<2->{\vspace{-1.5em}\hspace{-0.025\textwidth}\includegraphics[width=1.05\textwidth]{dae_visualization_veil.eps}}
 \end{frame}
 
 \begin{frame}{Index Reduction Algorithm}{Algorithm Flowchart}
@@ -118,16 +118,16 @@
   \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{Index Reduction Algorithm}{The Reduced \ac{DAE} System}
-  The index-reduced system of \acp{DAE} takes the form \dots
+\begin{frame}{Index Reduction Algorithm}{The Reduced \acs{DAE} System}
+  The index-reduced system of \acsp{DAE} takes the form \dots
   \begin{itemize}[<+->]
     \item A \textbf{differential part}, which can be expressed as
     %
     \begin{equation*}
       \begin{array}{ccl}
-          \m{F}(\mx, \mx^\prime, \m{v}, t) = \m{0} & \hspace{0.5cm} & \text{implicit  system class,} \\
-          \m{A}(\mx, \m{v}, t) \mx^\prime = \m{b}(\mx, \m{v}, t) & \hspace{0.5cm} & \text{semi-explicit system class,} \\
-          \mx^\prime = \m{f}(\mx, \m{v}, t) & \hspace{0.5cm} & \text{explicit system class.}
+          \m{F}(\mx, \mx^\prime, \m{v}, t) = \m{0} & \hspace{0.5cm} & \text{implicit  system class} \\
+          \m{A}(\mx, \m{v}, t) \mx^\prime = \m{b}(\mx, \m{v}, t) & \hspace{0.5cm} & \text{semi-explicit system class} \\
+          \mx^\prime = \m{f}(\mx, \m{v}, t) & \hspace{0.5cm} & \text{explicit system class}
       \end{array}
     \end{equation*}
     %
@@ -138,8 +138,8 @@
           \mhiv \\
           \mhuv
       \end{bmatrix} = \m{0} \hspace{0.5cm} \begin{array}{l}
-        \text{hidden constraints,} \\
-        \text{optional user-defined invariants.}
+        \text{hidden constraints} \\
+        \text{optional user-defined invariants}
     \end{array}
     \end{equation*}
     %
@@ -151,7 +151,7 @@
             v_{2}(v_{1}, \mx, t) \\
             \vdots \\
             v_{n}(v_{1}, \dots, v_{n-1}, \mx, t)
-        \end{bmatrix} \text{.}
+        \end{bmatrix}
     \end{equation*}
   \end{itemize}
 \end{frame}
@@ -163,12 +163,12 @@
     \begin{column}[c]{0.6\textwidth}
       Projection is performed \dots
       \begin{itemize}
-        \item during the \textbf{numerical integration};
-        \item to \textbf{enforce} the solution $\mx$ on the $\mhv$ manifold;
+        \item during the \textbf{numerical integration}
+        \item to \textbf{enforce} the solution $\mx$ onto the $\mhv$ manifold
         \item by solving the \textbf{constrained minimization} problem
           \begin{align*}
-            \underset{\mx}{\text{minimize}} \quad &\dfrac{1}{2}\left(\mx - \tilde{\mx}\right)^2 \text{,} \\
-            \text{subject to} \quad &\mhv = \m{0} \text{.}
+            \underset{\mx}{\text{minimize}} \quad &\dfrac{1}{2}\left(\mx - \tilde{\mx}\right)^2 \\
+            \text{subject to} \quad &\mhv = \m{0}
           \end{align*}
         \end{itemize}
       \end{column}
@@ -177,26 +177,21 @@
       \end{column}
     \end{columns}
     \vspace{1.0em}
-    \hic{\large Find $\mx$ with minimal distance from $\tilde{\mx}$ that satisfys the invariants $\mhv$}
+    \hic{\large Find $\mx$ with minimal distance from $\tilde{\mx}$ that satisfies the invariants $\mhv$}
 \end{frame}
 
 \begin{frame}{Projection on Invariants}{Theoretical Background and Implementation}
   \begin{itemize}
     \item The \textbf{Lagrangian} of the minimization problem is
     \begin{equation*}
-      \mathcal{L}(\mx, \boldsymbol{\lambda}) = \frac{1}{2}\left(\mx - \tilde{\mx}\right)^2 + \boldsymbol{\lambda} \mhv \text{,}
-      \quad \text{the solution is found through} \quad
+      \mathcal{L}(\mx, \boldsymbol{\lambda}) = \frac{1}{2}\left(\mx - \tilde{\mx}\right)^2 + \boldsymbol{\lambda} \cdot \mhv
+      \quad \rightarrow \quad
       \begin{cases}
         \mx + \m{Jh}_\mx^\top \boldsymbol{\lambda} = \tilde{\mx} \\
         \mhv = \m{0}
-      \end{cases} \hspace{-1.0em}\text{.}
+      \end{cases}
     \end{equation*}
-    \item Using the \textbf{Taylor expansion} of $\mathcal{L}(\mx, \boldsymbol{\lambda})$ we obtain
-    \begin{equation*}
-      \mhv + \m{Jh}_{\mx} \delta\mx + \mathcal{O}\left(\| \delta\mx \|^2\right) = \m{0} \text{.}
-    \end{equation*}
-    \item The iterative method is defined as $\mx = \tilde{\mx} + \delta\mx$.
-    \item The step $\delta\mx$ is found through the \textbf{linear} system
+    \item The problem is solved using the iterative method
     \begin{equation*}
       \begin{bmatrix}
         \m{I}        & \m{Jh}_\mx^\top \\
@@ -208,7 +203,14 @@
       \end{bmatrix} = \begin{bmatrix}
         \tilde{\mx} - \mx \\
         -\mhv
-      \end{bmatrix} \text{.}
+      \end{bmatrix} \quad \text{where the step is $\mx = \tilde{\mx} + \delta\mx$}
+    \end{equation*}
+    \item[] \dots derived from the \textbf{Taylor expansion}
+    \begin{equation*}
+      \begin{cases}
+        \mhv + \m{Jh}_{\mx}(\mx, \m{v}, t) \delta\mx + \textcolor{mycolor2}{\mathcal{O}\left(\| \delta\mx \|^2\right)} = \m{0} \\
+        \mx + \delta\mx + \m{Jh}_{\mx}^{\top}(\mx + \textcolor{mycolor2}{\delta \mx}, \m{v}, t) \boldsymbol{\lambda} = \tilde{\mx}
+      \end{cases}
     \end{equation*}
   \end{itemize}
 \end{frame}
@@ -225,8 +227,8 @@
           x^{\prime}_{3} = u_{3} \\
           u^{\prime}_{1} = u_{3}\cos(t) - x_{3}\sin(t) - u_{2} + 2 c x_{1}\lambda \\
           u^{\prime}_{2} = u_{3}\sin(t) + x_{3}\cos(t) + u_{1} + 2 c x_{2}\lambda \\
-          u^{\prime}_{3} = x_{3} + 2x_{3}\lambda \\
-          \rho^2 = x_{1}^2 + x_{2}^2 + x_{3}^2 - 2r(x_{1}^2 + x_{2}^2)^{1/2} + r^2
+          u^{\prime}_{3} = x_{3} + 2x_{3}\lambda \\[-0.1em]
+          \rho^2 = x_{1}^2 + x_{2}^2 + x_{3}^2 - 2r\sqrt{x_{1}^2 + x_{2}^2} + r^2
         \end{cases}
       \end{equation*}
       with $c = 1 - \dfrac{r}{\sqrt{x_{1}^2 + x_{2}^2}}$.
@@ -245,40 +247,40 @@
         \end{bmatrix}
       \end{equation*} \\[-3.0em]
       \centering{
-        \begin{tikzpicture}
-          \begin{axis}[
-            xtick=\empty, ytick=\empty, ztick=\empty,
-            axis line style={draw=none},
-            tick style={draw=none},
-            axis equal,
-            view={100}{40}]
-            \addplot3[surf,
-              samples=50,
-              color=mycolor1, opacity=0.25,
-              faceted color=mycolor1!20,
-              domain=0:2*pi,
-              y domain=0:2*pi,
-              z buffer=sort]
-              ({(10+5*cos(deg(x)))*cos(deg(y+pi/2))},
-                {(10+5*cos(deg(x)))*sin(deg(y+pi/2))},
-                {5*sin(deg(x))});
-            \addplot3[variable=\t,
-              no markers,
-              samples=50,
-              color=mycolor4,
-              domain=0:2*pi,
-              line width=0.1pt, dashed]
-              ({(10+5*cos(deg(2*pi-\t)))*cos(deg(\t))},
-                {(10+5*cos(deg(2*pi-\t)))*sin(deg(\t))},
-                {5*sin(deg(2*pi-\t))});
-            \addplot3[
-              mark=*, mark size=1.0pt,
-              color=mycolor4]
-              ({(10+5*cos(deg(2*pi-0.1*pi)))*cos(deg(0.1*pi))},
-                {(10+5*cos(deg(2*pi-0.1*pi)))*sin(deg(0.1*pi))},
-                {5*sin(deg(2*pi-0.1*pi))});
-          \end{axis}
-      \end{tikzpicture}
+      %%  \begin{tikzpicture}
+      %%    \begin{axis}[
+      %%      xtick=\empty, ytick=\empty, ztick=\empty,
+      %%      axis line style={draw=none},
+      %%      tick style={draw=none},
+      %%      axis equal,
+      %%      view={100}{40}]
+      %%      \addplot3[surf,
+      %%        samples=50,
+      %%        color=mycolor1, opacity=0.25,
+      %%        faceted color=mycolor1!20,
+      %%        domain=0:2*pi,
+      %%        y domain=0:2*pi,
+      %%        z buffer=sort]
+      %%        ({(10+5*cos(deg(x)))*cos(deg(y+pi/2))},
+      %%          {(10+5*cos(deg(x)))*sin(deg(y+pi/2))},
+      %%          {5*sin(deg(x))});
+      %%      \addplot3[variable=\t,
+      %%        no markers,
+      %%        samples=50,
+      %%        color=mycolor4,
+      %%        domain=0:2*pi,
+      %%        line width=0.1pt, dashed]
+      %%        ({(10+5*cos(deg(2*pi-\t)))*cos(deg(\t))},
+      %%          {(10+5*cos(deg(2*pi-\t)))*sin(deg(\t))},
+      %%          {5*sin(deg(2*pi-\t))});
+      %%      \addplot3[
+      %%        mark=*, mark size=1.0pt,
+      %%        color=mycolor4]
+      %%        ({(10+5*cos(deg(2*pi-0.1*pi)))*cos(deg(0.1*pi))},
+      %%          {(10+5*cos(deg(2*pi-0.1*pi)))*sin(deg(0.1*pi))},
+      %%          {5*sin(deg(2*pi-0.1*pi))});
+      %%    \end{axis}
+      %%\end{tikzpicture}
       %\animategraphics[
       %  controls, loop
       %]{12}{gif_generation/torus/torus_png/torus1-}{1}{3}
@@ -296,7 +298,7 @@
 \begin{frame}{Symbolic-Numerical Validation}{Solution Visualization}
   \begin{minipage}[c]{0.22\textwidth}
     \hic{\large The importance of projection \dots}
-    $\Delta t = 0.025$ seconds \\ $t \in [0, 400\pi]$
+    $\Delta t = 0.025$\,s \\ $t \in [0, 400\pi]$\,s
   \end{minipage}
   \begin{minipage}[c]{0.77\textwidth}
     \vspace{-2.0em}

@@ -5,7 +5,7 @@
 \begin{frame}{Symbolic Matrix Factorization}{\acf{LU}}
   The ``standard'' in numerical linear algebra \dots
   \begin{bbox}[Full-Pivoting \acs{LU} Factorization]
-    Given a matrix $\m{A} \in \mathbb{R}^{m \times n}$, with $m \geq n$, the full-pivoting \ac{LU} decomposition is defined as the process of decomposing $\m{A}$ into the product of
+    Given a matrix $\m{A} \in \mathbb{R}^{m \times n}$, with $m \geq n$, the full-pivoting \acs{LU} decomposition is defined as the process of decomposing $\m{A}$ into the product of
     \begin{itemize}
       \item a $\m{L} \in \mathbb{R}^{m \times m}$ lower-triangular matrix with all diagonal entries equal to $1$;
       \item a $\m{U} \in \mathbb{R}^{m \times n}$ upper-triangular matrix;
@@ -19,7 +19,7 @@
 \begin{frame}{Symbolic Matrix Factorization}{\acf{FFLU}}
   Trying to guarantee exact divisions on factors \dots
   \begin{bbox}[Full-Pivoting \acs{FFLU} Factorization]
-    Given a matrix $\m{A} \in \mathbb{R}^{m \times n}$, with $m \geq n$, the full-pivoting \ac{FFLU} decomposition is defined as the process of decomposing $\m{A}$ into the product of
+    Given a matrix $\m{A} \in \mathbb{R}^{m \times n}$, with $m \geq n$, the full-pivoting \acs{FFLU} decomposition is defined as the process of decomposing $\m{A}$ into the product of
     \begin{itemize}
       \item a lower-triangular matrix $\m{L} \in \mathbb{R}^{m \times m}$ with all diagonal entries equal to $1$;
       \item \textcolor{fg_sl_color}{a diagonal matrix $\m{D} \in \mathbb{R}^{m \times m}$;}
@@ -28,14 +28,14 @@
     \end{itemize}
     such that $\m{P}\textcolor{fg_sl_color}{\m{D}}\m{A}\m{Q} = \m{L}\m{U}$.
   \end{bbox}
-  \dots same effectiveness of \ac{LU} decomposition, but with a slightly different implementation!
+  \dots same effectiveness of \acs{LU} decomposition, but with a slightly different implementation!
 \end{frame}
 
 \section{Symbolic Finite Element Method}
 
 \begin{frame}{Symbolic Finite Element Method}{Direct Stiffness Method}
   \begin{itemize}
-    \item Symbolic computation can be applied to the \textbf{\ac{FE} method}.
+    \item Symbolic computation can be applied to the \textbf{\acs{FE} method}.
     \item \textbf{Stiffness matrix}, \textbf{load vector}, and \textbf{boundary conditions} are defined symbolically.
     \begin{equation*}
       \begin{bmatrix}
@@ -62,7 +62,7 @@
   \end{itemize}
   \begin{bbox}[The Fundamental Idea]
     \centering
-    \ac{FE} method $\quad \autorightarrow{\text{symbolic}}{\text{computation}} \quad$ Symbolic \ac{FE} method + \textcolor{fg_sl_color}{\textbf{A lot of flexibility!}}
+    \acs{FE} method $\quad \autorightarrow{\text{symbolic}}{\text{computation}} \quad$ Symbolic \acs{FE} method + \textcolor{fg_sl_color}{\textbf{A lot of flexibility!}}
   \end{bbox}
 \end{frame}
 
@@ -79,10 +79,10 @@
       \item guarantee \textbf{numerical stability} of the solution.
     \end{enumerate}
     \item \Maple{} matrix factorizations have \textbf{limited capabilities}.
-    \item We developed the \ac{LAST} symbolic matrix factorization toolbox capable of \dots
+    \item We developed the \acs{LAST} symbolic matrix factorization toolbox capable of \dots
     \begin{enumerate}
       \item dealing with these \Maple{} issues;
-      \item introducing \textbf{veiling variables} not to increase the expressions size (through \ac{LEM} toolbox);
+      \item introducing \textbf{veiling variables} not to increase the expressions size (through \acs{LEM} toolbox);
       \item performing LU, Fraction-Free LU, QR, and Gauss-Jordan factorizations.
     \end{enumerate}
   \end{itemize}
@@ -99,11 +99,11 @@
   \end{itemize}
   \begin{bbox}
     \centering
-    \ac{FE} model $\quad \autorightarrow{\text{symbolic}}{\text{computation}} \quad$ \hspace*{1.05cm}\textcolor{mycolor2}{\textbf{Stop}}\hspace*{1.05cm} $\quad \autorightarrow{\text{code}}{\text{generation}} \quad$ \begin{minipage}[c]{0.27\linewidth}\begin{center}{\textcolor{fg_sl_color}{\textbf{Efficient}} numeric \\ \ac{FE} model solution}\end{center}\end{minipage}
+    \acs{FE} model $\quad \autorightarrow{\text{symbolic}}{\text{computation}} \quad$ \hspace*{1.05cm}\textcolor{mycolor2}{\textbf{Stop}}\hspace*{1.05cm} $\quad \autorightarrow{\text{code}}{\text{generation}} \quad$ \begin{minipage}[c]{0.27\linewidth}\begin{center}{\textcolor{fg_sl_color}{\textbf{Efficient}} numeric \\ \acs{FE} model solution}\end{center}\end{minipage}
   \end{bbox}
   \begin{bbox}
     \centering
-    \ac{FE} model $\quad \autorightarrow{\text{symbolic}}{\text{computation}} \quad$ \textcolor{mycolor5}{\textbf{Symbolic solution}} $\quad \autorightarrow {\text{code}}{\text{generation}} \quad$ \begin{minipage}[c]{0.27\linewidth}\begin{center}{\textcolor{fg_sl_color}{\textbf{Lightning-fast}} \\ numeric evaluation!}\end{center}\end{minipage}
+    \acs{FE} model $\quad \autorightarrow{\text{symbolic}}{\text{computation}} \quad$ \textcolor{mycolor5}{\textbf{Symbolic solution}} $\quad \autorightarrow {\text{code}}{\text{generation}} \quad$ \begin{minipage}[c]{0.27\linewidth}\begin{center}{\textcolor{fg_sl_color}{\textbf{Lightning-fast}} \\ numeric evaluation!}\end{center}\end{minipage}
   \end{bbox}
 \end{frame}
 
@@ -124,12 +124,12 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Suspensions Symbolic Modeling}{Rigid \ac{MB} \& \ac{FE} Models}
+\begin{frame}{Suspensions Symbolic Modeling}{Rigid \acs{MB} \& \acs{FE} Models}
   \begin{minipage}[c]{0.55\linewidth}
     \begin{itemize}
       \item The main idea is \dots
       \begin{enumerate}
-        \item to \textbf{decouple} the rigid multibody and \ac{FE} models of the suspension.
+        \item to \textbf{decouple} the rigid multibody and \acs{FE} models of the suspension.
         \item that compliance contribution are \textbf{small}.
       \end{enumerate}
     \end{itemize}
@@ -141,7 +141,7 @@
       \item The computation sequence is \dots
       \begin{enumerate}
         \item integration step of the \textbf{rigid multibody};
-        \item resolution of the \textbf{symbolic \ac{FE}} model;
+        \item resolution of the \textbf{symbolic \acs{FE}} model;
         \item sum the two contributions to obtain the \textbf{total displacement}:
         \item  use a \textbf{mixed} symbolic/numerical approach.
       \end{enumerate}
