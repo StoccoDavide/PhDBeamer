@@ -42,26 +42,24 @@
 \subsection{\acl{LEM}}
 
 \begin{frame}{\acl{LEM}}{Hierarchical Representation}
-  Let us consider an expression of the form
+  Where progressively \textbf{hide} complexity in veiling variables
   \begin{equation*}
-    \textcolor{mycolor1}{\underline{2xy(1+y)}} \cdot f(x,y) +
-    \textcolor{mycolor2}{\underline{5z(3a+z)}} \cdot g(y) +
-    \textcolor{mycolor3}{\underline{3c(xy+z)}} \cdot h(x,z) \text{.}
+    \textcolor{mycolor1}{\underline{2xy(1+y)}} \cdot f(x,y) + \textcolor{mycolor2}{\underline{5z(3a+z)}} \cdot g(y) + \textcolor{mycolor3}{\underline{3c(xy+z)}} \cdot h(x,z)
   \end{equation*}
-  One of its possible hierarchical representations is
   \begin{equation*}
-    \textcolor{mycolor1}{v_1} \cdot f(x,y) +
-    \textcolor{mycolor2}{v_2} \cdot g(y) +
-    \textcolor{mycolor3}{v_3} \cdot h(x,z) \text{,}
+    \textcolor{mycolor5}{\underline{v_1 \cdot f(x,y)}} + \textcolor{mycolor4}{\underline{v_2 \cdot g(y) + v_3 \cdot h(x,z)}}
   \end{equation*}
-  where the veiling variables are
   \begin{equation*}
-    \textcolor{mycolor1}{v_1} = 2x(1+y) \text{,}
-    \qquad
-    \textcolor{mycolor2}{v_2} = 5z(3a+z) \text{,}
-    \qquad \text{and} \qquad
-    \textcolor{mycolor3}{v_3} = 3c(xy+z) \text{.}
+    v_4 + v_5
   \end{equation*}
+  where the \textbf{veiling variables} are
+  \begin{align*}
+    \textcolor{mycolor1}{v_1} &= 2x(1+y) \\
+    \textcolor{mycolor2}{v_2} &= 5z(3a+z) \\
+    \textcolor{mycolor3}{v_3} &= 3c(xy+z) \\
+    \textcolor{mycolor4}{v_4} &= \textcolor{mycolor2}{v_2} \cdot g(y) + \textcolor{mycolor3}{v_3} \cdot h(x,z) \\
+    \textcolor{mycolor5}{v_5} &= \textcolor{mycolor1}{v_1} \cdot f(x,y)
+  \end{align*}
 \end{frame}
 
 \begin{frame}{\acl{LEM}}{Hierarchical Representation}
@@ -88,15 +86,11 @@
 \begin{frame}{\acl{LEM}}{Measuring Expression Complexity}
   \centering{\begin{tikzpicture}[scale=0.5]
     \node at (0,0) {Easy to implement, but \dots};
-    \uncover<1->{\draw[fg_sl_color, thick, -stealth] (-2,-1.25) -- (-4.0,-3.25);}
-    \uncover<2->{\draw[fg_sl_color, thick, -stealth] (+2,-1.25) -- (+4.0,-3.25);}
-  \end{tikzpicture}}
-  \vspace{1.5em}
-  \begin{columns}
-    \begin{column}[t]{0.5\textwidth}
-      \uncover<1->{\hi{\large How to measure symbolic expression complexity?}
+    \uncover<1->{
+      \draw[fg_sl_color, thick, -stealth] (-2,-1) -- (-4.0,-3);
+      \draw (-0.5\textwidth,-3.25) node[below, text width=0.5\textwidth] {
+      \hi{\large How to measure symbolic expression complexity?}
       \begin{itemize}
-        \normalsize
         \item \textbf{Length in characters} \\
         \begin{small}
           \quad \textcolor{mycolor2!95!black}{Same expression can have different lengths}
@@ -109,126 +103,97 @@
         \begin{small}
           \quad \textcolor{mycolor5!95!black}{Insensible to internal representation}
         \end{small}
-      \end{itemize}}
-    \end{column}
-    \begin{column}[t]{0.5\textwidth}
-      \uncover<2->{\hi{\large What is the right level of expression complexity?}
+      \end{itemize}
+    };}
+    \uncover<2->{
+      \draw[fg_sl_color, thick, -stealth] (+2,-1) -- (+4.0,-3);
+      \draw (0.5\textwidth,-3.25) node[below, text width=0.5\textwidth] {
+      \hi{\large What is the right level of expression complexity?}
       \begin{itemize}
-        \normalsize
-        %\item \textbf{Prediction} \\
-        %\begin{small}
-        %  \quad {Based on the specific operations to be performed}
-        %\end{small}
-          \item \textbf{Trial and error} \\
+        \item \textbf{Trial and error} \\
         \begin{small}
           \quad No general rule, depends on the software
         \end{small}
-      \end{itemize}}
-    \end{column}
-  \end{columns}
+      \end{itemize}};
+    }
+  \end{tikzpicture}}
 \end{frame}
 
 \subsection{Symbolic Matrix Factorization}
 
-\begin{frame}{Symbolic Matrix Factorization}
-  \textbf{Numeric} factorization is a fundamental operation in numerical linear algebra. It is used to \dots
+\begin{frame}{Symbolic Matrix Factorization}{Considerations and Challenges}
+  \hic{\faCanadianMapleLeaf~\Maple{} factorizations are sensitive to expression swell}
   \begin{itemize}
-    \item solve linear systems of equations (inverting the original matrix is not recommended);
-    \item provide insights into the properties of the original matrix (\ie{}, rank and determinant).
+    \item<2-> \textbf{\acl{LU}~(\acs{LU})} and \textbf{\acl{FFLU}~(\acs{FFLU})} factorizations \dots \\
+    \begin{small}
+      \qquad preserve \textbf{sparsity} and \textbf{fill-in} \\
+      \qquad perform \textbf{minimal algebraic manipulations} \\
+      \qquad allow for custom \textbf{pivoting strategies}
+    \end{small}
+  \item<3->However\dots
+    \begin{enumerate}
+      \normalsize
+      \item output's numerical stability is not guaranteed \\
+      \begin{small}
+        \qquad \textbf{How to ensure numerical stability?}
+      \end{small}
+      \item expressions grow unpredictably during manipulation \\
+      \begin{small}
+        \qquad \textbf{How to manage large symbolic expressions?}
+      \end{small}
+    \end{enumerate}
   \end{itemize}
-  \vspace{1.0em}
-  \hic{Does this also apply to the symbolic computation? \textcolor{black}{Yes!}}
-
-\end{frame}
-
-\begin{frame}{Symbolic Matrix Factorization}
-  \begin{itemize}
-    \item There are many factorizations, however we choose \dots \\
-    \begin{small}
-      \qquad \textbf{\ac{LU}} \\
-      \qquad \textbf{\ac{FFLU}}
-    \end{small}
-    \item They have some important features \dots \\
-    \begin{itemize}
-      \item preserve \textbf{sparsity} and \textbf{fill-in}
-      \item perform \textbf{minimal algebraic manipulations}
-      \item allow for custom \textbf{pivoting strategies}
-    \end{itemize}
-    \item \Maple{} matrix factorizations are \textbf{sensitive to expression swell}
-    %\item We developed \ac{LAST} \dots
-    %\begin{enumerate}
-    %  \item At specific steps of the algorithm \textbf{veiling variables} are introduced not to increase the size of the expressions.
-    %\end{enumerate}
-  \end{itemize}
-  However\dots
-  \begin{enumerate}
-    \item the output is not guaranteed to be stable once numerically evaluated \\
-    \begin{small}
-      \qquad \textbf{How to ensure the stability of the symbolic factorization?}
-    \end{small}
-    \item symbolic expressions tend to grow during manipulation \\
-    \begin{small}
-      \qquad \textbf{How to manage large symbolic expressions?}
-    \end{small}
-  \end{enumerate}
 \end{frame}
 
 \begin{frame}{Symbolic Matrix Factorization}{Symbolic Pivoting Strategy}
-  \vspace{-1.75em}
+  \vspace{-1.5em}
   \hic{How to ensure numerical stability?}
-  \vspace{-0.75em}
   \begin{columns}
-    \begin{column}[c]{0.5\textwidth}
-      A good symbolic \textbf{pivoting strategy} should \dots
+    \begin{column}[c]{0.47\textwidth}
+      A good symbolic \textbf{pivoting strategy} \dots
       \begin{enumerate}
-        \item<1> select the \textbf{minimum-degree} entry \\
+        \item<1> selects the \textbf{minimum-degree} entry \\
         \begin{small}
           \qquad Limit fill-in
         \end{small}
-        \item<2> if numeric, select the \textbf{biggest} entry \\
+        \item<2> if numeric, selects the \textbf{biggest} entry \\
         \begin{small}
           \qquad Improve numerical stability
         \end{small}
-        \item<3> select the \textbf{simplest} and \textbf{min-degree} entry \\
+        \item<3> selects \textbf{simplest} and \textbf{min-degree} entry \\
         \begin{small}
           \qquad Limit expression swell
         \end{small}
-        \item<4> look for the \textbf{best choice} \\
+        \item<4> looks for the \textbf{best choice} \\
         \begin{small}
           \qquad Full-pivoting strategy
         \end{small}
       \end{enumerate}
     \end{column}
-    \begin{column}[c]{0.6\textwidth}
+    \begin{column}[c]{0.53\textwidth}
       \begin{algorithmic}\scriptsize
-        %\State \textbf{Require:} A $m \times n$ matrix $\m{A}$.
-        %\State \phantom{\textbf{Require:}} The $k$-th pivoting stage.
-        \Procedure{SymbolicPivoting}{$\m{A}$, $k$} %\Comment{Symbolic pivoting procedure for the $k$-th pivot}
-        \State \only<1>{\hlc}{$\m{d}^r, \, \m{d}^c \gets \text{ComputeDegrees}(\m{A})$} %\Comment{Calculate the row and column degrees of $\m{A}$}
-          \For{\only<4>{\hlc}{$i$ \textbf{from} $k$ \textbf{to} $m$}} %\Comment{Iterate over the rows}
-          \For{\only<4>{\hlc}{$j$ \textbf{from} $k$ \textbf{to} $n$}} %\Comment{Iterate over the columns}
-              \State $D_{ij} \gets \infty$ %\Comment{Set the combined degree matrix to infinity}
+        \Procedure{SymbolicPivoting}{$\m{A}$, $k$}
+        \State \only<1>{\hlc}{$\m{d}^r, \, \m{d}^c \gets \text{ComputeDegrees}(\m{A})$}
+          \For{\only<4>{\hlc}{$i$ \textbf{from} $k$ \textbf{to} $m$}}
+          \For{\only<4>{\hlc}{$j$ \textbf{from} $k$ \textbf{to} $n$}}
+              \State $D_{ij} \gets \infty$
               \IfThen{$A_{ij} \neq 0$}
-              {\only<1>{\hlc}{$D_{ij} \gets d^r_{i} \, \max(0, \, d^c_j-1) + d^c_j \, \max(0, \, d^r_i-1)$}} %\Comment{The degree}
+              {\only<1>{\hlc}{$D_{ij} \gets d^r_{i} \, \max(0, \, d^c_j-1) + d^c_j \, \max(0, \, d^r_i-1)$}}
             \EndFor
           \EndFor
-          \State \only<1>{\hlc}{$\mathcal{P} \gets \text{Sort}(\m{D})$} %\Comment{Find the permutation that sorts the pivots list by degree cost}
-          \State $q, \, l \gets \, 0, \, 0$  ~ and ~ %\Comment{Initialize the temporary pivot row and column indices}
-          $p, \, p_c, \, p_n \gets \infty, \, \infty, \, \infty$ %\Comment{Initialize the pivot value, complexity and numerical value}
-          \For{\textbf{all} $(i, j)$ \textbf{in} $\mathcal{P}$} %\Comment{Iterate on the permutation set}
-            \IfThen{$p_c \neq \infty$ \textbf{and} $D_{ij} > D_{ql}$}{\textbf{break}} %\Comment{No more good pivots to check}
-            \State $t \gets A_{ij}$ %\Comment{Get the pivot value}
-            \IfThen{$\text{Signature}(t) = 0$}{\textbf{continue}} %\Comment{Skip the next pivot}
-            \State $t \gets \text{Simplify}(t)$ ~ and ~ %\Comment{Try to simplify the pivot expression}
-            \only<3>{\hlc}{$t_c \gets \text{ExpressionComplexity}(t)$} ~ and ~ %\Comment{Calculate the computational cost of the pivot}
-            $t_n \gets \infty$ %\Comment{Set the default numerical value of the pivot to infinity}
-            \IfThen{$t$ is numeric}{\only<3>{\hlc}{$t_n \gets \max(1, \, \text{abs}(t))$}} %\Comment{Set the numerical value of the pivot}
-            \If{\only<2>{\hlc}{$t_c < p_c$} \textbf{or} (\only<2>{\hlc}{$t_c = p_c$} \textbf{and} \only<2>{\hlc}{$t_n > p_n$})} %\Comment{If the pivot is better than the current one}
-              \State $q, \, l \gets i, \, j$ ~ and ~ %\Comment{Update the best pivot row and column indices}
-              $p, \, p_c, \, p_n \gets t, \, t_c, \, t_n$ %\Comment{Save the best pivot value, complexity and numerical value}
+          \State \only<1>{\hlc}{$\mathcal{P} \gets \text{Sort}(\m{D})$}
+          \State $q, \, l \gets \, 0, \, 0$  and $p, \, p_c, \, p_n \gets \infty, \, \infty, \, \infty$
+          \For{\textbf{all} $(i, j)$ \textbf{in} $\mathcal{P}$}
+            \IfThen{$p_c \neq \infty$ \textbf{and} $D_{ij} > D_{ql}$}{\textbf{break}}
+            \State $t \gets A_{ij}$
+            \IfThen{$\text{Signature}(t) = 0$}{\textbf{continue}}
+            \State $t \gets \text{Simplify}(t)$ and \only<3>{\hlc}{$t_c \gets \text{ExpressionComplexity}(t)$} and $t_n \gets \infty$
+            \IfThen{$t$ is numeric}{\only<2>{\hlc}{$t_n \gets \max(1, \, \text{abs}(t))$}}
+            \If{\only<3>{\hlc}{$t_c < p_c$} \textbf{or} (\only<2>{\hlc}{$t_c = p_c$} \textbf{and} \only<2>{\hlc}{$t_n > p_n$})}
+              \State $q, \, l \gets i, \, j$ and $p, \, p_c, \, p_n \gets t, \, t_c, \, t_n$
             \EndIf
           \EndFor
-          \State \textbf{return} $p, \, q, \, l$ %\Comment{The $k$-th pivot and its position}
+          \State \textbf{return} $p, \, q, \, l$
         \EndProcedure
       \end{algorithmic}
     \end{column}
@@ -236,71 +201,64 @@
 \end{frame}
 
 \begin{frame}{Symbolic Matrix Factorization}{\acs{LEM} During Factorization}
-  \vspace{-2.0em}
+  \vspace{-1.5em}
   \hic{How to manage large symbolic expressions?}
   \begin{columns}
-    \hspace{1.0em}
-    \begin{column}[c]{0.425\textwidth}
+    \begin{column}[c]{0.32\textwidth}
       Veils are introduced during \dots
       \begin{itemize}
         \item<1> \textbf{Factorization step} \\
         \begin{small}
-          \qquad Gaussian elimination \\
-          \qquad Schur complement computation
+          \qquad gaussian elimination \\
+          \qquad Schur complement
         \end{small}
         \item<2> \textbf{Solution step} \\
         \begin{small}
-          \qquad Forward substitution \\
-          \qquad Backward substitution
+          \qquad forward substitution \\
+          \qquad backward substitution
         \end{small}
       \end{itemize}
     \end{column}
-    \begin{column}[c]{0.4\textwidth}
-      \vspace{-1.0em}
-      \hspace{-1.0em}
+    \begin{column}[c]{0.36\textwidth}
       \uncover<1>{\begin{algorithmic}\scriptsize
-        %\State \textbf{Require:} A $m \times n$ matrix $\m{A}$.
-        \Procedure{LU}{$\m{A}, \, k$} %\Comment{Symbolic full-pivoting \acs{LU} procedure}
-          \State $\m{M} \gets \m{A}$ %\Comment{Initialize the matrix $\m{M}$}
-          \State $rnk \gets \min(m, \, n)$ %\Comment{Initialize the rank of $\m{M}$}
-          \For{$k$ \textbf{from} $1$ \textbf{to} $rnk$} %\Comment{Perform Gaussian elimination}
-            \State $p, \, q, \, l \gets \text{SymbolicPivoting}(\m{M}, \, k)$ %\Comment{Find the best pivot for the $k$-th step}
-            \If{$p = 0$} %\Comment{Check for null pivot}
-              \State $rnk \gets k-1$ ~ and ~ %\Comment{The rank of $\m{M}$ is $k-1$}
-              \textbf{break} %\Comment{The matrix is singular}
+        \Procedure{LU}{$\m{A}, \, k$}
+          \State $\m{M} \gets \m{A}$
+          \State $rnk \gets \min(m, \, n)$
+          \For{$k$ \textbf{from} $1$ \textbf{to} $rnk$}
+            \State $p, \, q, \, l \gets \text{SymbolicPivoting}(\m{M}, \, k)$
+            \If{$p = 0$}
+              \State $rnk \gets k-1$ and \textbf{break}
             \EndIf
-            \State $\m{r}_k, \, \m{c}_k \gets \, q, \, l$ %\Comment{Store the pivot row and column indices}
-            \State $\m{M} \gets \text{SwapRowsCols}(\m{M}, \, k, \, q,  \, l)$ %\Comment{Swap the $k$-th and $q$-th rows}
-            \For{$i$ \textbf{from} $k+1$ \textbf{to} $m$} %\Comment{Compute the $k$-th column of $\m{L}$}
-              \State \hlc{$M_{kk} \gets \text{Veil}(M_{kk})$} %\Comment{Veil the $k$-th pivot}
-              \State \hlc{$M_{ik} \gets \text{Veil}(\text{Normalizer}(M_{ik}/M_{kk}))$} %\Comment{Normalize the $k$-th pivot}
-              \For{$j$ \textbf{from} $k+1$ \textbf{to} $n$} %\Comment{Compute the $k$-th row of $\m{U}$}
-                \State \hlc{$M_{ij} \gets \text{Veil}(\text{Normalizer}(M_{ij} - M_{ik}M_{kj}))$} %\Comment{Finalize the Schur complement}
+            \State $\m{r}_k, \, \m{c}_k \gets \, q, \, l$
+            \State $\m{M} \gets \text{SwapRowsCols}(\m{M}, \, k, \, q,  \, l)$
+            \For{$i$ \textbf{from} $k+1$ \textbf{to} $m$}
+              \State \only<1>{\hlc}{$M_{kk} \gets \text{Veil}(M_{kk})$}
+              \State \only<1>{\hlc}{$M_{ik} \gets \text{Veil}(\text{Normalizer}(M_{ik}/M_{kk}))$}
+              \For{$j$ \textbf{from} $k+1$ \textbf{to} $n$}
+                \State \only<1>{\hlc}{$M_{ij} \gets \text{Veil}(\text{Normalizer}(M_{ij} - M_{ik}M_{kj}))$}
               \EndFor
             \EndFor
           \EndFor
-          \State $\m{P}, \, \m{Q} \gets \text{PermutationMatrices}(\m{r}, \, \m{c})$ %\Comment{Compute the permutation matrices}
-          \State $\m{L}, \, \m{U} \gets \text{LowerUpperMatrices}(\m{M})$ %\Comment{Extract the lower-triangular part of $\m{M}$}
-          \State \textbf{return} $\m{L}, \, \m{U}, \, \m{P}, \, \m{Q}, \, \m{r}, \, \m{c}, \, rnk$ %\Comment{Return the factors and the rank of $\m{A}$}
+          \State $\m{P}, \, \m{Q} \gets \text{PermutationMatrices}(\m{r}, \, \m{c})$
+          \State $\m{L}, \, \m{U} \gets \text{LowerUpperMatrices}(\m{M})$
+          \State \textbf{return} $\m{L}, \, \m{U}, \, \m{P}, \, \m{Q}, \, \m{r}, \, \m{c}, \, rnk$
         \EndProcedure
       \end{algorithmic}}
     \end{column}
-    \begin{column}[c]{0.3\textwidth}
-      \vspace{-1.0em}
+    \begin{column}[c]{0.32\textwidth}
       \uncover<2>{\begin{algorithmic}\scriptsize
-        %\State \textbf{Require:} The \acs{LU} factors $\m{L}$, $\m{U}$, $\m{P}$, $\m{Q}$, and a vector $\m{b}$.
-        \Procedure{SolveLU}{$\m{L}, \, \m{U}, \, \m{P}, \, \m{Q}, \, \m{b}$} %\Comment{Solve the linear system $\m{A}\m{x} = \m{b}$}
-          \State $\m{y} \gets \m{P}\m{b}$ %\Comment{Apply the permutation matrix $\m{P}$ to the vector $\m{b}$}
-          \State $m, \, n \gets \text{Size}(\m{L})$ %\Comment{Get the size of $\m{L}$}
-          \For{$i$ \textbf{from} $2$ \textbf{to} $m$} %\Comment{Solve $\m{L}\m{y} = \m{P}\m{b}$}
-            \State \hlc{$y_i \gets \text{Veil}(y_i - \sum\nolimits_{j=1}^{i-1} L_{ij}y_j)$} %\Comment{Perform forward substitution}
+        \Procedure{SolveLU}{$\m{L}, \, \m{U}, \, \m{P}, \, \m{Q}, \, \m{b}$}
+          \State $\m{y} \gets \m{P}\m{b}$
+          \State $m, \, n \gets \text{Size}(\m{L})$
+          \For{$i$ \textbf{from} $2$ \textbf{to} $m$}
+            \State \only<2>{\hlc}{$y_i \gets \text{Veil}(y_i - \sum\nolimits_{j=1}^{i-1} L_{ij}y_j)$}
           \EndFor
-          \State $x_n \gets \text{Veil}(y_n/U_{nn})$ %\Comment{Perform the first backward substitution}
-          \For{$i$ \textbf{from} $n-1$ \textbf{to} $1$} %\Comment{Solve $\m{U}\m{x} = \m{y}$}
-            \State \hlc{$x_i \gets \text{Veil}(y_i - {\sum\nolimits_{j=i+1}^{n}} U_{ij}x_j)$} %\Comment{Perform backward substitution}
-            \State \hlc{$x_i \gets \text{Veil}(x_i/U_{ii})$}
+          \State $x_n \gets \text{Veil}(y_n/U_{nn})$
+          \For{$i$ \textbf{from} $n-1$ \textbf{to} $1$}
+            \State \only<2>{\hlc}{$x_i \gets \text{Veil}(y_i - {\sum\nolimits_{j=i+1}^{n}} U_{ij}x_j)$}
+            \State \only<2>{\hlc}{$x_i \gets \text{Veil}(x_i/U_{ii})$}
           \EndFor
-          \State $\m{x} \gets \m{Q}^\top\m{x}$ %\Comment{Apply the permutation matrix $\m{Q}^\top$ to the solution $\m{x}$}
+          \State $\m{x} \gets \m{Q}^\top\m{x}$
         \EndProcedure
       \end{algorithmic}}
     \end{column}

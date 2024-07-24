@@ -10,6 +10,8 @@
 *.toc
 *.lof
 *.lot
+*.nav
+*.snm
 *.run.xml
 *.synctex.gz
 *.synctex.gz(busy)

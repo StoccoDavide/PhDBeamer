@@ -23,9 +23,4 @@ all:
 
 final: pdf_shell_escape bib pdf_shell_escape pdf_shell_escape
 
-dir:
-	mkdir -p out/content
-	mkdir -p out/figures
-	mkdir -p out/figures/externalized
-
 # That's all folks!

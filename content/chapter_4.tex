@@ -9,7 +9,7 @@
   \begin{columns}
     \begin{column}[c]{0.2\textwidth}
       \flushright
-      \vspace{-1.3em}%
+      \vspace{-1.25em}%
       \uncover<4->{\begin{tikzpicture}[overlay, remember picture]
         \draw[fg_sl_color, thick, -stealth] (0.5,-1.75) -- (0.0,-1.75) -- (0.0,1.75) -- (0.5,1.75);
         \node[text width=0.75\textwidth, align=center] at (-1.0,0.0) {If $\mE$ is singular};
@@ -40,7 +40,7 @@
   \vspace{-1.0em}
   \begin{columns}
     \begin{column}[c]{0.6\textwidth}
-      \begin{enumerate}
+      \begin{enumerate}[<+->]
         \item Consider the \textbf{generic} \acsp{DAE} system
         \begin{equation*}
           \mF = \mA \mxp - \mb = \m{0}
@@ -121,29 +121,29 @@
 \begin{frame}{Index Reduction Algorithm}{The Reduced \acs{DAE} System}
   The index-reduced system of \acsp{DAE} takes the form \dots
   \begin{itemize}[<+->]
-    \item A \textbf{differential part}, which can be expressed as
+    \item \textbf{Differential part}
     %
     \begin{equation*}
       \begin{array}{ccl}
-          \m{F}(\mx, \mx^\prime, \m{v}, t) = \m{0} & \hspace{0.5cm} & \text{implicit  system class} \\
-          \m{A}(\mx, \m{v}, t) \mx^\prime = \m{b}(\mx, \m{v}, t) & \hspace{0.5cm} & \text{semi-explicit system class} \\
-          \mx^\prime = \m{f}(\mx, \m{v}, t) & \hspace{0.5cm} & \text{explicit system class}
+          \m{F}(\mx, \mx^\prime, \m{v}, t) = \m{0} & \quad & \text{implicit  system class} \\
+          \m{A}(\mx, \m{v}, t) \mx^\prime = \m{b}(\mx, \m{v}, t) & \quad & \text{semi-explicit system class} \\
+          \mx^\prime = \m{f}(\mx, \m{v}, t) & \quad & \text{explicit system class}
       \end{array}
     \end{equation*}
     %
-    \item The \textbf{invariants}, arising from the index reduction
+    \item \textbf{Invariants}
     %
     \begin{equation*}
       \m{h}(\mx, \m{v}, t) = \begin{bmatrix}
           \mhiv \\
           \mhuv
-      \end{bmatrix} = \m{0} \hspace{0.5cm} \begin{array}{l}
+      \end{bmatrix} = \m{0} \quad \begin{array}{l}
         \text{hidden constraints} \\
-        \text{optional user-defined invariants}
-    \end{array}
+        \text{\emph{optional} user-defined invariants}
+        \end{array}
     \end{equation*}
     %
-    \item The \textbf{veiling variables}, used to limit expression swell
+    \item \textbf{Veiling variables}
     %
     \begin{equation*}
         \m{v}(\mx, t) = \begin{bmatrix}
@@ -203,7 +203,7 @@
       \end{bmatrix} = \begin{bmatrix}
         \tilde{\mx} - \mx \\
         -\mhv
-      \end{bmatrix} \quad \text{where the step is $\mx = \tilde{\mx} + \delta\mx$}
+      \end{bmatrix} \quad \text{where the step is} \quad \mx = \tilde{\mx} + \delta\mx
     \end{equation*}
     \item[] \dots derived from the \textbf{Taylor expansion}
     \begin{equation*}
@@ -234,7 +234,7 @@
       with $c = 1 - \dfrac{r}{\sqrt{x_{1}^2 + x_{2}^2}}$.
     \end{column}
     \begin{column}[t]{0.575\textwidth}
-      \vspace{-3.0em}
+      \vspace{-4.0em}
       \hic{\large A stable path \dots}
       with $\mx_{0} = [15, 0, 0, 0, 15, -5, \lambda]^{\top}$ and parameters $\rho = 5$ and $r = 10$ is given by
       \begin{equation*}
@@ -247,44 +247,40 @@
         \end{bmatrix}
       \end{equation*} \\[-3.0em]
       \centering{
-      %%  \begin{tikzpicture}
-      %%    \begin{axis}[
-      %%      xtick=\empty, ytick=\empty, ztick=\empty,
-      %%      axis line style={draw=none},
-      %%      tick style={draw=none},
-      %%      axis equal,
-      %%      view={100}{40}]
-      %%      \addplot3[surf,
-      %%        samples=50,
-      %%        color=mycolor1, opacity=0.25,
-      %%        faceted color=mycolor1!20,
-      %%        domain=0:2*pi,
-      %%        y domain=0:2*pi,
-      %%        z buffer=sort]
-      %%        ({(10+5*cos(deg(x)))*cos(deg(y+pi/2))},
-      %%          {(10+5*cos(deg(x)))*sin(deg(y+pi/2))},
-      %%          {5*sin(deg(x))});
-      %%      \addplot3[variable=\t,
-      %%        no markers,
-      %%        samples=50,
-      %%        color=mycolor4,
-      %%        domain=0:2*pi,
-      %%        line width=0.1pt, dashed]
-      %%        ({(10+5*cos(deg(2*pi-\t)))*cos(deg(\t))},
-      %%          {(10+5*cos(deg(2*pi-\t)))*sin(deg(\t))},
-      %%          {5*sin(deg(2*pi-\t))});
-      %%      \addplot3[
-      %%        mark=*, mark size=1.0pt,
-      %%        color=mycolor4]
-      %%        ({(10+5*cos(deg(2*pi-0.1*pi)))*cos(deg(0.1*pi))},
-      %%          {(10+5*cos(deg(2*pi-0.1*pi)))*sin(deg(0.1*pi))},
-      %%          {5*sin(deg(2*pi-0.1*pi))});
-      %%    \end{axis}
-      %%\end{tikzpicture}
-      %\animategraphics[
-      %  controls, loop
-      %]{12}{gif_generation/torus/torus_png/torus1-}{1}{3}
-      }
+      \begin{tikzpicture}
+        \begin{axis}[
+          xtick=\empty, ytick=\empty, ztick=\empty,
+          axis line style={draw=none},
+          tick style={draw=none},
+          axis equal,
+          view={100}{40}]
+          \addplot3[surf,
+            samples=50,
+            color=mycolor1, opacity=0.25,
+            faceted color=mycolor1!20,
+            domain=0:2*pi,
+            y domain=0:2*pi,
+            z buffer=sort]
+            ({(10+5*cos(deg(x)))*cos(deg(y+pi/2))},
+              {(10+5*cos(deg(x)))*sin(deg(y+pi/2))},
+              {5*sin(deg(x))});
+          \addplot3[variable=\t,
+            no markers,
+            samples=50,
+            color=mycolor4,
+            domain=0:2*pi,
+            line width=0.5pt]
+            ({(10+5*cos(deg(2*pi-\t)))*cos(deg(\t))},
+              {(10+5*cos(deg(2*pi-\t)))*sin(deg(\t))},
+              {5*sin(deg(2*pi-\t))});
+          %\addplot3[
+          %  mark=*, mark size=1.0pt,
+          %  color=mycolor4]
+          %  ({(10+5*cos(deg(2*pi-0.1*pi)))*cos(deg(0.1*pi))},
+          %    {(10+5*cos(deg(2*pi-0.1*pi)))*sin(deg(0.1*pi))},
+          %    {5*sin(deg(2*pi-0.1*pi))});
+        \end{axis}
+      \end{tikzpicture}}
     \end{column}
   \end{columns}
 \end{frame}
@@ -296,15 +292,19 @@
 \end{frame}
 
 \begin{frame}{Symbolic-Numerical Validation}{Solution Visualization}
-  \begin{minipage}[c]{0.22\textwidth}
-    \hic{\large The importance of projection \dots}
-    $\Delta t = 0.025$\,s \\ $t \in [0, 400\pi]$\,s
-  \end{minipage}
-  \begin{minipage}[c]{0.77\textwidth}
-    \vspace{-2.0em}
-    \small{\input{figures/torus_radauiia5.tex}}
-    \small{\input{figures/torus_radauiia5_noproj.tex}}
-  \end{minipage}
+  \begin{columns}
+    \begin{column}[c]{0.22\textwidth}
+      \hic{\large The importance of projection \dots}
+      $\Delta t = 0.05$\,s \\ $t \in [0, 200\pi]$\,s
+    \end{column}
+    \begin{column}[c]{0.77\textwidth}
+      \centering\small
+      \textbf{RadauIIA5 - No projection}%
+      \hspace{3.5em}%
+      \textbf{RadauIIA5 - With projection}
+      \movie[label=show1, width=0.95\textwidth, autostart, poster, showcontrols, loop]{\includegraphics[width=0.95\textwidth]{torus_3d_placeholder.png}}{movie/torus_3d.mov}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 % That's all Folks!

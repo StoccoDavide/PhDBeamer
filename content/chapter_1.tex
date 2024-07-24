@@ -9,6 +9,7 @@
         \hi{\large Why do we need simulation?} \\
         It is used to \dots \\
         \begin{itemize}\small
+          \setlength{\itemsep}{0.0em}
           \item[\raisebox{-1pt}{\scalebox{0.8}{\faCogs}}] \emph{predict} the behavior
           \item[\raisebox{-1pt}{\scalebox{0.8}{\faConnectdevelop}}] \emph{design} and \emph{optimize}
           \item[\raisebox{-1pt}{\scalebox{0.8}{\faHourglassStart}}] accelerate development and testing
@@ -21,6 +22,7 @@
         \hi{\large Simulations' \textbf{complexity} is increasing!} \\
         Higher \textbf{fidelity}, more \textbf{complexity}, more \dots \\
         \begin{itemize}\small
+          \setlength{\itemsep}{0.0em}
           \item[\raisebox{-1pt}{\scalebox{0.8}{\faCog}}] components \\
           \item[\raisebox{-1pt}{\scalebox{0.8}{\faCompress}}] interactions \\
           \item[\raisebox{-1pt}{\scalebox{0.8}{\faDesktop}}] computational resources \\
@@ -30,15 +32,7 @@
       \end{column}
     \begin{column}[c]{0.4\textwidth}
       \centering
-      \uncover<3->{\hic{\large A ``random'' example}}
-      \only<-2>{
-        \hic{\Huge{\textbf{?}} \\[0.5em]
-        \normalsize{\dots something we've never seen before!}}
-      }
-      \only<3->{\includegraphics[
-          width=0.52\textwidth, trim={0cm 0cm 4.65cm 0cm}, clip
-        ]{figures/vehicle_modules.eps}
-      }
+      \visible<3->{\includegraphics[width=0.52\textwidth, trim={0cm 0cm 4.65cm 0cm}, clip]{figures/vehicle_modules.eps}}
     \end{column}
   \end{columns}
 \end{frame}
@@ -71,12 +65,8 @@
     \end{column}
     \begin{column}[c]{0.4\textwidth}
       \centering
-      \hic{\large A ``random'' example}
-      \only<1>{\includegraphics[
-          width=0.52\textwidth, trim={0cm 0cm 4.65cm 0cm}, clip
-        ]{figures/vehicle_modules.eps}}
-      \only<2->{
-        \includegraphics[width=\textwidth]{figures/vehicle_modules.eps}}
+      %\only<1>{\includegraphics[width=0.52\textwidth, trim={0cm 0cm 4.65cm 0cm}, clip]{figures/vehicle_modules.eps}}
+      \only<1->{\includegraphics[width=\textwidth]{figures/vehicle_modules.eps}}
     \end{column}
   \end{columns}
 \end{frame}
@@ -107,7 +97,7 @@
           \qquad \textcolor{mycolor3!95!black}{reduced computational resources}
         \end{small}
       \end{itemize}
-      \uncover{\hic{\normalsize
+      \uncover<4->{\hic{\normalsize
         These examples are special cases! \\
         \emph{What about more general systems?}
       }}
@@ -167,7 +157,7 @@
     \vspace{0.25em}
     \item \acsp{ODE} have a \textbf{complete} theoretical foundation, \acsp{DAE} do not
     \item Existing tools for \acsp{DAE} are not as \textbf{mature} and \textbf{efficient} as \acsp{ODE} tools
-    \item From an engineering perspective, this is a \textbf{problem} (\textcolor{fg_sl_color}{\faHourglassHalf\,\faDollarSign\,\faCarCrash\,\faSadTear})
+    \item From an engineering perspective, this is a \textbf{problem} (\textcolor{fg_sl_color}{\scalebox{0.8}{\faHourglassHalf\,\faDollarSign\,\faCarCrash\,\faSadTear}})
     %\begin{small}
     %\qquad high level of applicability, \emph{but not very widely used!} \\
     %\qquad effective in the solution of \acsp{ODE}, \emph{but what about \acsp{DAE}?}

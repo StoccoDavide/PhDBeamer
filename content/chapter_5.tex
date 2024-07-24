@@ -4,17 +4,19 @@
 
 \begin{frame}{Application Fields and Examples}{Bechmarking the Index Reduction Algorithm}
   \hic{The benchmark problems \dots}
+  \hspace{0.25em}
   \begin{columns}
-    \hspace{0.035\textwidth}
     \begin{column}[t]{0.575\textwidth}
       \textbf{Multi-body dynamics}
       \begin{enumerate}\small
+        \setlength{\itemsep}{0.0em}
         \item Car-axis (index-3)
         \item Flexible slider-crank (index-3)
         \item Double-wishbone suspension (index-3)
       \end{enumerate}
       \textbf{Trajectory prescribed path control problems}
       \begin{enumerate}\setcounter{enumi}{3}\small
+        \setlength{\itemsep}{0.0em}
         \item Space shuttle initial stage reentry (index-3)
         \item Space shuttle final stage reentry (index-2)
         \item Robotic arm control  (index-5)
@@ -24,12 +26,14 @@
     \begin{column}[t]{0.55\textwidth}
       \textbf{Electric circuits}
       \begin{enumerate}\setcounter{enumi}{6}\small
+        \setlength{\itemsep}{0.0em}
         \item Eight-nodes transistor-amplifier (index-3)
         \item Electric ring modulator (index-1)
         \item Cascaded differential amplifiers (up to index-100)
       \end{enumerate}
       \textbf{Generic \acs{DAE} systems}
       \begin{enumerate}\setcounter{enumi}{9}\small
+        \setlength{\itemsep}{0.0em}
         \item Particle motion (index-3);
         \item $2$-pendula (index-3)
         \item $3$-pendula (index-5)
@@ -38,7 +42,10 @@
       \end{enumerate}
     \end{column}
   \end{columns}
-  Most of the problems are taken from \fullcite{mazzia2008test}
+  \vspace{1.0em}
+  \scriptsize{Most of the problems are taken from: \\
+  \fullcite{mazzia2008test} \\
+  \fullcite{brenan1995numerical}}
 \end{frame}
 
 \begin{frame}{Application Fields and Examples}{Factorizations Performance}
@@ -182,8 +189,8 @@
     \end{column}
   \end{columns}
   \vspace{-1.5em}
-  \small{\input{figures/flexible_slider_crank.tex}}
-  \small{\input{figures/flexible_slider_crank_pivots.tex}}
+  %\small{\input{figures/flexible_slider_crank.tex}}
+  %\small{\input{figures/flexible_slider_crank_pivots.tex}}
 \end{frame}
 
 \begin{frame}{Application Fields and Examples}{Benchmarking the Index Reduction Algorithm}
@@ -191,18 +198,20 @@
   \begin{columns}
     \begin{column}[t]{0.5\textwidth}
       The \textbf{rules} \dots
-      \begin{itemize}
-        \item \SI{100}{\second} time limit for symbolic simplification
-        \item unlimited time for numerical integration
-        \item if you can integrate the problem, you win
+      \begin{itemize}\small
+        \setlength{\itemsep}{0.0em}
+        \item[\raisebox{-1pt}{\scalebox{0.8}{\faHourglassHalf}\,}] \SI{100}{\second} time limit for symbolic simplification
+        \item[\raisebox{-1pt}{\scalebox{0.8}{\faInfinity}}] unlimited time for numerical integration
+        \item[\raisebox{-1pt}{\scalebox{0.8}{\faCheck}}] if you can integrate the problem, you win
       \end{itemize}
     \end{column}
     \begin{column}[t]{0.5\textwidth}
       The \textbf{competitors} \dots \\
-      \begin{itemize}
+      \begin{itemize}\small
+        \setlength{\itemsep}{0.0em}
         \item \Maple{} \texttt{dsolve} (undisclosed)
         \item \Matlab{} \texttt{reduceDAEIndex} (Pantelides)
-        \item \Matlab{} \texttt{reduceDAEToODE} (Gauss. elim.)
+        \item \Matlab{} \texttt{reduceDAEToODE} (Gaussian elim.)
         \item \Mathematica{} \texttt{NDSolve} (Pantelides)
         \item \Maple{} + \Matlab{} \texttt{Indigo} (proposed)
       \end{itemize}
