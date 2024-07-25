@@ -3,6 +3,7 @@
 *.aux
 *.auxlock
 *.bbl
+*.bbl-SAVE-ERROR
 *.blg
 *.bcf
 *.log

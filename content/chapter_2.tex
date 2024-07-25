@@ -80,23 +80,28 @@
   Is the solution of \acsp{DAE} a straightforward extension of \acsp{ODE}?
   \begin{itemize}
     \item \textbf{No}, otherwise we would not have been here
-    \item Numerical integration of \acsp{DAE} is \textbf{challenging}
-    \item A \textbf{reformulation} of the \acs{DAE} system is typically required
+    \item Special \textbf{numerical techniques} are required
+    \item \textbf{Reformulation} of the \acs{DAE} system is typically required
   \end{itemize}
   \vspace{1.0em}
   \centering
   \begin{tikzpicture}[scale=0.5]
     \uncover<2->{\node at (0,0) {\textbf{Two} main approaches \dots};}
     \visible<3,5->{\draw[fg_sl_color, thick, -stealth] (-2,-1) -- (-3,-2);}
-    \uncover<3,5->{\node at (-5,-3) {\hi{\large Index Reduction}};}
+    \uncover<3,5->{\node at (-5,-3) {\hi{\large Index reduction}};}
     \visible<4>{\draw[fg_sl_color, thick, -stealth] (+2,-1) -- (+3,-2);}
-    \uncover<4->{\node at (+5.75,-3) {\hi{\large Direct Discretization}};}
+    \uncover<4->{\node at (+5.75,-3) {\hi{\large Direct discretization}};}
     \visible<5->{
       \node at (0,-6) {\hi{\large \dots or a mix between them!}};
       \draw[fg_sl_color, thick, -stealth] (-1,-3) -- (+1,-3);
       \draw[fg_sl_color, thick, -stealth] (+3,-4) -- (+2,-5);
     }
   \end{tikzpicture}
+
+  \scriptsize{
+    \fullcite{petzold1982differential} \\
+    \fullcite{gear1971simultaneous}
+  }
 \end{frame}
 
 \subsubsection{Direct Discretization}
@@ -168,7 +173,7 @@
   \vspace{1.0em}
   \uncover<2->{Index reduction is \dots}
   \begin{itemize}
-    \item<2-> reduced by \textbf{algebraic manipulation} and \textbf{differentiation}
+    \item<2-> carried out by \textbf{algebraic manipulation} and \textbf{differentiation}
     \item<3-> performed \textbf{prior} to numerical integration
     \item<4-> carried out through \textbf{symbolic computation} or \textbf{numerically} (with \emph{automatic differentiation})
   \end{itemize}
@@ -205,11 +210,10 @@
 
 \begin{frame}{Solution of \aclp{DAE}}{A New Algorithm for Index Reduction}
   \hic{\large How can we improve the state-of-the-art in the solution of \acsp{DAE}?}
-  \uncover<2->{With an algorithm capable of \textbf{separating} the differential and algebraic equations!
-  for index reduction based on \dots
+  \uncover<2->{Exploit symbolic computation for \textbf{separating} the differential and algebraic equations in the system!
   \begin{enumerate}
-    \item \textbf{none} a priori knowledge of the system structure
-    \item \textbf{basic} use of symbolic computation and linear algebra
+    \item \textbf{None} a priori knowledge of the system structure
+    \item \textbf{Basic} use of symbolic computation and linear algebra
   \end{enumerate}
   \vspace{0.5em}
   \begin{columns}

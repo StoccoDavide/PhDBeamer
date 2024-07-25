@@ -42,23 +42,21 @@
 \subsection{\acl{LEM}}
 
 \begin{frame}{\acl{LEM}}{Hierarchical Representation}
-  Where progressively \textbf{hide} complexity in veiling variables
+  We progressively \textbf{hide} complexity in veiling variables
   \begin{equation*}
-    \textcolor{mycolor1}{\underline{2xy(1+y)}} \cdot f(x,y) + \textcolor{mycolor2}{\underline{5z(3a+z)}} \cdot g(y) + \textcolor{mycolor3}{\underline{3c(xy+z)}} \cdot h(x,z)
-  \end{equation*}
-  \begin{equation*}
-    \textcolor{mycolor5}{\underline{v_1 \cdot f(x,y)}} + \textcolor{mycolor4}{\underline{v_2 \cdot g(y) + v_3 \cdot h(x,z)}}
-  \end{equation*}
-  \begin{equation*}
-    v_4 + v_5
+    \begin{array}{c}
+      \textcolor{mycolor1}{\underline{2xy(1+y)}} \cdot f(x,y) + \textcolor{mycolor2}{\underline{5z(3a+z)}} \cdot g(y) + \textcolor{mycolor3}{\underline{3c(xy+z)}} \cdot h(x,z) \\[0.1em]
+      \textcolor{mycolor5}{\underline{v_1 \cdot f(x,y)}} + \textcolor{mycolor4}{\underline{v_2 \cdot g(y) + v_3 \cdot h(x,z)}} \\[0.1em]
+      v_4 + v_5
+    \end{array}
   \end{equation*}
   where the \textbf{veiling variables} are
   \begin{align*}
     \textcolor{mycolor1}{v_1} &= 2x(1+y) \\
     \textcolor{mycolor2}{v_2} &= 5z(3a+z) \\
     \textcolor{mycolor3}{v_3} &= 3c(xy+z) \\
-    \textcolor{mycolor4}{v_4} &= \textcolor{mycolor2}{v_2} \cdot g(y) + \textcolor{mycolor3}{v_3} \cdot h(x,z) \\
-    \textcolor{mycolor5}{v_5} &= \textcolor{mycolor1}{v_1} \cdot f(x,y)
+    \textcolor{mycolor4}{v_4} &= \textcolor{mycolor1}{v_1} \cdot f(x,y) \\
+    \textcolor{mycolor5}{v_5} &= \textcolor{mycolor2}{v_2} \cdot g(y) + \textcolor{mycolor3}{v_3} \cdot h(x,z)
   \end{align*}
 \end{frame}
 
@@ -160,7 +158,7 @@
         \begin{small}
           \qquad Improve numerical stability
         \end{small}
-        \item<3> selects \textbf{simplest} and \textbf{min-degree} entry \\
+        \item<3> selects \textbf{least complicated} entry \\
         \begin{small}
           \qquad Limit expression swell
         \end{small}

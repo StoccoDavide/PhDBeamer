@@ -11,8 +11,8 @@
       \flushright
       \vspace{-1.25em}%
       \uncover<4->{\begin{tikzpicture}[overlay, remember picture]
-        \draw[fg_sl_color, thick, -stealth] (0.5,-1.75) -- (0.0,-1.75) -- (0.0,1.75) -- (0.5,1.75);
-        \node[text width=0.75\textwidth, align=center] at (-1.0,0.0) {If $\mE$ is singular};
+        \draw[fg_sl_color, thick, -stealth] (0.5,-2.05) -- (0.0,-2.05) -- (0.0,2.05) -- (0.5,2.05);
+        \node[text width=0.75\textwidth, align=center] at (-1.0,0.0) {If $\mA$ is singular};
         %\draw[fg_sl_color, thick, -stealth] (-1.0,-0.5) -- (-1.0,-2.75);
       \end{tikzpicture}}
     \end{column}
@@ -24,7 +24,7 @@
         \end{equation*}
         \item \textbf{Separate} the differential and algebraic equations of the system
         \begin{equation*}
-          \begin{bmatrix} \mE \\ \m{0} \end{bmatrix} \mxp = \begin{bmatrix} \mg \\ \ma \end{bmatrix}
+          \underbrace{\begin{bmatrix} \mE \\ \m{0} \end{bmatrix}}_{\mA} \mxp = \underbrace{\begin{bmatrix} \mg \\ \ma \end{bmatrix}}_{\mb}
         \end{equation*}
         \item \textbf{Reduce} the index by differentiating the algebraic equations $\ma = \m{0}$
       \end{enumerate}
@@ -69,10 +69,11 @@
 \subsubsection{Differentiation of Algebraic Equations}
 
 \begin{frame}{Index Reduction Algorithm}{Differentiation of Algebraic Equations}
-  \vspace{-1.0em}
+  \vspace{-1.5em}
   \begin{columns}
     \begin{column}[c]{0.6\textwidth}
       \begin{enumerate}[<+->]\setcounter{enumi}{2}
+        \item Update the \textbf{invariants} as $\mh = \mh \cup \ma$
         \item \textbf{Differentiate} the algebraic equations $\ma$
         \begin{equation*}
           \dfrac{\text{d}}{\text{d}t} \ma = \mAd \mxp - \mgd
@@ -87,7 +88,7 @@
         \item The differential index has been reduced by one!
       \end{enumerate}
       \uncover<4->{\begin{bbox}[A Sequential Algorithm]
-        Apply \boxednumber{1}--\boxednumber{5} repeatedly until $\mA$ is non-singular.
+        Apply \boxednumber{1}--\boxednumber{6} repeatedly until $\mA$ is non-singular.
       \end{bbox}}
     \end{column}
     \begin{column}[c]{0.4\textwidth}
@@ -191,7 +192,7 @@
         \mhv = \m{0}
       \end{cases}
     \end{equation*}
-    \item The problem is solved using the iterative method
+    \item The iterative method is \dots
     \begin{equation*}
       \begin{bmatrix}
         \m{I}        & \m{Jh}_\mx^\top \\
@@ -217,26 +218,23 @@
 
 \begin{frame}{Symbolic-Numerical Validation}{The Problem}
   \begin{columns}
-    \begin{column}[t]{0.425\textwidth}
-      A \textbf{particle} moving over a \textbf{torus} surface% on a \textbf{stable path}
+    \begin{column}[c]{0.425\textwidth}
+      A \textbf{particle} moving over a \textbf{torus} surface
       \begin{equation*}
-        \label{chap4:eq:torus}
         \begin{cases}
           x^{\prime}_{1} = u_{1} \\
           x^{\prime}_{2} = u_{2} \\
           x^{\prime}_{3} = u_{3} \\
           u^{\prime}_{1} = u_{3}\cos(t) - x_{3}\sin(t) - u_{2} + 2 c x_{1}\lambda \\
           u^{\prime}_{2} = u_{3}\sin(t) + x_{3}\cos(t) + u_{1} + 2 c x_{2}\lambda \\
-          u^{\prime}_{3} = x_{3} + 2x_{3}\lambda \\[-0.1em]
-          \rho^2 = x_{1}^2 + x_{2}^2 + x_{3}^2 - 2r\sqrt{x_{1}^2 + x_{2}^2} + r^2
+          u^{\prime}_{3} = x_{3} + 2x_{3}\lambda \\
+          \rho^2 = x_{1}^2 + x_{2}^2 + x_{3}^2 - 2r(x_{1}^2 + x_{2}^2)^{\frac{1}{2}} + r^2
         \end{cases}
       \end{equation*}
-      with $c = 1 - \dfrac{r}{\sqrt{x_{1}^2 + x_{2}^2}}$.
+      with $c = 1 - r/(x_{1}^2 + x_{2}^2)^{\frac{1}{2}}$, $\rho = 5$, $r = 10$, and ICs $\mx_{0} = [15, 0, 0, 0, 15, -5, \lambda]^{\top}$
     \end{column}
-    \begin{column}[t]{0.575\textwidth}
-      \vspace{-4.0em}
-      \hic{\large A stable path \dots}
-      with $\mx_{0} = [15, 0, 0, 0, 15, -5, \lambda]^{\top}$ and parameters $\rho = 5$ and $r = 10$ is given by
+    \begin{column}[c]{0.575\textwidth}
+      \hic{\large Exact Solution \dots}
       \begin{equation*}
         \mx_\text{exact} = \begin{bmatrix}
           x_{1} \\ x_{2} \\ x_{3}
@@ -245,66 +243,62 @@
           (\rho \cos(2\pi - t) + r) \sin(t) \\
           \rho \sin(2\pi - t)
         \end{bmatrix}
-      \end{equation*} \\[-3.0em]
-      \centering{
-      \begin{tikzpicture}
-        \begin{axis}[
-          xtick=\empty, ytick=\empty, ztick=\empty,
-          axis line style={draw=none},
-          tick style={draw=none},
-          axis equal,
-          view={100}{40}]
-          \addplot3[surf,
-            samples=50,
-            color=mycolor1, opacity=0.25,
-            faceted color=mycolor1!20,
-            domain=0:2*pi,
-            y domain=0:2*pi,
-            z buffer=sort]
-            ({(10+5*cos(deg(x)))*cos(deg(y+pi/2))},
-              {(10+5*cos(deg(x)))*sin(deg(y+pi/2))},
-              {5*sin(deg(x))});
-          \addplot3[variable=\t,
-            no markers,
-            samples=50,
-            color=mycolor4,
-            domain=0:2*pi,
-            line width=0.5pt]
-            ({(10+5*cos(deg(2*pi-\t)))*cos(deg(\t))},
-              {(10+5*cos(deg(2*pi-\t)))*sin(deg(\t))},
-              {5*sin(deg(2*pi-\t))});
-          %\addplot3[
-          %  mark=*, mark size=1.0pt,
-          %  color=mycolor4]
-          %  ({(10+5*cos(deg(2*pi-0.1*pi)))*cos(deg(0.1*pi))},
-          %    {(10+5*cos(deg(2*pi-0.1*pi)))*sin(deg(0.1*pi))},
-          %    {5*sin(deg(2*pi-0.1*pi))});
-        \end{axis}
-      \end{tikzpicture}}
+      \end{equation*} \\
+      \centering{\includegraphics[width=0.6\textwidth, trim={17.0cm 3.5cm 2cm 2.5cm}, clip]{torus_3d_placeholder.png}}
     \end{column}
   \end{columns}
+  \vspace{0.5em}
+  \scriptsize{\fullcite{campbell1995constraint}}
+\end{frame}
+
+\begin{frame}{Symbolic-Numerical Validation}{Index Reduction}
+  \vspace{-1.0em}
+  \centering{\scriptsize\begin{tabular}{cccc}
+    \multicolumn{4}{c}{\textbf{\acs{LU} Factorization}} \\
+    \toprule
+    \textbf{Original \acsp{DAE}} & \multicolumn{3}{c}{$\mF = 47\cf + 30\cm + 23\ca$ \quad $\mh = 0$} \\
+    \midrule
+    \textbf{Reduction step} & $\mE$ & $\mg$ & $\ma$ \\
+    \midrule
+    Index-3 \acsp{DAE} & $0$ & $39\cf + 36\cm + 13\ca$ & $7\cf + 10\cm + 6\ca$ \\
+    Index-2 \acsp{DAE} & $0$ & $39\cf + 36\cm + 13\ca$ & $22\cf + 20\cm + 8\ca$ \\
+    Index-1 \acsp{DAE} & $0$ & $39\cf + 36\cm + 13\ca$ & $68\cf + 72\cm + 33\ca$ \\
+    Index-0 \acsp{DAE} & $388\cf + 424\cm + 180\ca$ & $79\cf + 77\cm + 26\ca$ & $0$ \\
+    \midrule
+    \rowcolor{mycolor5!25}
+    \textbf{Reduced \acsp{DAE}} & \multicolumn{3}{c}{$\mF = 258\cf + 239\cm + 109\ca$ \quad $\mh = 97\cf + 102\cm + 47\ca$} \\
+    \bottomrule \\[0.05em]
+    %
+    \multicolumn{4}{c}{\textbf{\acs{FFLU} Factorization}} \\
+    \toprule
+    \textbf{Original \acsp{DAE}} & \multicolumn{3}{c}{$\mF = 47\cf + 30\cm + 23\ca$ \quad $\mh = 0$} \\
+    \midrule
+    \textbf{Reduction step} & $\mE$ & $\mg$ & $\ma$ \\
+    \midrule
+    Index-3 \acsp{DAE} & $0$ & $39\cf + 36\cm + 13\ca$ & $7\cf + 10\cm + 6\ca$ \\
+    Index-2 \acsp{DAE} & $0$ & $39\cf + 36\cm + 13\ca$ & $26\cf + 23\cm + 8\ca$ \\
+    Index-1 \acsp{DAE} & $0$ & $39\cf + 36\cm + 13\ca$ & $68\cf + 72\cm + 33\ca$ \\
+    Index-0 \acsp{DAE} & $388\cf + 424\cm + 180\ca$ & $79\cf + 77\cm + 26\ca$ & $0$ \\
+    \midrule
+    \rowcolor{mycolor2!25}
+    \textbf{Reduced \acsp{DAE}} & \multicolumn{3}{c}{$\mF = 258\cf + 239\cm + 109\ca$ \quad $\mh = 101\cf + 105\cm + 47\ca$} \\
+    \bottomrule \\[0.025em]
+    \multicolumn{4}{c}{\small\emph{Legend}: $\cf$ = functions, $\ca$ = additions, $\cm$ = multiplications, and $\cd$ = divisions.}
+    \end{tabular}}
 \end{frame}
 
 \begin{frame}{Symbolic-Numerical Validation}{Order and Error Analysis}
-  \vspace{-1.0em}
-  \hic{The order and the invariants are preserved}
   \centering{\small{\input{figures/torus_order_hidden.tex}}}
 \end{frame}
 
 \begin{frame}{Symbolic-Numerical Validation}{Solution Visualization}
-  \begin{columns}
-    \begin{column}[c]{0.22\textwidth}
-      \hic{\large The importance of projection \dots}
-      $\Delta t = 0.05$\,s \\ $t \in [0, 200\pi]$\,s
-    \end{column}
-    \begin{column}[c]{0.77\textwidth}
-      \centering\small
-      \textbf{RadauIIA5 - No projection}%
-      \hspace{3.5em}%
-      \textbf{RadauIIA5 - With projection}
-      \movie[label=show1, width=0.95\textwidth, autostart, poster, showcontrols, loop]{\includegraphics[width=0.95\textwidth]{torus_3d_placeholder.png}}{movie/torus_3d.mov}
-    \end{column}
-  \end{columns}
+  \hic{RadauIIA5 \quad $\Delta t = 0.05$\,s \quad $t \in [0, 200\pi]$\,s}
+  \vspace{1.0em}
+  \centering\small
+  \textbf{No projection}%
+  \hspace{10.0em}%
+  \textbf{With projection}
+  \movie[label=show1, width=0.8\textwidth, autostart, poster, showcontrols, loop]{\includegraphics[width=0.8\textwidth]{torus_3d_placeholder.png}}{movie/torus_3d.mov}
 \end{frame}
 
 % That's all Folks!
