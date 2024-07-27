@@ -1,0 +1,82 @@
+%!TEX root = ../main.tex
+
+%% Creator: Inkscape 1.3.2 (091e20e, 2023-11-25), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'acme_entities_1.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%%
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{245.31947339bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.32833473)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{acme_entities_1.pdf}}%
+    \put(0.70920217,0.00616928){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textsc{Triangle}\end{tabular}}}}%
+    \put(0.44506449,0.00827173){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textsc{Plane}\end{tabular}}}}%
+    \put(0.81121703,0.31349515){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\m{p}_{1}$\\\end{tabular}}}}%
+    \put(0.63610382,0.04522782){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\m{p}_{2}$\\\end{tabular}}}}%
+    \put(0.91983407,0.09369704){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\m{p}_{3}$\\\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{acme_entities_1.pdf}}%
+    \put(0.49019329,0.09675815){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\m{p}$\\\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{acme_entities_1.pdf}}%
+    \put(0.45214051,0.27939406){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\hat{\m{n}}$\\\end{tabular}}}}%
+    \put(0.0972783,0.00827175){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textsc{Segment}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{acme_entities_1.pdf}}%
+    \put(0.0597969,0.05203115){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\m{p}_{1}$\\\end{tabular}}}}%
+    \put(0.25580552,0.05203115){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\m{p}_{2}$\\\end{tabular}}}}%
+    \put(0.13617672,0.12590565){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textsc{Ray}\end{tabular}}}}%
+    \put(0.13313552,0.23958033){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textsc{Line}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{acme_entities_1.pdf}}%
+    \put(0.0718854,0.16544479){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\m{o}$\\\end{tabular}}}}%
+    \put(0.24968395,0.155){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\hat{\m{d}}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{acme_entities_1.pdf}}%
+    \put(0.07617824,0.28318896){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\m{o}$\\\end{tabular}}}}%
+    \put(0.24887432,0.27123687){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\hat{\m{d}}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{acme_entities_1.pdf}}%
+  \end{picture}%
+\endgroup%

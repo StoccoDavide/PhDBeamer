@@ -4,34 +4,19 @@
 
 \subsection{Working Principle}
 
-\begin{frame}{Index Reduction Algorithm}{Working Principle}
-  The index reduction algorithm is based on \textbf{three} steps \dots
-  \begin{columns}
-    \begin{column}[c]{0.2\textwidth}
-      \flushright
-      \vspace{-1.25em}%
-      \uncover<4->{\begin{tikzpicture}[overlay, remember picture]
-        \draw[fg_sl_color, thick, -stealth] (0.5,-2.05) -- (0.0,-2.05) -- (0.0,2.05) -- (0.5,2.05);
-        \node[text width=0.75\textwidth, align=center] at (-1.0,0.0) {If $\mA$ is singular};
-        %\draw[fg_sl_color, thick, -stealth] (-1.0,-0.5) -- (-1.0,-2.75);
-      \end{tikzpicture}}
-    \end{column}
-    \begin{column}[c]{0.85\textwidth}
-      \begin{enumerate}[<+->]
-        \item Consider the generic \acsp{DAE} system
-        \begin{equation*}
-          \mF = \mA \mxp - \mb = \m{0}
-        \end{equation*}
-        \item \textbf{Separate} the differential and algebraic equations of the system
-        \begin{equation*}
-          \underbrace{\begin{bmatrix} \mE \\ \m{0} \end{bmatrix}}_{\mA} \mxp = \underbrace{\begin{bmatrix} \mg \\ \ma \end{bmatrix}}_{\mb}
-        \end{equation*}
-        \item \textbf{Reduce} the index by differentiating the algebraic equations $\ma = \m{0}$
-      \end{enumerate}
-    \end{column}
-  \end{columns}
-  \vspace{0.75em}
-  \uncover<5->{This \textbf{repeats} until a \acs{ODE} system with invariants is obtained.}
+\begin{frame}{Index Reduction Algorithm}{Objectives and Working Principle}
+  \hic{How do we reduce the index of \acs{DAE} systems?}
+  \begin{enumerate}
+    \item \textbf{Separation} of the differential and algebraic equations
+    \item \textbf{Differentiation} of the algebraic equations
+    \item \textbf{Repeat} until necessary (\acs{ODE} or index-1 \acs{DAE} is reached)
+  \end{enumerate}
+  \vspace{1.0em}
+  \hic{Which are the prerequisites for the algorithm?}
+  \begin{itemize}
+    \item[\raisebox{-1pt}{\scalebox{0.8}{\faQuestion}}] \textbf{None} a priori knowledge of the \acs{DAE} system structure
+    \item[\raisebox{-1pt}{\scalebox{0.8}{\faPaperPlane}}] \textbf{Basic} use of symbolic computation and linear algebra
+  \end{itemize}
 \end{frame}
 
 \subsubsection{Separation of Differential and Algebraic Equations}
@@ -45,7 +30,7 @@
         \begin{equation*}
           \mF = \mA \mxp - \mb = \m{0}
         \end{equation*}
-        \item \textbf{Separate} the equations with the cokernel $\mK$ and its orthogonal complement $\mN$ of $\mE$
+        \item \textbf{Separate} the equations with the cokernel $\mK$ and its orthogonal complement $\mN$ of $\mA$
         \begin{equation*}
           \begin{bmatrix} \mE \\ \m{0} \end{bmatrix} \mxp = \begin{bmatrix} \mg \\ \ma \end{bmatrix}
           ~~ \text{with} ~~
@@ -56,8 +41,9 @@
           \end{array}
         \end{equation*}
       \end{enumerate}
+      \vspace{-1.0em}
       \uncover<3->{\begin{bbox}[Cokernel Computation]
-        The cokernel $\mK$ and its orthogonal complement $\mN$ of $\mE$ are calculated using \acs{LU} or \acs{FFLU} factorizations.
+        The cokernel $\mK$ and its orthogonal complement $\mN$ of $\mA$ are calculated using \acs{LU} or \acs{FFLU} factorizations.
       \end{bbox}}
     \end{column}
     \begin{column}[c]{0.4\textwidth}
@@ -88,7 +74,7 @@
         \item The differential index has been reduced by one!
       \end{enumerate}
       \uncover<4->{\begin{bbox}[A Sequential Algorithm]
-        Apply \boxednumber{1}--\boxednumber{6} repeatedly until $\mA$ is non-singular.
+        Apply \boxednumber{1}--\boxednumber{6} repeatedly until $\mA$ is non-singular
       \end{bbox}}
     \end{column}
     \begin{column}[c]{0.4\textwidth}
@@ -101,26 +87,27 @@
   \vspace{-1.0em}
   The algorithm can be extended to include \acs{LEM} \dots
   \begin{itemize}
-    \item the veiling variables are stored in the list of $\mv$;
-    \item the equations be also function of $\mv$;
-    \item the veiling variables do just add an evaluation layer to the algorithm.
+    \item the veiling variables are stored in the list of $\mv$
+    \item the equations be also function of $\mv$
+    \item the veiling variables do just add an evaluation layer to the algorithm
   \end{itemize}
   \visible<2->{\vspace{-1.5em}\hspace{-0.025\textwidth}\includegraphics[width=1.05\textwidth]{dae_visualization_veil.eps}}
 \end{frame}
 
-\begin{frame}{Index Reduction Algorithm}{Algorithm Flowchart}
-  \centering
-  \begin{tikzpicture}[overlay]
-    \node at (0,0) {\includegraphics[angle=270, width=1.0\textwidth]{dae_flowchart_veil}};
-    \only<1>{\draw[fg_sl_color, line width=1.0pt] (-7.2,  2.9) rectangle (-3.7,  0.4);} % Initialization
-    \only<2>{\draw[fg_sl_color, line width=1.0pt] (-3.7,  2.9) rectangle ( 7.2, -2.9);} % Index Reduction
-    \only<3>{\draw[fg_sl_color, dashed, line width=1.0pt] (-7.2, -0.3) rectangle (-3.7, -1.6);} % Optional step
-    \only<4>{\draw[fg_sl_color, line width=1.0pt] (-7.2, -1.6) rectangle (-3.7, -2.9);} % Finalization
-  \end{tikzpicture}
-\end{frame}
+%\begin{frame}{Index Reduction Algorithm}{Algorithm Flowchart}
+%  \centering
+%  \begin{tikzpicture}[overlay]
+%    \node at (0,0) {\includegraphics[angle=270, width=1.0\textwidth]{dae_flowchart_veil}};
+%    \only<1>{\draw[fg_sl_color, line width=1.0pt] (-7.2,  2.9) rectangle (-3.7,  0.4);} % Initialization
+%    \only<2>{\draw[fg_sl_color, line width=1.0pt] (-3.7,  2.9) rectangle ( 7.2, -2.9);} % Index Reduction
+%    \only<3>{\draw[fg_sl_color, dashed, line width=1.0pt] (-7.2, -0.3) rectangle (-3.7, -1.6);} % Optional step
+%    \only<4>{\draw[fg_sl_color, line width=1.0pt] (-7.2, -1.6) rectangle (-3.7, -2.9);} % Finalization
+%  \end{tikzpicture}
+%\end{frame}
 
 \begin{frame}{Index Reduction Algorithm}{The Reduced \acs{DAE} System}
-  The index-reduced system of \acsp{DAE} takes the form \dots
+  \vspace{-1.0em}
+  \hic{\faCanadianMapleLeaf~Now we can generate the code for the reduced \acs{DAE} system!}
   \begin{itemize}[<+->]
     \item \textbf{Differential part}
     %
@@ -160,6 +147,8 @@
 \subsection{Projection on Invariants}
 
 \begin{frame}{Projection on Invariants}{Theoretical Background and Implementation}
+  \vspace{-1.0em}
+  \hic{\faAngleRight\hspace{-0.1em}\faAngleRight\hspace{-0.1em}\faAngleRight~Now we can integrate the system in \Matlab{}!}
   \begin{columns}
     \begin{column}[c]{0.6\textwidth}
       Projection is performed \dots
@@ -181,40 +170,40 @@
     \hic{\large Find $\mx$ with minimal distance from $\tilde{\mx}$ that satisfies the invariants $\mhv$}
 \end{frame}
 
-\begin{frame}{Projection on Invariants}{Theoretical Background and Implementation}
-  \begin{itemize}
-    \item The \textbf{Lagrangian} of the minimization problem is
-    \begin{equation*}
-      \mathcal{L}(\mx, \boldsymbol{\lambda}) = \frac{1}{2}\left(\mx - \tilde{\mx}\right)^2 + \boldsymbol{\lambda} \cdot \mhv
-      \quad \rightarrow \quad
-      \begin{cases}
-        \mx + \m{Jh}_\mx^\top \boldsymbol{\lambda} = \tilde{\mx} \\
-        \mhv = \m{0}
-      \end{cases}
-    \end{equation*}
-    \item The iterative method is \dots
-    \begin{equation*}
-      \begin{bmatrix}
-        \m{I}        & \m{Jh}_\mx^\top \\
-        \m{Jh}_{\mx} & \m{0}
-      \end{bmatrix}
-      \begin{bmatrix}
-        \delta\mx \\
-        \boldsymbol{\lambda}
-      \end{bmatrix} = \begin{bmatrix}
-        \tilde{\mx} - \mx \\
-        -\mhv
-      \end{bmatrix} \quad \text{where the step is} \quad \mx = \tilde{\mx} + \delta\mx
-    \end{equation*}
-    \item[] \dots derived from the \textbf{Taylor expansion}
-    \begin{equation*}
-      \begin{cases}
-        \mhv + \m{Jh}_{\mx}(\mx, \m{v}, t) \delta\mx + \textcolor{mycolor2}{\mathcal{O}\left(\| \delta\mx \|^2\right)} = \m{0} \\
-        \mx + \delta\mx + \m{Jh}_{\mx}^{\top}(\mx + \textcolor{mycolor2}{\delta \mx}, \m{v}, t) \boldsymbol{\lambda} = \tilde{\mx}
-      \end{cases}
-    \end{equation*}
-  \end{itemize}
-\end{frame}
+%\begin{frame}{Projection on Invariants}{Theoretical Background and Implementation}
+%  \begin{itemize}
+%    \item The \textbf{Lagrangian} of the minimization problem is
+%    \begin{equation*}
+%      \mathcal{L}(\mx, \boldsymbol{\lambda}) = \frac{1}{2}\left(\mx - \tilde{\mx}\right)^2 + \boldsymbol{\lambda} \cdot \mhv
+%      \quad \rightarrow \quad
+%      \begin{cases}
+%        \mx + \m{Jh}_\mx^\top \boldsymbol{\lambda} = \tilde{\mx} \\
+%        \mhv = \m{0}
+%      \end{cases}
+%    \end{equation*}
+%    \item The iterative method is \dots
+%    \begin{equation*}
+%      \begin{bmatrix}
+%        \m{Jh}_{\mx} & \m{0} \\
+%        \m{I}        & \m{Jh}_\mx^\top
+%      \end{bmatrix}
+%      \begin{bmatrix}
+%        \delta\mx \\
+%        \boldsymbol{\lambda}
+%      \end{bmatrix} = \begin{bmatrix}
+%        \tilde{\mx} - \mx \\
+%        -\mhv
+%      \end{bmatrix} \quad \text{where the step is} \quad \mx = \tilde{\mx} + \delta\mx
+%    \end{equation*}
+%    \item[] \dots derived from the \textbf{Taylor expansion}
+%    \begin{equation*}
+%      \begin{cases}
+%        \mhv + \m{Jh}_{\mx}(\mx, \m{v}, t) \delta\mx + \textcolor{mycolor2}{\mathcal{O}\left(\| \delta\mx \|^2\right)} = \m{0} \\
+%        \mx + \delta\mx + \m{Jh}_{\mx}^{\top}(\mx + \textcolor{mycolor2}{\delta \mx}, \m{v}, t) \boldsymbol{\lambda} = \tilde{\mx}
+%      \end{cases}
+%    \end{equation*}
+%  \end{itemize}
+%\end{frame}
 
 \begin{frame}{Symbolic-Numerical Validation}{The Problem}
   \begin{columns}
@@ -234,7 +223,7 @@
       with $c = 1 - r/(x_{1}^2 + x_{2}^2)^{\frac{1}{2}}$, $\rho = 5$, $r = 10$, and ICs $\mx_{0} = [15, 0, 0, 0, 15, -5, \lambda]^{\top}$
     \end{column}
     \begin{column}[c]{0.575\textwidth}
-      \hic{\large Exact Solution \dots}
+      \hic{\large Exact Solution}
       \begin{equation*}
         \mx_\text{exact} = \begin{bmatrix}
           x_{1} \\ x_{2} \\ x_{3}
@@ -292,6 +281,7 @@
 \end{frame}
 
 \begin{frame}{Symbolic-Numerical Validation}{Solution Visualization}
+  \vspace{-1.0em}
   \hic{RadauIIA5 \quad $\Delta t = 0.05$\,s \quad $t \in [0, 200\pi]$\,s}
   \vspace{1.0em}
   \centering\small

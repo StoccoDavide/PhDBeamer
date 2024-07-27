@@ -12,7 +12,7 @@
           \setlength{\itemsep}{0.0em}
           \item[\raisebox{-1pt}{\scalebox{0.8}{\faCogs}}] \emph{predict} the behavior
           \item[\raisebox{-1pt}{\scalebox{0.8}{\faConnectdevelop}}] \emph{design} and \emph{optimize}
-          \item[\raisebox{-1pt}{\scalebox{0.8}{\faHourglassStart}}] accelerate development and testing
+          \item[\raisebox{-1pt}{\scalebox{0.8}{\faHourglassHalf}}] accelerate development and testing
           \item[\raisebox{-1pt}{\scalebox{0.8}{\faCarCrash}}] risk-free testing environment
           \item[\raisebox{-1pt}{\scalebox{0.8}{\faDollarSign}}] \emph{reduce} development costs
         \end{itemize}
@@ -26,7 +26,7 @@
           \item[\raisebox{-1pt}{\scalebox{0.8}{\faCog}}] components \\
           \item[\raisebox{-1pt}{\scalebox{0.8}{\faCompress}}] interactions \\
           \item[\raisebox{-1pt}{\scalebox{0.8}{\faDesktop}}] computational resources \\
-          \item[\raisebox{-1pt}{\scalebox{0.8}{\faHourglassEnd}}] computation time
+          \item[\raisebox{-1pt}{\scalebox{0.8}{\faHourglassHalf}}] computation time
         \end{itemize}
       }
       \end{column}
@@ -86,7 +86,7 @@
         \item \textbf{Numerical} \\
         \begin{small}
           \qquad \textcolor{mycolor5!95!black}{well-established and widely used} \\
-          \qquad \textcolor{mycolor3!95!black}{not always applicable} \\
+          \qquad \textcolor{mycolor3!95!black}{parametricity loss} \\
           \qquad \textcolor{mycolor2!95!black}{high computational resources}
         \end{small}
         \item \textbf{Mixed analytical/numerical} \\
@@ -142,8 +142,8 @@
 \subsection{Dynamic Systems Described by \acsp{ODE} and \acsp{DAE}}
 
 \begin{frame}{Introduction and Motivation}{Dynamic Systems Described by \acsp{ODE} and \acsp{DAE}}
-  \begin{itemize}[<+->]
-    \item Typically, \textbf{dynamic systems} are described by \dots \\
+  \begin{itemize}
+    \item We consider \textbf{dynamic systems} are described by \dots \\
       \vspace{0.5em}
       \setlength{\tabcolsep}{3.5em}
       \centering{\small\begin{tabular}{cc}
@@ -154,22 +154,17 @@
           \textcolor{mycolor2!95!black}{Some models do not fit}        & \textcolor{mycolor5!95!black}{State-of-the-art in modeling} \\
       \end{tabular}}
     \vspace{0.25em}
-    \item \acsp{ODE} have a \textbf{complete} theoretical foundation, \acsp{DAE} do not
+    \raggedright
+    \item \acsp{ODE} have \textbf{complete} theoretical foundation, \acsp{DAE} do not
     \item Existing tools for \acsp{DAE} are not as \textbf{mature} and \textbf{efficient} as \acsp{ODE} tools
     \item From an engineering perspective, this is a \textbf{problem} (\textcolor{fg_sl_color}{\scalebox{0.8}{\faHourglassHalf\,\faDollarSign\,\faCarCrash\,\faSadTear}})
-    %\begin{small}
-    %\qquad high level of applicability, \emph{but not very widely used!} \\
-    %\qquad effective in the solution of \acsp{ODE}, \emph{but what about \acsp{DAE}?}
-    %\end{small}
-    %\item<4-> Existing tools are mainly based on \textbf{numerical} or \textbf{structural analysis} techniques
   \end{itemize}
-  \uncover<5->{
+  \uncover<2->{
     \centering
     \vspace{0.5em}
     Therefore, the question is \dots \\[-1.0em]
     \hic{\large How can we improve the state-of-the-art in the solution of \acsp{DAE}?}
   }
-  %\hic{Exploit symbolic computation in the solution of \acsp{DAE}!}
 \end{frame}
 
 % That's all Folks!

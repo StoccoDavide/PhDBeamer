@@ -126,9 +126,14 @@
 
 % Tables
 \usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{makecell}
 \usepackage{multirow}
 \usepackage{multicol}
 \usepackage{nicematrix}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\renewcommand{\theadalign}{cl}
+\renewcommand{\cellalign}{cl}
 
 % Math
 \usepackage{amsmath}
@@ -342,6 +347,7 @@
 \newcommand{\mycheckmark}{\textcolor{mycolor5}{{\footnotesize\faCheck}}}
 \newcommand{\mycrossmark}{\textcolor{mycolor2}{{\small\faTimes}}}
 \newcommand{\mywarnmark}{}%\textcolor{mycolor3}{{\scriptsize\faExclamationTriangle}}}
+\newcommand{\mydotmark}{\textcolor{mycolor3}{\raisebox{-2pt }{\Large\textbullet}}}
 
 % Code listings
 \usepackage{algpseudocode}       % to write algorithms
@@ -359,6 +365,7 @@
   \colorlet{foo}{#1}%
   \sethlcolor{foo}\hl{#2}}%
 }
+\newcommand{\hlm}[2][fg_sl_color!25]{\colorbox{#1}{$#2$}}
 
 % Software programs
 \newcommand{\MacOS}{\textsc{MacOS}\textsuperscript{\textregistered}}
@@ -440,6 +447,11 @@
 \newcommand{\mhiv}{\ensuremath{\m{h}_{i}(\mx, \m{v}, t)}}
 \newcommand{\mhuv}{\ensuremath{\m{h}_{u}(\mx, \m{v}, t)}}
 
+\newcommand{\mini}{\ensuremath{\mathrm{\min}}}
+\newcommand{\maxi}{\ensuremath{\mathrm{\max}}}
+\newcommand{\meai}{\ensuremath{\mathrm{\mu}}}
+\newcommand{\vari}{\ensuremath{\mathrm{\sigma^2}}}
+
 % Deletable text
 \newcommand{\del}[1]{\textcolor{fg_sl_color!50!bg_sl_color}{\sout{#1}}}
 
@@ -458,8 +470,8 @@
 \include{content/chapter_4}
 \include{content/chapter_5}
 \include{content/chapter_6}
-%\appendix
-%\include{content/extras_qa}
+\appendix
+\include{content/extras_qa}
 %\include{content/extras}
 
 \end{document}

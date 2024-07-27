@@ -2,9 +2,7 @@
 
 \section{Application Fields and Examples}
 
-\begin{frame}{Application Fields and Examples}{Bechmarking the Index Reduction Algorithm}
-  \hic{The benchmark problems \dots}
-  \hspace{0.25em}
+\begin{frame}{Application Fields and Examples}{Bechmark Problems}
   \begin{columns}
     \begin{column}[t]{0.575\textwidth}
       \textbf{Multi-body dynamics}
@@ -211,13 +209,12 @@
         \item \Matlab{} \texttt{reduceDAEIndex} (Pantelides)
         \item \Matlab{} \texttt{reduceDAEToODE} (Gaussian elim.)
         \item \Mathematica{} \texttt{NDSolve} (Pantelides)
-        \item \Maple{} + \Matlab{} \texttt{Indigo} (proposed)
+        \item \hi{\Maple{} + \Matlab{} Proposed}
       \end{itemize}
     \end{column}
   \end{columns}
-  \vspace{-0.5em}
-  \hspace{-1.0em}The \textbf{results} \dots \\[0.5em]
-  %\setlength{\tabcolsep}{0.25em}
+  \vspace{0.5em}%
+  \hspace{-0.5em}%
   \centering{\small\begin{tabular}{lccccccccccccccc}
     \toprule
     \multirow{2.25}{*}{\textbf{Solver}} & \multicolumn{14}{c}{\textbf{Problems}} & \textbf{Success} \\
@@ -233,10 +230,11 @@
     \rowcolor{mycolor3!25}
     \texttt{reduceDAEToODE} & \mycheckmark & \mycheckmark & -- & -- & -- & -- & -- & -- & -- & -- & \mycrossmark & \mycheckmark & -- & -- & 75.0* \\
     \rowcolor{mycolor5!25}
-    \texttt{Indigo} & \mycheckmark & \mycheckmark & \mycheckmark & \mycheckmark & \mycheckmark\mywarnmark & \mycheckmark\mywarnmark & \mycheckmark\mywarnmark & \mycheckmark & \mycheckmark & \mycheckmark & \mycrossmark & \mycheckmark & \mycheckmark & \mycheckmark & 92.9\phantom{*} \\
+    \hi{Proposed} & \mycheckmark & \mycheckmark & \mycheckmark & \mycheckmark & \mycheckmark\mywarnmark & \mycheckmark\mywarnmark & \mycheckmark\mywarnmark & \mycheckmark & \mycheckmark & \mycheckmark & \mycrossmark & \mycheckmark & \mycheckmark & \mycheckmark & \hi{92.9}\phantom{*} \\
     \bottomrule
     \multicolumn{14}{l}{* Incomplete testing results.}
-  \end{tabular}}
+  \end{tabular}} \\[0.5em]
+  \raggedright\scriptsize{\fullcite{schwarz2020singularities}}
 \end{frame}
 
 % That's all Folks!

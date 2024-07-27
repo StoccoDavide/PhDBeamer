@@ -30,10 +30,10 @@
           \end{array}$%
         };
         \end{tikzpicture}}
-        \item \textbf{state-of-the-art} in the modeling of dynamical systems \\
+        \item composed of
         \begin{itemize}
-          \item<2-> algebraic equations constrain the system to a \textbf{manifold} \\
           \item<2-> differential equations describe the system's \textbf{dynamics}
+          \item<2-> algebraic equations constrain the system to a \textbf{manifold} \\
         \end{itemize}
       \end{enumerate}
     \end{column}
@@ -79,29 +79,25 @@
 \begin{frame}{Solution of \aclp{DAE}}{\acsp{DAE} are not \acsp{ODE}}
   Is the solution of \acsp{DAE} a straightforward extension of \acsp{ODE}?
   \begin{itemize}
-    \item \textbf{No}, otherwise we would not have been here
-    \item Special \textbf{numerical techniques} are required
-    \item \textbf{Reformulation} of the \acs{DAE} system is typically required
+    \item<1,3-> Special \textbf{numerical techniques} are required
+    \item<2-> \textbf{Reformulation} of the \acs{DAE} system is typically required
   \end{itemize}
   \vspace{1.0em}
   \centering
   \begin{tikzpicture}[scale=0.5]
-    \uncover<2->{\node at (0,0) {\textbf{Two} main approaches \dots};}
-    \visible<3,5->{\draw[fg_sl_color, thick, -stealth] (-2,-1) -- (-3,-2);}
-    \uncover<3,5->{\node at (-5,-3) {\hi{\large Index reduction}};}
-    \visible<4>{\draw[fg_sl_color, thick, -stealth] (+2,-1) -- (+3,-2);}
-    \uncover<4->{\node at (+5.75,-3) {\hi{\large Direct discretization}};}
-    \visible<5->{
+    \uncover<1->{\node at (0,0) {\textbf{Two} main approaches \dots};}
+    \visible<2->{\draw[fg_sl_color, thick, -stealth] (-2,-1) -- (-3,-2);}
+    \uncover<2->{\node at (-5,-3) {\hi{\large Index reduction}};}
+    \visible<2>{\node at (-5,-4) {\hi{\large + \acs{ODE} methods}};}
+    \visible<1>{\draw[fg_sl_color, thick, -stealth] (+2,-1) -- (+3,-2);}
+    \uncover<1,3->{\node at (+5.75,-3) {\hi{\large Direct discretization}};}
+    \visible<3->{
       \node at (0,-6) {\hi{\large \dots or a mix between them!}};
       \draw[fg_sl_color, thick, -stealth] (-1,-3) -- (+1,-3);
       \draw[fg_sl_color, thick, -stealth] (+3,-4) -- (+2,-5);
     }
-  \end{tikzpicture}
-
-  \scriptsize{
-    \fullcite{petzold1982differential} \\
-    \fullcite{gear1971simultaneous}
-  }
+  \end{tikzpicture} \\[0.5em]
+  \uncover<1->{\raggedright\scriptsize{\fullcite{petzold1982differential}}}
 \end{frame}
 
 \subsubsection{Direct Discretization}
@@ -113,8 +109,13 @@
       \qquad finite difference scheme \\
       \qquad polynomial quadrature
     \end{small}
-    \item This discretization can be written as an \textbf{implicit Runge-Kutta} method
+    %\item This discretization can be written as an \textbf{implicit Runge-Kutta} method
     \begin{equation*}
+      \begin{array}{c}
+        \text{Implicit} \\
+        \text{Runge-Kutta}
+      \end{array}
+      \quad
       \begin{array}{l}
         \m{F}\left(\m{x}_{k} + h_k\displaystyle\sum_{j=1}^{s}a_{ij} \m{K}_j, \m{K}_i, t_{k} + c_i h_k\right) = \m{0} \\[0.5em]
         \m{x}_{k+1} = \m{x}_{k} + h_k\displaystyle\sum_{i=1}^{s} b_i \m{K}_i
@@ -128,29 +129,32 @@
     $(a_{ij})$ non-singular + $h_k$ small enough $\rightarrow$ we can solve for $\mxp_k = \m{K}_i$ at each $m$-th step
     \item[\textcolor{mycolor3}{\faExclamationTriangle}] Some \textbf{order of convergence} can be lost on some components depending on the \textcolor{mycolor2!95!black}{\textbf{index}}
   \end{itemize}
+  \vspace{0.5em}
+  \uncover<1->{\scriptsize{\fullcite{gear1971simultaneous}}}
 \end{frame}
 
 \subsubsection{Index Reduction}
 
 \begin{frame}{Solution of \aclp{DAE}}{The Index \dots Or better Yet, The Indices}
-  The index is a ``measure of difficulty'' in the solution of the \acsp{DAE} \dots
-  \begin{itemize}[<+->]
+  The index is a ``\textbf{measure of difficulty}'' in the solution of the \acsp{DAE} \dots
+  \begin{itemize}
     \item Different approaches in classifying such difficulties led to different \textbf{index concepts} \\
     \centering{\small\begin{tabular}{ccc}
-      differential & structural & tractability \\
+      \hi{differential} & structural & tractability \\
       geometrical & perturbation & strangeness
     \end{tabular}}
-    \item Some indices \textbf{coincide} under proper regularity conditions
-    \item The old-but-gold is the \textbf{differential index}, or ``the'' index
+    \item \raggedright Some indices \textbf{coincide} under proper regularity conditions
   \end{itemize}
-  \vspace{0.5em}
-  \uncover<4->{\begin{bbox}[The Differential Index]
+  \vspace{0.25em}
+  \uncover<2->{\begin{bbox}[The Differential Index]
     It is the minimum number of differentiations required to transform a \acs{DAE} system into its underlying \acs{ODE} system.
   \end{bbox}}
+  \vspace{0.25em}
+  \scriptsize{\fullcite{mehrmann2015index}}
 \end{frame}
 
 \begin{frame}{Solution of \aclp{DAE}}{Index Reduction}
-  \uncover<1->{\begin{bbox}[Index Reduction in the Solution Process]
+  \begin{bbox}[Index Reduction in the Solution Process]
     \vspace{-1.0em}
     \begin{equation*}
       \begin{array}{c}
@@ -169,52 +173,51 @@
         \text{original \acs{DAE}}
       \end{array}
     \end{equation*}
-  \end{bbox}}
+  \end{bbox}
   \vspace{1.0em}
-  \uncover<2->{Index reduction is \dots}
+  Index reduction is performed \dots
   \begin{itemize}
-    \item<2-> carried out by \textbf{algebraic manipulation} and \textbf{differentiation}
-    \item<3-> performed \textbf{prior} to numerical integration
-    \item<4-> carried out through \textbf{symbolic computation} or \textbf{numerically} (with \emph{automatic differentiation})
+    \item \textbf{prior} to numerical integration
+    \item by expressions \textbf{manipulation} and \textbf{differentiation}
+    \item through \textbf{symbolic computation} or \textbf{numerically} (with \emph{automatic differentiation})
   \end{itemize}
   \vspace{0.5em}
-  \uncover<5->{
-    \hic{No simple recipe for index reduction exists!}
+    \hic{No simple recipe exists!}
   \centering{\small\begin{tabular}{cc}
     Structural methods & Projector-based analysis
-  \end{tabular}}}
+  \end{tabular}}
 \end{frame}
 
 \begin{frame}{Solution of \aclp{DAE}}{Differential and Algebraic Equations Separation}
-  \uncover<1->{\hic{How do we reduce the index of a \acs{DAE} system?}}
-  \uncover<2->{Exploit an idea common to many index concepts!
+  \uncover<1->{\hic{How do we reduce the index?}
+  Exploit an idea common to many index concepts!
   \begin{enumerate}
     \item \textbf{Separate} the differential and algebraic equations
     \item \textbf{Differentiate} the algebraic equations
-    \item \textbf{Repeat} until necessary (index-1 or \acs{ODE} is reached)
+    \item \textbf{Repeat} until necessary (index-1 \acs{DAE} or \acs{ODE} is reached)
   \end{enumerate}}
   \vspace{0.5em}
-  \uncover<3->{\centering{Easy to say, not so easy to do \dots} \\
+  \uncover<2->{\centering{Easy to say, not so easy to do \dots} \\
   \vspace{0.5em}
   \setlength{\tabcolsep}{3.5em}
   \small\begin{tabular}{cc}
     \hi{Numerically}                                             & \hi{Symbolically} \\
-    \textcolor{mycolor5!95!black}{Numerical linear algebra}      & \textcolor{mycolor3!95!black}{Symbolic linear algebra} \\
+    \textcolor{mycolor5!95!black}{Numerical linear algebra}      & \textcolor{mycolor2!95!black}{Symbolic linear algebra} \\
     \textcolor{mycolor3!95!black}{Automatic differentiation}     & \textcolor{mycolor5!95!black}{Symbolic differentiation} \\
-    \textcolor{mycolor2!95!black}{Track of the separators chain} & \textcolor{mycolor5!95!black}{Just manipulate the equations} \\
-    \textcolor{mycolor3!95!black}{Numerically intensive}         & \textcolor{mycolor3!95!black}{Symbolically intensive \emph{pre-processing}}
-  \end{tabular}}
+    \textcolor{mycolor2!95!black}{Track of the separators chain} & \textcolor{mycolor5!95!black}{Just manipulate the equations}
+  \end{tabular}} \\[0.5em]
+  \uncover<1->{\raggedright\scriptsize{\fullcite{mehrmann2015index}}}
 \end{frame}
 
 \subsection{A New Algorithm for Index Reduction}
 
 \begin{frame}{Solution of \aclp{DAE}}{A New Algorithm for Index Reduction}
-  \hic{\large How can we improve the state-of-the-art in the solution of \acsp{DAE}?}
-  \uncover<2->{Exploit symbolic computation for \textbf{separating} the differential and algebraic equations in the system!
-  \begin{enumerate}
-    \item \textbf{None} a priori knowledge of the system structure
-    \item \textbf{Basic} use of symbolic computation and linear algebra
-  \end{enumerate}
+  \uncover<1->{\hic{How can we improve the state-of-the-art?}
+  Exploit the \textbf{equation separation} concept in a \textbf{full-symbolic} framework!
+  \begin{itemize}
+    \item[\raisebox{-1pt}{\scalebox{0.8}{\faQuestion}}] \textbf{None} a priori knowledge of the system structure
+    \item[\raisebox{-1pt}{\scalebox{0.8}{\faPaperPlane}}] \textbf{Basic} use of symbolic computation and linear algebra
+  \end{itemize}
   \vspace{0.5em}
   \begin{columns}
     \centering
@@ -230,7 +233,7 @@
     \end{column}
   \end{columns}}
   \vspace{0.5em}
-  \uncover<3->{The tools we are going to use are \dots \\
+  \uncover<2->{The tools we are going to use are \dots \\
   \begin{itemize}\small
     \item[\raisebox{0pt}{\scalebox{1.0}{\faCanadianMapleLeaf}}] \textbf{\Maple{}} for symbolic manipulation \\
     \item[\raisebox{0pt}{\scalebox{0.8}{\faAngleRight\hspace{-0.1em}\faAngleRight\hspace{-0.1em}\faAngleRight}}] \textbf{\Matlab{}} for numerical evaluation

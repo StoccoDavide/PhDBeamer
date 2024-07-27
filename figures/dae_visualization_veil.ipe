@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.29">
-<info created="D:20240318195336" modified="D:20240722191931"/>
+<info created="D:20240318195336" modified="D:20240727145659"/>
 <preamble>\usepackage[default]{gillius} %font design
 \usepackage{sfmath}
 
@@ -939,10 +939,6 @@ h
 240 672 l
 h
 </path>
-<path matrix="1 0 0 1 225.977 -272" stroke="black" dash="dashed">
-188 464 m
-320 464 l
-</path>
 <text matrix="0.0017865 0.999998 -0.999998 0.0017865 1210.62 -128.751" pos="272 600" stroke="black" type="label" width="31.834" height="7.124" depth="1.24" valign="baseline" style="math">\mav</text>
 <path matrix="1 0 0 1 225.977 -272" stroke="black" dash="dashed">
 372 464 m
@@ -966,7 +962,7 @@ h
 </path>
 <text matrix="0.0017865 0.999998 -0.999998 0.0017865 1242.62 -76.9049" pos="272 600" stroke="black" type="label" width="55.485" height="7.124" depth="1.24" valign="baseline" style="math">\text{rank}(\mEv)</text>
 <text matrix="1 0 0 1 54.5324 -324.713" transformations="translations" pos="272 600" stroke="black" type="label" width="110.95" height="9.878" depth="1.49" valign="baseline" size="large" style="math">\text{FFLU}(\mAv) \rightarrow \m{U}\m{Q}^\top</text>
-<text matrix="1 0 0 1 114.712 -515.682" transformations="translations" pos="272 600" stroke="black" type="label" width="160.464" height="9.901" depth="2.87" valign="baseline" size="large" style="math">\text{SolveLU}(\mgv) \rightarrow \m{L}^{-1}\m{P}\mgv</text>
+<text matrix="1 0 0 1 114.712 -515.682" transformations="translations" pos="272 600" stroke="black" type="label" width="161.468" height="9.903" depth="2.88" valign="baseline" size="large" style="math">\text{ApplyLP}(\mgv) \rightarrow \m{L}^{-1}\m{P}\mgv</text>
 <path matrix="1 0 0 1 552 -448" fill="lightblue">
 336 704 m
 336 576 l
@@ -1174,10 +1170,6 @@ h
 h
 </path>
 <path matrix="1 0 0 1 513.977 -272" stroke="black" dash="dashed">
-188 464 m
-320 464 l
-</path>
-<path matrix="1 0 0 1 513.977 -272" stroke="black" dash="dashed">
 372 464 m
 392 464 l
 </path>
@@ -1281,7 +1273,7 @@ h
 240 672 l
 h
 </path>
-<text matrix="1 0 0 1 482.382 -442.874" transformations="translations" pos="272 600" stroke="black" type="label" width="32.227" height="8.541" depth="1.89" valign="baseline" size="large" style="math">\mAd</text>
+<text matrix="1 0 0 1 482.382 -442.874" transformations="translations" pos="272 600" stroke="black" type="label" width="43.198" height="8.541" depth="1.89" valign="baseline" size="large" style="math">\mAdv</text>
 <path matrix="1 0 0 1 496 -480" fill="lightblue">
 224 672 m
 224 656 l
@@ -1403,6 +1395,14 @@ h
 464 336 l
 456 328 l
 h
+</path>
+<path matrix="1 0 0 1 225.977 -272" stroke="black" dash="dashed">
+188 464 m
+320 464 l
+</path>
+<path matrix="1 0 0 1 513.977 -272" stroke="black" dash="dashed">
+188 464 m
+320 464 l
 </path>
 </page>
 </ipe>

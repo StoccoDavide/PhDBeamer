@@ -5,30 +5,30 @@
 \subsection{Expression Swell}
 
 \begin{frame}{Symbolic Computation Essentials}{Expression Swell}
-  \uncover<1->{In symbolic computation, expressions may \textbf{grow} unpredictably!}
-  \uncover<2->{\begin{center}\begin{minipage}{\textwidth}\begin{bbox}[Inside a \acs{CAS}]
+  \uncover<1->{\begin{center}\begin{minipage}{\textwidth}\begin{bbox}[Inside a \acs{CAS}]
     \centering%
     \begin{minipage}[c]{0.15\textwidth} \centering Input expression \end{minipage}%
     \begin{minipage}[c]{0.19\textwidth} \centering $\autorightarrow{\text{symbolic}}{\text{manipulation}}$ \end{minipage}%
     \begin{minipage}[c]{0.21\textwidth} \centering Output expression \\ + \\ Expression swell \end{minipage}%
     \begin{minipage}[c]{0.19\textwidth} \centering $\autorightarrow{\text{symbolic}}{\text{simplification}}$ \end{minipage}%
-    \begin{minipage}[c]{0.23\textwidth} \centering Output expression \\ + \\ \textcolor{mycolor2!95!black}{\raisebox{7.5pt}{\rotatebox{180}{\scriptsize\faQuestion}}Expression swell{\scriptsize\faQuestion}}\end{minipage}%
+    \begin{minipage}[c]{0.23\textwidth} \centering Output expression \\ \visible<2->{+ \\ \textcolor{mycolor2!95!black}{Expression swell}}\end{minipage}%
   \end{bbox}\end{minipage}\end{center}}
-  \uncover<3->{\hic{All \acs{CAS} are sensitive to expression swell!}
+  \uncover<2->{\hic{\acs{CAS} are sensitive to expression swell!}
   \centering{\small\begin{tabular}{cc}
     \textcolor{fg_sl_color}{\faCoins} High memory usage & Slow computation \textcolor{fg_sl_color}{\faHourglassHalf}
   \end{tabular}}} \\[0.5em]
   \centering{\begin{tikzpicture}[scale=0.5]
-    \uncover<4->{\node at (0,0) {\textbf{Two} types of expression swell \dots};}
-    \uncover<5->{\draw[fg_sl_color, thick, -stealth] (-2,-0.5) -- (-4.0,-1.5);
-    \node at (-7,-2.5) {
+    \uncover<3->{
+      \node at (0,0) {\textbf{Two} types of expression swell \dots};
+      \draw[fg_sl_color, thick, -stealth] (-2,-0.5) -- (-4.0,-1.5);
+      \node at (-7,-2.5) {
       \begin{tabular}{c}
         \hi{\large ~~~~~~Inherent} \\
         \small{No applicable simplification \textbf{rule}} \\
         \small{Require changes in the problem \textbf{formulation}}
-      \end{tabular}
-    };}
-    \uncover<6->{\draw[fg_sl_color, thick, -stealth] (+2,-0.5) -- (+4.0,-1.5);
+      \end{tabular}};
+    }
+    \uncover<4->{\draw[fg_sl_color, thick, -stealth] (+2,-0.5) -- (+4.0,-1.5);
     \node at (+7,-2.5) {
       \begin{tabular}{c}
         \hi{\large Intermediate} \\
@@ -42,7 +42,7 @@
 \subsection{\acl{LEM}}
 
 \begin{frame}{\acl{LEM}}{Hierarchical Representation}
-  We progressively \textbf{hide} complexity in veiling variables
+  We progressively \textbf{hide} chuncks of expressions
   \begin{equation*}
     \begin{array}{c}
       \textcolor{mycolor1}{\underline{2xy(1+y)}} \cdot f(x,y) + \textcolor{mycolor2}{\underline{5z(3a+z)}} \cdot g(y) + \textcolor{mycolor3}{\underline{3c(xy+z)}} \cdot h(x,z) \\[0.1em]
@@ -50,7 +50,7 @@
       v_4 + v_5
     \end{array}
   \end{equation*}
-  where the \textbf{veiling variables} are
+  to store them in separate variables
   \begin{align*}
     \textcolor{mycolor1}{v_1} &= 2x(1+y) \\
     \textcolor{mycolor2}{v_2} &= 5z(3a+z) \\
@@ -72,10 +72,10 @@
       v_{n}(v_{1}, \dots, v_{n-1}, \mx)
     \end{bmatrix}}
   \end{equation*}}
-  \uncover<2->{The process is made of two actions \dots
+  \uncover<2->{\textbf{\acs{LEM}} is made of two actions \dots
   \begin{enumerate}
-    \item a large expression can be \textbf{veiled} in a veiling variable
-    \item veils can be \textbf{unveiled} to recover the original form
+    \item \textbf{veiled} large expressions
+    \item \textbf{unveil} to recover the original form
   \end{enumerate}}
   \vspace{0.5em}
   \uncover<3->{\hic{Complexity remains but the \acs{CAS} can not see it! \textcolor{fg_sl_color}{\large \faGlasses}}}
@@ -152,7 +152,7 @@
       \begin{enumerate}
         \item<1> selects the \textbf{minimum-degree} entry \\
         \begin{small}
-          \qquad Limit fill-in
+          \qquad Limit fill-in and expression swell
         \end{small}
         \item<2> if numeric, selects the \textbf{biggest} entry \\
         \begin{small}
