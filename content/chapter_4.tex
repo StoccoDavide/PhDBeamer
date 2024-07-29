@@ -2,23 +2,6 @@
 
 \section{Index Reduction Algorithm}
 
-\subsection{Working Principle}
-
-\begin{frame}{Index Reduction Algorithm}{Objectives and Working Principle}
-  \hic{How do we reduce the index of \acs{DAE} systems?}
-  \begin{enumerate}
-    \item \textbf{Separation} of the differential and algebraic equations
-    \item \textbf{Differentiation} of the algebraic equations
-    \item \textbf{Repeat} until necessary (\acs{ODE} or index-1 \acs{DAE} is reached)
-  \end{enumerate}
-  \vspace{1.0em}
-  \hic{Which are the prerequisites for the algorithm?}
-  \begin{itemize}
-    \item[\raisebox{-1pt}{\scalebox{0.8}{\faQuestion}}] \textbf{None} a priori knowledge of the \acs{DAE} system structure
-    \item[\raisebox{-1pt}{\scalebox{0.8}{\faPaperPlane}}] \textbf{Basic} use of symbolic computation and linear algebra
-  \end{itemize}
-\end{frame}
-
 \subsubsection{Separation of Differential and Algebraic Equations}
 
 \begin{frame}{Index Reduction Algorithm}{Separation of Differential and Algebraic Equations}
@@ -43,7 +26,7 @@
       \end{enumerate}
       \vspace{-1.0em}
       \uncover<3->{\begin{bbox}[Cokernel Computation]
-        The cokernel $\mK$ and its orthogonal complement $\mN$ of $\mA$ are calculated using \acs{LU} or \acs{FFLU} factorizations.
+        The cokernel $\mK$ and its orthogonal complement $\mN$ of $\mA$ are calculated using matrix factorization
       \end{bbox}}
     \end{column}
     \begin{column}[c]{0.4\textwidth}
@@ -59,8 +42,7 @@
   \begin{columns}
     \begin{column}[c]{0.6\textwidth}
       \begin{enumerate}[<+->]\setcounter{enumi}{2}
-        \item Update the \textbf{invariants} as $\mh = \mh \cup \ma$
-        \item \textbf{Differentiate} the algebraic equations $\ma$
+        \item Update the \textbf{invariants} as $\mh = \mh \cup \ma$ and \textbf{differentiate} the algebraic equations $\ma$
         \begin{equation*}
           \dfrac{\text{d}}{\text{d}t} \ma = \mAd \mxp - \mgd
         \end{equation*}
@@ -85,13 +67,13 @@
 
 \begin{frame}{Index Reduction Algorithm}{Including Veiling Variables}
   \vspace{-1.0em}
-  The algorithm can be extended to include \acs{LEM} \dots
+  The algorithm can be extended to include \textbf{\acs{LEM}} \dots
   \begin{itemize}
-    \item the veiling variables are stored in the list of $\mv$
-    \item the equations be also function of $\mv$
-    \item the veiling variables do just add an evaluation layer to the algorithm
+    \item veiling variables are stored in the list $\mv$
+    \item equations are also function of $\mv$
+    \item veiling variables add an evaluation layer to the algorithm
   \end{itemize}
-  \visible<2->{\vspace{-1.5em}\hspace{-0.025\textwidth}\includegraphics[width=1.05\textwidth]{dae_visualization_veil.eps}}
+  \vspace{-1.5em}\hspace{-0.025\textwidth}\includegraphics[width=1.05\textwidth]{dae_visualization_veil.eps}
 \end{frame}
 
 %\begin{frame}{Index Reduction Algorithm}{Algorithm Flowchart}
@@ -107,7 +89,7 @@
 
 \begin{frame}{Index Reduction Algorithm}{The Reduced \acs{DAE} System}
   \vspace{-1.0em}
-  \hic{\faCanadianMapleLeaf~Now we can generate the code for the reduced \acs{DAE} system!}
+  \hic{\faCanadianMapleLeaf~Now we can code-generate the reduced \acs{DAE} system!}
   \begin{itemize}[<+->]
     \item \textbf{Differential part}
     %

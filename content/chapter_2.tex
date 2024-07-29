@@ -12,7 +12,7 @@
         \node at (0,0) {%
           $\begin{array}{c}%
           \text{\hi{\acsp{DAE}}} \\%
-          \mF = \m{0}~\text{with $\m{JF}_{\mxp}$ singular}%
+          \mF = \m{0}~\text{with $\m{F}_{\mxp}$ singular}%
           \end{array}$%
         };
         \draw[fg_sl_color, thick, -stealth] (-1,-1) -- (-2,-2);
@@ -79,7 +79,7 @@
 \begin{frame}{Solution of \aclp{DAE}}{\acsp{DAE} are not \acsp{ODE}}
   Is the solution of \acsp{DAE} a straightforward extension of \acsp{ODE}?
   \begin{itemize}
-    \item<1,3-> Special \textbf{numerical techniques} are required
+    \item<1,3-> Specialized \textbf{numerical techniques} are required
     \item<2-> \textbf{Reformulation} of the \acs{DAE} system is typically required
   \end{itemize}
   \vspace{1.0em}
@@ -126,7 +126,7 @@
         k = 0, 1, \dots, m
       \end{array}
     \end{equation*}
-    $(a_{ij})$ non-singular + $h_k$ small enough $\rightarrow$ we can solve for $\mxp_k = \m{K}_i$ at each $m$-th step
+    $(a_{ij})$ non-singular + $h_k$ small enough $\rightarrow$ we can solve for $\m{K}_i$ at each $m$-th step
     \item[\textcolor{mycolor3}{\faExclamationTriangle}] Some \textbf{order of convergence} can be lost on some components depending on the \textcolor{mycolor2!95!black}{\textbf{index}}
   \end{itemize}
   \vspace{0.5em}
@@ -194,7 +194,7 @@
   \begin{enumerate}
     \item \textbf{Separate} the differential and algebraic equations
     \item \textbf{Differentiate} the algebraic equations
-    \item \textbf{Repeat} until necessary (index-1 \acs{DAE} or \acs{ODE} is reached)
+    \item \textbf{Repeat} \boxednumber{1}--\boxednumber{2} until necessary (index-1 \acs{DAE} or \acs{ODE} is reached)
   \end{enumerate}}
   \vspace{0.5em}
   \uncover<2->{\centering{Easy to say, not so easy to do \dots} \\
@@ -215,7 +215,7 @@
   \uncover<1->{\hic{How can we improve the state-of-the-art?}
   Exploit the \textbf{equation separation} concept in a \textbf{full-symbolic} framework!
   \begin{itemize}
-    \item[\raisebox{-1pt}{\scalebox{0.8}{\faQuestion}}] \textbf{None} a priori knowledge of the system structure
+    \item[\raisebox{-1pt}{\scalebox{0.8}{\faQuestion}}] \textbf{No} a priori knowledge of the system structure
     \item[\raisebox{-1pt}{\scalebox{0.8}{\faPaperPlane}}] \textbf{Basic} use of symbolic computation and linear algebra
   \end{itemize}
   \vspace{0.5em}
@@ -233,11 +233,11 @@
     \end{column}
   \end{columns}}
   \vspace{0.5em}
-  \uncover<2->{The tools we are going to use are \dots \\
+  The tools we are going to use are \dots \\
   \begin{itemize}\small
     \item[\raisebox{0pt}{\scalebox{1.0}{\faCanadianMapleLeaf}}] \textbf{\Maple{}} for symbolic manipulation \\
     \item[\raisebox{0pt}{\scalebox{0.8}{\faAngleRight\hspace{-0.1em}\faAngleRight\hspace{-0.1em}\faAngleRight}}] \textbf{\Matlab{}} for numerical evaluation
-  \end{itemize}}
+  \end{itemize}
 \end{frame}
 
 % That's all Folks!

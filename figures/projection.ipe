@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.29">
-<info created="D:20240712094736" modified="D:20240719163106"/>
+<info created="D:20240712094736" modified="D:20240729181713"/>
 <preamble>\usepackage[default]{gillius} %font design
 \usepackage{sfmath}</preamble>
 <ipestyle name="basic">
@@ -330,6 +330,33 @@ h
 144 448
 128 320 c
 h
+</path>
+<path stroke="lightcyan" dash="dashed" opacity="30%" stroke-opacity="opaque">
+212.438 366.067 m
+228.018 424.86
+284.583 471.441
+326.281 507.481
+340.305 536.994 c
+</path>
+<path stroke="lightcyan" dash="dashed" opacity="30%" stroke-opacity="opaque">
+322.463 368.276 m
+330.997 416.414
+387.978 465.575
+416.442 551.891 c
+</path>
+<path stroke="lightcyan" dash="dashed" opacity="30%" stroke-opacity="opaque">
+146.771 419.402 m
+237.971 447.797
+325.436 434.902
+415.96 420.261
+471.306 434.147 c
+</path>
+<path stroke="lightcyan" dash="dashed" opacity="30%" stroke-opacity="opaque">
+213.478 495.04 m
+288.452 495.231
+366.06 487.718
+427.797 486.628
+473.763 504.437 c
 </path>
 <path matrix="1 0 0 1 24 24" stroke="black" fill="lightblue" pen="heavier" cap="1" opacity="30%" stroke-opacity="opaque">
 216 384 m

@@ -11,7 +11,7 @@
     \begin{minipage}[c]{0.19\textwidth} \centering $\autorightarrow{\text{symbolic}}{\text{manipulation}}$ \end{minipage}%
     \begin{minipage}[c]{0.21\textwidth} \centering Output expression \\ + \\ Expression swell \end{minipage}%
     \begin{minipage}[c]{0.19\textwidth} \centering $\autorightarrow{\text{symbolic}}{\text{simplification}}$ \end{minipage}%
-    \begin{minipage}[c]{0.23\textwidth} \centering Output expression \\ \visible<2->{+ \\ \textcolor{mycolor2!95!black}{Expression swell}}\end{minipage}%
+    \begin{minipage}[c]{0.23\textwidth} \centering Output expression \\ \only<2->{+ \\ \textcolor{mycolor2!95!black}{Expression swell}}\end{minipage}%
   \end{bbox}\end{minipage}\end{center}}
   \uncover<2->{\hic{\acs{CAS} are sensitive to expression swell!}
   \centering{\small\begin{tabular}{cc}
@@ -45,18 +45,22 @@
   We progressively \textbf{hide} chuncks of expressions
   \begin{equation*}
     \begin{array}{c}
-      \textcolor{mycolor1}{\underline{2xy(1+y)}} \cdot f(x,y) + \textcolor{mycolor2}{\underline{5z(3a+z)}} \cdot g(y) + \textcolor{mycolor3}{\underline{3c(xy+z)}} \cdot h(x,z) \\[0.1em]
-      \textcolor{mycolor5}{\underline{v_1 \cdot f(x,y)}} + \textcolor{mycolor4}{\underline{v_2 \cdot g(y) + v_3 \cdot h(x,z)}} \\[0.1em]
-      v_4 + v_5
+      \uncover<1>{\textcolor{mycolor1}{\underline{2xy(1+y)}} \cdot f(x,y) + \textcolor{mycolor2}{\underline{5z(3a+z)}} \cdot g(y) + \textcolor{mycolor3}{\underline{3c(xy+z)}} \cdot h(x,z) \\[0.1em]}
+      \uncover<2>{\textcolor{mycolor5}{\underline{v_1 \cdot f(x,y)}} + \textcolor{mycolor4}{\underline{v_2 \cdot g(y) + v_3 \cdot h(x,z)}} \\[0.1em]}
+      \uncover<3>{v_4 + v_5}
     \end{array}
   \end{equation*}
   to store them in separate variables
   \begin{align*}
-    \textcolor{mycolor1}{v_1} &= 2x(1+y) \\
-    \textcolor{mycolor2}{v_2} &= 5z(3a+z) \\
-    \textcolor{mycolor3}{v_3} &= 3c(xy+z) \\
-    \textcolor{mycolor4}{v_4} &= \textcolor{mycolor1}{v_1} \cdot f(x,y) \\
-    \textcolor{mycolor5}{v_5} &= \textcolor{mycolor2}{v_2} \cdot g(y) + \textcolor{mycolor3}{v_3} \cdot h(x,z)
+    \uncover<2->{
+      \textcolor{mycolor1}{v_1} &= 2x(1+y) \\
+      \textcolor{mycolor2}{v_2} &= 5z(3a+z) \\
+      \textcolor{mycolor3}{v_3} &= 3c(xy+z) \\
+    }
+    \uncover<3->{
+      \textcolor{mycolor4}{v_4} &= \textcolor{mycolor1}{v_1} \cdot f(x,y) \\
+      \textcolor{mycolor5}{v_5} &= \textcolor{mycolor2}{v_2} \cdot g(y) + \textcolor{mycolor3}{v_3} \cdot h(x,z)
+    }
   \end{align*}
 \end{frame}
 
@@ -71,14 +75,14 @@
       \vdots \\
       v_{n}(v_{1}, \dots, v_{n-1}, \mx)
     \end{bmatrix}}
-  \end{equation*}}
-  \uncover<2->{\textbf{\acs{LEM}} is made of two actions \dots
+  \end{equation*}
+  \textbf{\acs{LEM}} is made of two actions \dots
   \begin{enumerate}
     \item \textbf{veiled} large expressions
     \item \textbf{unveil} to recover the original form
   \end{enumerate}}
   \vspace{0.5em}
-  \uncover<3->{\hic{Complexity remains but the \acs{CAS} can not see it! \textcolor{fg_sl_color}{\large \faGlasses}}}
+  \uncover<3->{\hic{Expression complexity remains but the \acs{CAS} can not see it! \textcolor{fg_sl_color}{\large \faGlasses}}}
 \end{frame}
 
 \begin{frame}{\acl{LEM}}{Measuring Expression Complexity}
@@ -110,7 +114,8 @@
       \begin{itemize}
         \item \textbf{Trial and error} \\
         \begin{small}
-          \quad No general rule, depends on the software
+          \quad No general rule, depends on the software \\
+          \quad The least to make computations go on
         \end{small}
       \end{itemize}};
     }
@@ -122,7 +127,7 @@
 \begin{frame}{Symbolic Matrix Factorization}{Considerations and Challenges}
   \hic{\faCanadianMapleLeaf~\Maple{} factorizations are sensitive to expression swell}
   \begin{itemize}
-    \item<2-> \textbf{\acl{LU}~(\acs{LU})} and \textbf{\acl{FFLU}~(\acs{FFLU})} factorizations \dots \\
+    \item<2-> \textbf{\acs{LU}} and \textbf{Fraction-Free \acs{LU}~(\acs{FFLU})} factorizations \dots \\
     \begin{small}
       \qquad preserve \textbf{sparsity} and \textbf{fill-in} \\
       \qquad perform \textbf{minimal algebraic manipulations} \\
@@ -172,8 +177,8 @@
       \begin{algorithmic}\scriptsize
         \Procedure{SymbolicPivoting}{$\m{A}$, $k$}
         \State \only<1>{\hlc}{$\m{d}^r, \, \m{d}^c \gets \text{ComputeDegrees}(\m{A})$}
-          \For{\only<4>{\hlc}{$i$ \textbf{from} $k$ \textbf{to} $m$}}
-          \For{\only<4>{\hlc}{$j$ \textbf{from} $k$ \textbf{to} $n$}}
+          \For{$i$ \textbf{from} $k$ \textbf{to} $m$}
+          \For{$j$ \textbf{from} $k$ \textbf{to} $n$}
               \State $D_{ij} \gets \infty$
               \IfThen{$A_{ij} \neq 0$}
               {\only<1>{\hlc}{$D_{ij} \gets d^r_{i} \, \max(0, \, d^c_j-1) + d^c_j \, \max(0, \, d^r_i-1)$}}
@@ -181,7 +186,7 @@
           \EndFor
           \State \only<1>{\hlc}{$\mathcal{P} \gets \text{Sort}(\m{D})$}
           \State $q, \, l \gets \, 0, \, 0$  and $p, \, p_c, \, p_n \gets \infty, \, \infty, \, \infty$
-          \For{\textbf{all} $(i, j)$ \textbf{in} $\mathcal{P}$}
+          \For{\only<4>{\hlc}{\textbf{all} $(i, j)$ \textbf{in} $\mathcal{P}$}}
             \IfThen{$p_c \neq \infty$ \textbf{and} $D_{ij} > D_{ql}$}{\textbf{break}}
             \State $t \gets A_{ij}$
             \IfThen{$\text{Signature}(t) = 0$}{\textbf{continue}}
@@ -207,7 +212,7 @@
       \begin{itemize}
         \item<1> \textbf{Factorization step} \\
         \begin{small}
-          \qquad gaussian elimination \\
+          \qquad Gaussian elimination \\
           \qquad Schur complement
         \end{small}
         \item<2> \textbf{Solution step} \\
@@ -219,7 +224,7 @@
     \end{column}
     \begin{column}[c]{0.36\textwidth}
       \uncover<1>{\begin{algorithmic}\scriptsize
-        \Procedure{LU}{$\m{A}, \, k$}
+        \Procedure{BuildLU}{$\m{A}, \, k$}
           \State $\m{M} \gets \m{A}$
           \State $rnk \gets \min(m, \, n)$
           \For{$k$ \textbf{from} $1$ \textbf{to} $rnk$}

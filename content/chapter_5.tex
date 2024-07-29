@@ -1,8 +1,8 @@
 %!TEX root = main.tex
 
-\section{Application Fields and Examples}
+\section{Application Fields and Performance}
 
-\begin{frame}{Application Fields and Examples}{Bechmark Problems}
+\begin{frame}{Application Fields and Performance}{Bechmark Problems}
   \begin{columns}
     \begin{column}[t]{0.575\textwidth}
       \textbf{Multi-body dynamics}
@@ -46,7 +46,55 @@
   \fullcite{brenan1995numerical}}
 \end{frame}
 
-\begin{frame}{Application Fields and Examples}{Factorizations Performance}
+
+\begin{frame}{Application Fields and Performance}{Benchmarking the Index Reduction Algorithm}
+  \vspace{-1.0em}
+  \begin{columns}
+    \begin{column}[t]{0.5\textwidth}
+      The \textbf{rules} \dots
+      \begin{itemize}\small
+        \setlength{\itemsep}{0.0em}
+        \item[\raisebox{-1pt}{\scalebox{0.8}{\faHourglassHalf}\,}] \SI{100}{\second} time limit for symbolic simplification
+        \item[\raisebox{-1pt}{\scalebox{0.8}{\faInfinity}}] unlimited time for numerical integration
+        \item[\raisebox{-1pt}{\scalebox{0.8}{\faCheck}}] if you can integrate the problem, you win
+      \end{itemize}
+    \end{column}
+    \begin{column}[t]{0.5\textwidth}
+      The \textbf{competitors} \dots \\
+      \begin{itemize}\small
+        \setlength{\itemsep}{0.0em}
+        \item \Maple{} \texttt{dsolve} (undisclosed)
+        \item \Matlab{} \texttt{reduceDAEIndex} (Pantelides)
+        \item \Matlab{} \texttt{reduceDAEToODE} (Gaussian elim.)
+        \item \Mathematica{} \texttt{NDSolve} (Pantelides)
+        \item \hi{\Maple{} + \Matlab{} Proposed}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{0.5em}%
+  \centering{\small\begin{tabular}{lcccccccccccccc}
+    \toprule
+    \multirow{2.25}{*}{\textbf{Solver}} & \multicolumn{14}{c}{\textbf{Problems}} \\
+    \cmidrule(l{4pt}r{4pt}){2-15}
+    & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 \\
+    \midrule
+    \rowcolor{mycolor2!25}
+    \texttt{dsolve} & \mycheckmark & \mycheckmark & \mycrossmark & \mycheckmark & \mycrossmark & \mycrossmark & \mycrossmark & \mycheckmark & \mycrossmark & \mycrossmark & \mycrossmark & \mycheckmark\mywarnmark & \mycrossmark & \mycrossmark \\
+    \rowcolor{mycolor3!25}
+    \texttt{NDSolve} & \mycheckmark & \mycheckmark & -- & -- & -- & -- & -- & -- & -- & -- & \mycrossmark & \mycheckmark & -- & -- \\
+    \rowcolor{mycolor3!25}
+    \texttt{reduceDAEIndex} & \mycheckmark & \mycheckmark & -- & -- & -- & -- & -- & -- & -- & -- & \mycrossmark & \mycheckmark & -- & -- \\
+    \rowcolor{mycolor3!25}
+    \texttt{reduceDAEToODE} & \mycheckmark & \mycheckmark & -- & -- & -- & -- & -- & -- & -- & -- & \mycrossmark & \mycheckmark & -- & -- \\
+    \rowcolor{mycolor5!25}
+    \hi{Proposed} & \mycheckmark & \mycheckmark & \mycheckmark & \mycheckmark & \mycheckmark\mywarnmark & \mycheckmark\mywarnmark & \mycheckmark\mywarnmark & \mycheckmark & \mycheckmark & \mycheckmark & \mycrossmark & \mycheckmark & \mycheckmark & \mycheckmark \\
+    \bottomrule
+    \multicolumn{14}{l}{* Incomplete testing results.}
+  \end{tabular}} \\[0.5em]
+  \raggedright\scriptsize{\fullcite{schwarz2020singularities}}
+\end{frame}
+
+\begin{frame}{Application Fields and Performance}{Factorizations Performance}
   \vspace{-4.0em}
   \begin{columns}
     \centering
@@ -90,7 +138,7 @@
   \end{tabular}}
 \end{frame}
 
-\begin{frame}{Application Fields and Examples}{Expression Swell}
+\begin{frame}{Application Fields and Performance}{Expression Swell}
   \begin{columns}
     \centering
     \begin{column}[c]{0.7\textwidth}
@@ -123,7 +171,7 @@
     \end{tabular}}
 \end{frame}
 
-\begin{frame}{Application Fields and Examples}{Expression Swell Mitigation}
+\begin{frame}{Application Fields and Performance}{Expression Swell Mitigation}
   \vspace{-2.0em}
   \hic{\dots hierarchical representation does the job}
   \vspace{-0.5em}
@@ -176,65 +224,18 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Application Fields and Examples}{Numerical Stability}
+\begin{frame}{Application Fields and Performance}{Numerical Stability}
   \vspace{-2.0em}\begin{columns}
     \centering
     \begin{column}[c]{0.3\textwidth}
-      \hic{Numerical\vphantom{y} stability is preserved}
+      \hic{Numerical\vphantom{y} stability is preserved \dots}
       \includegraphics[width=\textwidth]{figures/fade_overview.png}
+      \hic{\dots but not guaranteed}
     \end{column}
     \begin{column}[c]{0.7\textwidth}
       \vspace{1em}\small{\input{figures/suspension_pista_azzurra.tex}}
     \end{column}
   \end{columns}
-\end{frame}
-
-\begin{frame}{Application Fields and Examples}{Benchmarking the Index Reduction Algorithm}
-  \vspace{-1.0em}
-  \begin{columns}
-    \begin{column}[t]{0.5\textwidth}
-      The \textbf{rules} \dots
-      \begin{itemize}\small
-        \setlength{\itemsep}{0.0em}
-        \item[\raisebox{-1pt}{\scalebox{0.8}{\faHourglassHalf}\,}] \SI{100}{\second} time limit for symbolic simplification
-        \item[\raisebox{-1pt}{\scalebox{0.8}{\faInfinity}}] unlimited time for numerical integration
-        \item[\raisebox{-1pt}{\scalebox{0.8}{\faCheck}}] if you can integrate the problem, you win
-      \end{itemize}
-    \end{column}
-    \begin{column}[t]{0.5\textwidth}
-      The \textbf{competitors} \dots \\
-      \begin{itemize}\small
-        \setlength{\itemsep}{0.0em}
-        \item \Maple{} \texttt{dsolve} (undisclosed)
-        \item \Matlab{} \texttt{reduceDAEIndex} (Pantelides)
-        \item \Matlab{} \texttt{reduceDAEToODE} (Gaussian elim.)
-        \item \Mathematica{} \texttt{NDSolve} (Pantelides)
-        \item \hi{\Maple{} + \Matlab{} Proposed}
-      \end{itemize}
-    \end{column}
-  \end{columns}
-  \vspace{0.5em}%
-  \hspace{-0.5em}%
-  \centering{\small\begin{tabular}{lccccccccccccccc}
-    \toprule
-    \multirow{2.25}{*}{\textbf{Solver}} & \multicolumn{14}{c}{\textbf{Problems}} & \textbf{Success} \\
-    \cmidrule(l{4pt}r{4pt}){2-15}
-    & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & \textbf{\%}\\
-    \midrule
-    \rowcolor{mycolor2!25}
-    \texttt{dsolve} & \mycheckmark & \mycheckmark & \mycrossmark & \mycheckmark & \mycrossmark & \mycrossmark & \mycrossmark & \mycheckmark & \mycrossmark & \mycrossmark & \mycrossmark & \mycheckmark\mywarnmark & \mycrossmark & \mycrossmark & 28.6\phantom{*} \\
-    \rowcolor{mycolor3!25}
-    \texttt{NDSolve} & \mycheckmark & \mycheckmark & -- & -- & -- & -- & -- & -- & -- & -- & \mycrossmark & \mycheckmark & -- & -- & 75.0* \\
-    \rowcolor{mycolor3!25}
-    \texttt{reduceDAEIndex} & \mycheckmark & \mycheckmark & -- & -- & -- & -- & -- & -- & -- & -- & \mycrossmark & \mycheckmark & -- & -- & 75.0* \\
-    \rowcolor{mycolor3!25}
-    \texttt{reduceDAEToODE} & \mycheckmark & \mycheckmark & -- & -- & -- & -- & -- & -- & -- & -- & \mycrossmark & \mycheckmark & -- & -- & 75.0* \\
-    \rowcolor{mycolor5!25}
-    \hi{Proposed} & \mycheckmark & \mycheckmark & \mycheckmark & \mycheckmark & \mycheckmark\mywarnmark & \mycheckmark\mywarnmark & \mycheckmark\mywarnmark & \mycheckmark & \mycheckmark & \mycheckmark & \mycrossmark & \mycheckmark & \mycheckmark & \mycheckmark & \hi{92.9}\phantom{*} \\
-    \bottomrule
-    \multicolumn{14}{l}{* Incomplete testing results.}
-  \end{tabular}} \\[0.5em]
-  \raggedright\scriptsize{\fullcite{schwarz2020singularities}}
 \end{frame}
 
 % That's all Folks!

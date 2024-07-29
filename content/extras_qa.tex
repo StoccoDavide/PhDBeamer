@@ -31,14 +31,14 @@
   \begin{itemize}
     \item The \textbf{nullspace projector} $\m{Q}_i$ is found such that
     \begin{equation*}
-      \hlm{\m{G}_i\m{Q}_i = \m{0}} \qquad
-      \hlm{\text{im}(\m{Q}_i) = \text{ker}(\m{G}_i)}
+      \hlm{\text{im}(\m{Q}_i) = \text{ker}(\m{G}_i)} \qquad
+      (\m{G}_i\m{Q}_i = \m{0})
     \end{equation*}
     %\item The step $\m{G}_{i+1} = \m{G}_i + \m{B}_i \m{Q}_i$, is used to fill the matrix $\m{G}$ with the entries coming from the differentiated algebraic equations
     %\item The generalized inverse $\m{D}^-$ and the projector $\m{Q}_i$ are computed using matrix decomposition
     \item In \fullcite[ch.7, p.400]{lamour2013differential} is claimed that: \\[1.0em]
     \begin{quote}
-      For problems of limited dimension a formula manipulation system like \Mathematica{} or \Maple{} can be used to compute a basis [of $\text{ker}(\m{Q})$]. The command in \Mathematica{} is \texttt{NullSpace[G]} and in \Maple{} \texttt{nullspace(G)}. \\
+      For problems of limited dimension a formula manipulation system like \Mathematica{} or \Maple{} can be used to compute a basis [of $\text{ker}(\m{Q})$]. The command in \Mathematica{} is \normalfont{\texttt{NullSpace[G]}} and in \Maple{} \normalfont{\texttt{nullspace(G)}}. \\
       However, to provide a basis of the nullspace of a given matrix one usually has to carry out a factorization, for instance a singular value decomposition (SVD).
     \end{quote}
   \end{itemize}
@@ -111,13 +111,16 @@
   \begin{itemize}
     \item \textbf{Single shooting} \\
     \begin{small}
-      \qquad trivial solution of IVPs, the problem \\
+      \qquad similar to the solution of IVPs\\
       \qquad Jacobian matrix propagation might be influenced by the projection
     \end{small}
-    \item \textbf{Multiple shooting} and \textbf{collocation} \\
+    \item \textbf{Multiple shooting} \\
     \begin{small}
-      \qquad projection can be used only at the mesh points \\
-      \qquad more robust
+      \qquad projection can be used at the junction points
+    \end{small}
+    \item \textbf{Collocation} \\
+    \begin{small}
+      \qquad remove some collocation point and add the projection to make the polynomial consistent with the invariants
     \end{small}
   \end{itemize}
 \end{frame}

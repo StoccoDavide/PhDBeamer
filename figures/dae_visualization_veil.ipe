@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.29">
-<info created="D:20240318195336" modified="D:20240727145659"/>
+<info created="D:20240318195336" modified="D:20240729180630"/>
 <preamble>\usepackage[default]{gillius} %font design
 \usepackage{sfmath}
 
@@ -962,7 +962,7 @@ h
 </path>
 <text matrix="0.0017865 0.999998 -0.999998 0.0017865 1242.62 -76.9049" pos="272 600" stroke="black" type="label" width="55.485" height="7.124" depth="1.24" valign="baseline" style="math">\text{rank}(\mEv)</text>
 <text matrix="1 0 0 1 54.5324 -324.713" transformations="translations" pos="272 600" stroke="black" type="label" width="110.95" height="9.878" depth="1.49" valign="baseline" size="large" style="math">\text{FFLU}(\mAv) \rightarrow \m{U}\m{Q}^\top</text>
-<text matrix="1 0 0 1 114.712 -515.682" transformations="translations" pos="272 600" stroke="black" type="label" width="161.468" height="9.903" depth="2.88" valign="baseline" size="large" style="math">\text{ApplyLP}(\mgv) \rightarrow \m{L}^{-1}\m{P}\mgv</text>
+<text matrix="1 0 0 1 113.606 -515.682" transformations="translations" pos="272 600" stroke="black" type="label" width="163.429" height="9.903" depth="2.88" valign="baseline" size="large" style="math">\text{ApplyLP}(\mbv) \rightarrow \m{L}^{-1}\m{P}\mbv</text>
 <path matrix="1 0 0 1 552 -448" fill="lightblue">
 336 704 m
 336 576 l
