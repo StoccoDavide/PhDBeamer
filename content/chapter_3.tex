@@ -19,7 +19,7 @@
   \end{tabular}}} \\[0.5em]
   \centering{\begin{tikzpicture}[scale=0.5]
     \uncover<3->{
-      \node at (0,0) {\textbf{Two} types of expression swell \dots};
+      \node at (0,0) {\textbf{Two} types of expression swell};
       \draw[fg_sl_color, thick, -stealth] (-2,-0.5) -- (-4.0,-1.5);
       \node at (-7,-2.5) {
       \begin{tabular}{c}
@@ -76,7 +76,7 @@
       v_{n}(v_{1}, \dots, v_{n-1}, \mx)
     \end{bmatrix}}
   \end{equation*}
-  \textbf{\acs{LEM}} is made of two actions \dots
+  \textbf{\acs{LEM}} is made of two actions
   \begin{enumerate}
     \item \textbf{veiled} large expressions
     \item \textbf{unveil} to recover the original form
@@ -127,13 +127,13 @@
 \begin{frame}{Symbolic Matrix Factorization}{Considerations and Challenges}
   \hic{\faCanadianMapleLeaf~\Maple{} factorizations are sensitive to expression swell}
   \begin{itemize}
-    \item<2-> \textbf{\acs{LU}} and \textbf{Fraction-Free \acs{LU}~(\acs{FFLU})} factorizations \dots \\
+    \item<2-> \textbf{\acs{LU}} and \textbf{Fraction-Free \acs{LU}~(\acs{FFLU})} factorizations \\
     \begin{small}
       \qquad preserve \textbf{sparsity} and \textbf{fill-in} \\
       \qquad perform \textbf{minimal algebraic manipulations} \\
       \qquad allow for custom \textbf{pivoting strategies}
     \end{small}
-  \item<3->However\dots
+  \item<3->However \dots
     \begin{enumerate}
       \normalsize
       \item output's numerical stability is not guaranteed \\
@@ -153,7 +153,7 @@
   \hic{How to ensure numerical stability?}
   \begin{columns}
     \begin{column}[c]{0.47\textwidth}
-      A good symbolic \textbf{pivoting strategy} \dots
+      A good symbolic \textbf{pivoting strategy}
       \begin{enumerate}
         \item<1> selects the \textbf{minimum-degree} entry \\
         \begin{small}

@@ -5,9 +5,8 @@
 \begin{frame}{\aclp{DAE}}{A Brief Introduction}
   \begin{columns}
     \begin{column}{0.65\textwidth}
-      \acsp{DAE} are \dots
       \begin{enumerate}[<+->]
-        \item a \textbf{generalization} of algebraic equations and \acsp{ODE} \\
+        \item \acsp{DAE} are a \textbf{generalization} of algebraic equations and \acsp{ODE} \\
         \centering{\begin{tikzpicture}[scale=0.5]
         \node at (0,0) {%
           $\begin{array}{c}%
@@ -30,7 +29,7 @@
           \end{array}$%
         };
         \end{tikzpicture}}
-        \item composed of
+        \item \acsp{DAE} are composed of
         \begin{itemize}
           \item<2-> differential equations describe the system's \textbf{dynamics}
           \item<2-> algebraic equations constrain the system to a \textbf{manifold} \\
@@ -85,14 +84,14 @@
   \vspace{1.0em}
   \centering
   \begin{tikzpicture}[scale=0.5]
-    \uncover<1->{\node at (0,0) {\textbf{Two} main approaches \dots};}
+    \uncover<1->{\node at (0,0) {\textbf{Two} main approaches};}
     \visible<2->{\draw[fg_sl_color, thick, -stealth] (-2,-1) -- (-3,-2);}
     \uncover<2->{\node at (-5,-3) {\hi{\large Index reduction}};}
     \visible<2>{\node at (-5,-4) {\hi{\large + \acs{ODE} methods}};}
     \visible<1>{\draw[fg_sl_color, thick, -stealth] (+2,-1) -- (+3,-2);}
     \uncover<1,3->{\node at (+5.75,-3) {\hi{\large Direct discretization}};}
     \visible<3->{
-      \node at (0,-6) {\hi{\large \dots or a mix between them!}};
+      \node at (0,-6) {\hi{\large or a mix between them!}};
       \draw[fg_sl_color, thick, -stealth] (-1,-3) -- (+1,-3);
       \draw[fg_sl_color, thick, -stealth] (+3,-4) -- (+2,-5);
     }
@@ -136,7 +135,7 @@
 \subsubsection{Index Reduction}
 
 \begin{frame}{Solution of \aclp{DAE}}{The Index \dots Or better Yet, The Indices}
-  The index is a ``\textbf{measure of difficulty}'' in the solution of the \acsp{DAE} \dots
+  The index is a ``\textbf{measure of difficulty}'' in the solution of the \acsp{DAE}
   \begin{itemize}
     \item Different approaches in classifying such difficulties led to different \textbf{index concepts} \\
     \centering{\small\begin{tabular}{ccc}
@@ -175,9 +174,9 @@
     \end{equation*}
   \end{bbox}
   \vspace{1.0em}
-  Index reduction is performed \dots
+  Index reduction is performed
   \begin{itemize}
-    \item \textbf{prior} to numerical integration
+    %\item \textbf{prior} to numerical integration
     \item by expressions \textbf{manipulation} and \textbf{differentiation}
     \item through \textbf{symbolic computation} or \textbf{numerically} (with \emph{automatic differentiation})
   \end{itemize}
@@ -233,7 +232,7 @@
     \end{column}
   \end{columns}}
   \vspace{0.5em}
-  The tools we are going to use are \dots \\
+  The \textbf{software tools} \\
   \begin{itemize}\small
     \item[\raisebox{0pt}{\scalebox{1.0}{\faCanadianMapleLeaf}}] \textbf{\Maple{}} for symbolic manipulation \\
     \item[\raisebox{0pt}{\scalebox{0.8}{\faAngleRight\hspace{-0.1em}\faAngleRight\hspace{-0.1em}\faAngleRight}}] \textbf{\Matlab{}} for numerical evaluation

@@ -98,7 +98,7 @@
 
 \begin{frame}{Projection and Consistent Initialization}{Two Problems, One Solution}
   %Usually, there is no information related to all initial conditions, which must be calculated consistently. Do you think the index reduction strategy can be used to calculate consistent initial values?
-  If part of ICs are not available \dots
+  If part of ICs are not available:
   \begin{itemize}
     \item We can use the \textbf{projection scheme} to calculate consistent ICs
     \item The \textbf{iterative method} is reduced as selecting only the unknown ICs and the invariants we want to be maintained
@@ -106,23 +106,23 @@
   \centering\includegraphics[width=0.5\textwidth]{initial_conditions.eps}
 \end{frame}
 
-\begin{frame}{BVPs with DAEs}
-  %Do you think these techniques could be easily generalised to boundary value problems?
-  \begin{itemize}
-    \item \textbf{Single shooting} \\
-    \begin{small}
-      \qquad similar to the solution of IVPs\\
-      \qquad Jacobian matrix propagation might be influenced by the projection
-    \end{small}
-    \item \textbf{Multiple shooting} \\
-    \begin{small}
-      \qquad projection can be used at the junction points
-    \end{small}
-    \item \textbf{Collocation} \\
-    \begin{small}
-      \qquad remove some collocation point and add the projection to make the polynomial consistent with the invariants
-    \end{small}
-  \end{itemize}
-\end{frame}
+%\begin{frame}{BVPs with DAEs}
+%  %Do you think these techniques could be easily generalised to boundary value problems?
+%  \begin{itemize}
+%    \item \textbf{Single shooting} \\
+%    \begin{small}
+%      \qquad similar to the solution of IVPs\\
+%      \qquad Jacobian matrix propagation might be influenced by the projection
+%    \end{small}
+%    \item \textbf{Multiple shooting} \\
+%    \begin{small}
+%      \qquad projection can be used at the junction points
+%    \end{small}
+%    \item \textbf{Collocation} \\
+%    \begin{small}
+%      \qquad remove some collocation point and add the projection to make the polynomial consistent with the invariants
+%    \end{small}
+%  \end{itemize}
+%\end{frame}
 
 % That's all Folks!

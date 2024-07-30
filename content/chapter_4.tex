@@ -2,7 +2,7 @@
 
 \section{Index Reduction Algorithm}
 
-\subsubsection{Separation of Differential and Algebraic Equations}
+\subsection{Separation of Differential and Algebraic Equations}
 
 \begin{frame}{Index Reduction Algorithm}{Separation of Differential and Algebraic Equations}
   \vspace{-1.0em}
@@ -35,39 +35,39 @@
   \end{columns}
 \end{frame}
 
-\subsubsection{Differentiation of Algebraic Equations}
+\subsection{Differentiation of Algebraic Equations}
 
 \begin{frame}{Index Reduction Algorithm}{Differentiation of Algebraic Equations}
   \vspace{-1.5em}
   \begin{columns}
     \begin{column}[c]{0.6\textwidth}
       \begin{enumerate}[<+->]\setcounter{enumi}{2}
-        \item Update the \textbf{invariants} as $\mh = \mh \cup \ma$ and \textbf{differentiate} the algebraic equations $\ma$
+        \item Update the \textbf{invariants} as $\mh = \mh \cup \ma$
+        \item \textbf{Differentiate} the algebraic equations $\ma$
         \begin{equation*}
           \dfrac{\text{d}}{\text{d}t} \ma = \mAd \mxp - \mgd
         \end{equation*}
-        \item The new system of \acsp{DAE} takes the form
+        \item The \textbf{index reduced} system of \acsp{DAE} takes the form
         \begin{align*}
           \mF = \mA &\mxp - \mb = \m{0} ~~ \text{with} \\
           \mA = \begin{bmatrix} \mE \\ \mAd \end{bmatrix}
           ~~ &\text{and} ~~
           \mb = \begin{bmatrix} \mg \\ \mgd \end{bmatrix}
         \end{align*}
-        \item The differential index has been reduced by one!
       \end{enumerate}
-      \uncover<4->{\begin{bbox}[A Sequential Algorithm]
+      \uncover<3->{\begin{bbox}[A Sequential Algorithm]
         Apply \boxednumber{1}--\boxednumber{6} repeatedly until $\mA$ is non-singular
       \end{bbox}}
     \end{column}
     \begin{column}[c]{0.4\textwidth}
-      \visible<3->{\includegraphics[width=1.0\textwidth, trim={0cm 0cm 0cm 7.35cm}, clip]{dae_visualization.eps}}
+      \visible<2->{\includegraphics[width=1.0\textwidth, trim={0cm 0cm 0cm 7.35cm}, clip]{dae_visualization.eps}}
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Index Reduction Algorithm}{Including Veiling Variables}
   \vspace{-1.0em}
-  The algorithm can be extended to include \textbf{\acs{LEM}} \dots
+  The algorithm can be extended to include \textbf{\acs{LEM}}
   \begin{itemize}
     \item veiling variables are stored in the list $\mv$
     \item equations are also function of $\mv$
@@ -133,7 +133,7 @@
   \hic{\faAngleRight\hspace{-0.1em}\faAngleRight\hspace{-0.1em}\faAngleRight~Now we can integrate the system in \Matlab{}!}
   \begin{columns}
     \begin{column}[c]{0.6\textwidth}
-      Projection is performed \dots
+      Projection is performed:
       \begin{itemize}
         \item during the \textbf{numerical integration}
         \item to \textbf{enforce} the solution $\mx$ onto the $\mhv$ manifold

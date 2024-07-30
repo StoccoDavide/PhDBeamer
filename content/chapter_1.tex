@@ -75,7 +75,7 @@
 \begin{frame}{Introduction and Motivation}{Solution Approaches}
   \begin{columns}
     \begin{column}[c]{0.45\textwidth}
-      The \textbf{solution} of these equations can be \dots \\
+      The \textbf{solution} of these equations can be \\
       \begin{itemize}[<+->]
         \item \textbf{Analytical} \\
         \begin{small}
@@ -118,17 +118,9 @@
           \end{array}}$} \\
           \visible<3->{\vspace{-2.0em}$\begin{array}{c}
             \text{\hi{Direct stiffness method (A4)}} \\[0.25em]
-            \begin{bmatrix}
-              \mathbf{K}_{ff} & \mathbf{K}_{fs} \\
-              \mathbf{K}_{sf} & \mathbf{K}_{ss}
-            \end{bmatrix} \begin{bmatrix}
-              \mathbf{d}_{f} \\
-              \mathbf{d}_{s}
-            \end{bmatrix} = \begin{bmatrix}
-              \mathbf{f}_{f} \\
-              \mathbf{f}_{s}
-            \end{bmatrix}
-          \end{array}$ &
+            \text{Macro-element FE model} \\
+            \text{Modified MB-DAE system}
+            \end{array}$ &
           \includegraphics[width=0.4\textwidth]{figures/fade_overview.png}}
       \end{tabular}
     \end{column}
@@ -210,7 +202,7 @@
   \uncover<2->{
     \centering
     \vspace{0.5em}
-    Therefore, the question is \dots \\[-1.0em]
+    Therefore, the question is \\[-1.0em]
     \hic{\large How can we improve the state-of-the-art in the solution of \acsp{DAE}?}
   }
 \end{frame}
