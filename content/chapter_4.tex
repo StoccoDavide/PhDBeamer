@@ -48,12 +48,13 @@
           \dfrac{\text{d}}{\text{d}t} \ma = \mAd \mxp - \mgd
         \end{equation*}
         \item The \textbf{index reduced} system of \acsp{DAE} takes the form
-        \begin{align*}
-          \mF = \mA &\mxp - \mb = \m{0} ~~ \text{with} \\
-          \mA = \begin{bmatrix} \mE \\ \mAd \end{bmatrix}
-          ~~ &\text{and} ~~
-          \mb = \begin{bmatrix} \mg \\ \mgd \end{bmatrix}
-        \end{align*}
+        \begin{equation*}
+          \begin{array}{c}
+            \begin{bmatrix} \mE \\ \mAd \end{bmatrix}  \mxp =
+            \begin{bmatrix} \mg \\ \mgd \end{bmatrix} \\[0.5em]
+            \mF = \mA \mxp - \mb = \m{0}
+            \end{array}
+        \end{equation*}
       \end{enumerate}
       \uncover<3->{\begin{bbox}[A Sequential Algorithm]
         Apply \boxednumber{1}--\boxednumber{6} repeatedly until $\mA$ is non-singular
@@ -133,7 +134,7 @@
   \hic{\faAngleRight\hspace{-0.1em}\faAngleRight\hspace{-0.1em}\faAngleRight~Now we can integrate the system in \Matlab{}!}
   \begin{columns}
     \begin{column}[c]{0.6\textwidth}
-      Projection is performed:
+      Projection is performed
       \begin{itemize}
         \item during the \textbf{numerical integration}
         \item to \textbf{enforce} the solution $\mx$ onto the $\mhv$ manifold
